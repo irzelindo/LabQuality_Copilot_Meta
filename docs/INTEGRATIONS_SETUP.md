@@ -16,6 +16,8 @@ LQ_MODEL_BASE_URL=https://api.meta.ai/v1
 3. Reinicie **API e trabalhador**, clique em **Testar** e confirme «Chave aceite e modelo disponível». Se o modelo não constar da lista, escolha no painel o identificador realmente permitido à sua conta e altere `LQ_MODEL_ID`.
 4. Para confirmar uma execução completa, abra uma avaliação fictícia da demonstração e use **Analisar com Meta**. O trabalhador deve estar activo; consulte o resultado, as citações e o estado da tarefa. Uma ligação bem-sucedida, por si só, não confirma créditos, inferência nem qualidade da resposta. Mantenha a revisão humana antes de converter a proposta em acção.
 
+Se uma análise mostrar **Falhou** com «Unterminated string», confirme que instalou a versão actual desta branch e reinicie o trabalhador. Esse erro surgiu depois de uma resposta HTTP 200 com texto JSON incompleto. O adaptador passou a limitar a resposta a três propostas concisas, reservar mais tokens para a saída e reconhecer explicitamente respostas incompletas. As análises já marcadas como falhadas continuam no histórico; faça uma **nova análise** depois da actualização. Se voltar a falhar, consulte a mensagem em **Consultar** e os registos do trabalhador, sem divulgar a chave.
+
 ## ODK Central — ligação antes do mapeamento
 
 Se já existe um servidor ODK Central seu ou autorizado, use a URL base HTTPS, sem `/v1` no fim, e uma conta com acesso ao projecto e autenticação compatível com Basic Auth:

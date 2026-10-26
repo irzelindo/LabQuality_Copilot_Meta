@@ -2,6 +2,7 @@ import csv
 import io
 import json
 import httpx
+import pytest
 from sqlalchemy import select
 from app.config import settings
 from app.database import session_factory
@@ -9,7 +10,7 @@ from app.demo import sample_assessments
 from app.models import Document, Laboratory, Organization, User
 from app.schemas import RecommendationResult
 from app.security import passwords
-from app.ai import validate_grounding
+from app.ai import parse_response, validate_grounding
 from app.worker import process_one
 from conftest import PASSWORD, login
 
@@ -175,6 +176,8 @@ def test_csv_upload_and_export_filters(client):
 
 def fake_meta(url, **kwargs):
     assert url == "https://api.meta.ai/v1/responses"
+    assert kwargs["json"]["max_output_tokens"] == 9000
+    assert kwargs["json"]["reasoning"] == {"effort": "low"}
     context = json.loads(kwargs["json"]["input"][1]["content"])
     finding = next(f for f in context["findings"] if f["criterion_code"] == "C04")
     source = next(s for s in context["sources"] if "C04" in s["criterion_codes"])
@@ -183,7 +186,7 @@ def fake_meta(url, **kwargs):
                 "priority": "critical", "steps": ["Investigar a causa com a equipa.", "Rever os registos e atribuir uma verificação."],
                 "completion_criterion": "Registo completo e revisão independente documentada.", "finding_ids": [finding["id"]],
                 "citations": [{"source_id": source["id"], "quote": source["content"][:100]}]}]}
-    return httpx.Response(200, request=httpx.Request("POST", url), json={"output": [{"type": "message", "content": [{"type": "output_text", "text": json.dumps(result)}]}], "usage": {"input_tokens": 100, "output_tokens": 100}})
+    return httpx.Response(200, request=httpx.Request("POST", url), json={"status": "completed", "output": [{"type": "message", "content": [{"type": "output_text", "text": json.dumps(result)}]}], "usage": {"input_tokens": 100, "output_tokens": 100}})
 
 
 def test_ai_is_unavailable_without_key_and_validates_real_adapter_contract(client, monkeypatch):
@@ -214,6 +217,29 @@ def test_grounding_rejects_invented_quotes():
     result = RecommendationResult.model_validate({"summary": "Example result", "insufficient_evidence": False, "recommendations": [
         {"title": "Example action", "justification": "An example justification.", "priority": "high", "steps": ["Review the record"],
          "completion_criterion": "The record was reviewed.", "finding_ids": ["f1"], "citations": [{"source_id": "d1", "quote": "This quote was invented by the model."}]}]})
-    import pytest
     with pytest.raises(ValueError, match="citação"):
         validate_grounding(result, {"findings": [{"id": "f1", "criterion_code": "C04"}], "sources": [{"id": "d1", "criterion_codes": ["C04"], "content": "Real source text."}]})
+
+
+def test_incomplete_meta_response_is_reported_without_creating_proposals(client, monkeypatch):
+    login(client)
+    settings().model_api_key = "test-key-not-a-real-credential"
+    assessment = next(a for a in client.get("/api/v1/assessments").json()["items"]
+                      if a["laboratory_code"] == "SUL" and a["assessment_date"] == "2026-10-01")
+    def incomplete(url, **kwargs):
+        return httpx.Response(200, request=httpx.Request("POST", url), json={
+            "status": "incomplete", "incomplete_details": {"reason": "max_output_tokens"},
+            "output": [{"type": "message", "content": [{"type": "output_text", "text": '{"summary":"texto truncado'}]}]})
+    monkeypatch.setattr("app.ai.httpx.post", incomplete)
+    run_id = client.post("/api/v1/ai/runs", json={"assessment_id": assessment["id"]}).json()["id"]
+    before = len(client.get("/api/v1/actions").json())
+    assert process_one()
+    run = client.get("/api/v1/ai/runs/" + run_id).json()
+    assert run["status"] == "failed" and "limite de tokens" in run["error"]
+    assert run["result"] == {} and len(client.get("/api/v1/actions").json()) == before
+
+
+def test_malformed_meta_text_has_a_safe_actionable_error():
+    with pytest.raises(ValueError, match="JSON incompleto ou inválido"):
+        parse_response({"status": "completed", "output": [{"type": "message", "content": [
+            {"type": "output_text", "text": '{"summary":"unfinished'}]}]})
