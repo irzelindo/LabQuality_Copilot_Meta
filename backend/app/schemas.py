@@ -189,4 +189,11 @@ class ODKIn(Schema):
     revision_field: str = Field(default="__system.updatedAt", max_length=200)
     instrument_code: str
     instrument_version: str
-    criterion_fields: dict[str, str] = Field(min_length=1, max_length=1000)
+    criterion_fields: dict[str, str] = Field(default_factory=dict, max_length=1000)
+    na_fields: dict[str, list[str]] = Field(default_factory=dict, max_length=1000)
+    comment_fields: dict[str, list[str]] = Field(default_factory=dict, max_length=1000)
+
+
+class ODKSubscriptionIn(Schema):
+    project_id: int = Field(ge=1)
+    active: bool = True

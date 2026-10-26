@@ -19,7 +19,7 @@ def client(tmp_path, monkeypatch):
     engine.cache_clear()
     command.upgrade(Config("alembic.ini"), "head")
     with session_factory()() as db:
-        seed_demo(db, PASSWORD)
+        seed_demo(db, PASSWORD, scenario="legacy")
         db.commit()
     from app.main import app
     with TestClient(app, headers={"X-LabQuality-Client": "web"}) as c:

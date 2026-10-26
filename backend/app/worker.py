@@ -11,7 +11,8 @@ from .ai import execute_ai
 from .config import settings
 from .database import session_factory
 from .integrations import fetch_odk
-from .models import AIExecution, Action, Job, Notification, Register, User, now
+from .models import AIExecution, Action, Job, Notification, Register, User, ODKSyncConfig, now
+from .demo import PILOT
 from .schemas import ODKIn
 from .security import EDITORS, laboratory_ids, role
 from .services import import_assessments, notify
@@ -131,12 +132,44 @@ def due_reminders():
         db.commit()
 
 
+def schedule_odk():
+    """Poll active, organization-scoped pilot subscriptions at most every five minutes."""
+    cfg = settings()
+    if not (cfg.odk_url and cfg.odk_email and cfg.odk_password):
+        return
+    with session_factory()() as db:
+        for sub in list(db.scalars(select(ODKSyncConfig).where(ODKSyncConfig.active.is_(True),
+                         ODKSyncConfig.next_run_at <= now()).limit(50))):
+            actor = db.get(User, sub.actor_id)
+            if not actor or not actor.active or actor.organization_id != sub.organization_id or actor.role != "admin":
+                sub.active = False
+                db.commit()
+                continue
+            claimed = db.execute(update(ODKSyncConfig).where(ODKSyncConfig.id == sub.id,
+                ODKSyncConfig.active.is_(True), ODKSyncConfig.next_run_at <= now()).values(
+                    next_run_at=now() + timedelta(minutes=5)))
+            if claimed.rowcount != 1:
+                db.rollback()
+                continue
+            pending = db.scalar(select(Job.id).where(Job.kind == "odk", Job.entity_id == sub.id,
+                Job.status.in_(["queued", "running"])).limit(1))
+            if not pending:
+                payload = ODKIn(project_id=sub.project_id, form_id=PILOT["form_id"],
+                    stable_id_field=PILOT["identity_field"], laboratory_code_field=PILOT["laboratory_code_field"],
+                    assessment_date_field=PILOT["assessment_date_field"], instrument_code=PILOT["instrument_code"],
+                    instrument_version=PILOT["instrument_version"])
+                db.add(Job(organization_id=sub.organization_id, actor_id=actor.id, kind="odk",
+                    entity_id=sub.id, payload=payload.model_dump()))
+            db.commit()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--once", action="store_true")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO)
     last_housekeeping = 0
+    last_odk = 0
     while True:
         try:
             if time.monotonic() - last_housekeeping > 3600:
@@ -144,6 +177,9 @@ def main():
                     fail_expired(db)
                 due_reminders()
                 last_housekeeping = time.monotonic()
+            if time.monotonic() - last_odk > 60:
+                schedule_odk()
+                last_odk = time.monotonic()
             worked = process_one()
         except Exception:
             logger.exception("Worker iteration failed")

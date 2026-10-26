@@ -32,7 +32,7 @@ LQ_ODK_PASSWORD=<palavra_passe_odk>
 
 Reinicie a API e clique em **Testar**. O teste consulta somente `/v1/users/current` e confirma a autenticação, mas não verifica um projecto, formulário ou submissão. Contas que exigem SSO podem não autenticar por este método.
 
-O XLSForm SLIPTA recebido ainda requer validação da pontuação e mapeamento explícito de respostas Y/P/N/NA e dos identificadores. **Não sincronize esse formulário como avaliações oficiais nesta fase.** Para experimentar a importação agora, use o CSV/Excel/JSON da demonstração e repita a importação: as nove avaliações de três momentos distintos permanecem e as reimportações idênticas não as duplicam. Quando houver um formulário ODK de ensaio com pontuações numéricas e identidade estável, preencha projecto, XML ID e campos no ecrã **Importar dados** e ensaie primeiro com submissões fictícias.
+O instrumento `SLIPTA-ODK-PILOT 2026.10` contém os 151 itens e 365 pontos calculáveis do XLSForm partilhado. No ecrã **Importar dados**, indique o projecto ODK e seleccione este instrumento: o servidor usa os campos calculados, as respostas NA e os comentários mapeados para esta versão. Faça a primeira sincronização com uma submissão de ensaio e confirme o código de laboratório, a data, os achados e a exclusão NA. Só depois active a sincronização automática, com verificação aproximadamente a cada cinco minutos. **Não apresente as avaliações ou estrelas como classificação SLIPTA oficial:** o formulário ainda tem divergências de totais face ao PDF e os caminhos OData carecem de teste num servidor real. As submissões idênticas não duplicam e as edições ficam em revisões.
 
 ## Email SMTP — opcional
 
@@ -51,4 +51,4 @@ Para SMTP sobre TLS implícito, use `LQ_SMTP_PORT=465`; os testes e o trabalhado
 
 ## Demonstração e limites
 
-O percurso apresentável já cobre nove avaliações em momentos diferentes, filtros, achados, plano de melhoria, evidência e verificação independente. Mostre a IA apenas após uma execução real bem-sucedida e identifique o instrumento **DEMO-QMS 1.0** como fictício. A classificação oficial SLIPTA, o mapeamento do XLSForm e as integrações externas permanecem pendentes de validação. Consulte também [estado da implementação](IMPLEMENTATION_STATUS.md) e [auditoria da pontuação SLIPTA](SLIPTA_V3_2023_SCORE_AUDIT.md).
+O percurso apresentável cobre nove avaliações simuladas com critérios do XLSForm, em momentos diferentes, filtros, achados, plano de melhoria, evidência e verificação independente. Mostre a IA apenas após uma execução real bem-sucedida e identifique o instrumento **SLIPTA-ODK-PILOT 2026.10** como provisório e as avaliações como simuladas. A classificação oficial SLIPTA e a integração com uma submissão ODK real permanecem pendentes de validação. Consulte também [estado da implementação](IMPLEMENTATION_STATUS.md) e [auditoria da pontuação SLIPTA](SLIPTA_V3_2023_SCORE_AUDIT.md).

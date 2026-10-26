@@ -16,6 +16,19 @@ test("administrator can check missing integrations without external side effects
   await expect(page.getByRole("status").nth(2)).toContainText("Defina LQ_SMTP_HOST");
 });
 
+test("pilot import presents the SLIPTA mapping and keeps sync disabled without ODK credentials", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("Email", { exact: true }).fill("admin@labquality.local");
+  await page.getByLabel("Palavra-passe", { exact: true }).fill("Local-e2e-test-only-2026!");
+  await page.getByRole("button", { name: "Entrar no espaço de trabalho" }).click();
+  await page.getByRole("link", { name: "Importar dados", exact: true }).click();
+  await expect(page.getByRole("link", { name: "Exemplo CSV" })).toHaveAttribute("href", "/demo/slipta-pilot-assessments.csv");
+  await page.getByLabel("Instrumento e versão").selectOption({ label: "SLIPTA-ODK-PILOT v2026.10" });
+  await expect(page.getByText(/151 itens, pontuação provisória/)).toBeVisible();
+  await expect(page.getByRole("button", { name: "Sincronizar agora" })).toBeDisabled();
+  await expect(page.getByRole("button", { name: "Activar sincronização automática" })).toBeDisabled();
+});
+
 test("assessment, filters, idempotent import, action evidence and independent verification", async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -25,19 +38,19 @@ test("assessment, filters, idempotent import, action evidence and independent ve
   await page.getByLabel("Palavra-passe", { exact: true }).fill("Local-e2e-test-only-2026!");
   await page.getByRole("button", { name: "Entrar no espaço de trabalho" }).click();
   await expect(page.getByRole("heading", { level: 1, name: "Visão geral" })).toBeVisible();
-  await expect(page.locator(".metric").first()).toContainText("63,3%");
+  await expect(page.locator(".metric").first()).toContainText("71,2%");
   await page.screenshot({ path: testInfo.outputPath("dashboard-desktop.png"), fullPage: true });
   await page.locator("#global-lab").selectOption({ label: "Laboratório Sul" });
-  await expect(page.locator(".metric").first()).toContainText("80%");
+  await expect(page.locator(".metric").first()).toContainText("80,3%");
   await page.locator("#global-lab").selectOption("");
   await page.getByRole("link", { name: "Avaliações", exact: true }).click();
   await expect(page.locator("tbody tr")).toHaveCount(9);
   await page.getByRole("button", { name: "Abrir", exact: true }).first().click();
   await expect(page.getByRole("dialog")).toBeVisible();
-  await expect(page.getByRole("dialog").getByText("DEMO-QMS v1.0", { exact: false })).toBeVisible();
+  await expect(page.getByRole("dialog").getByText("SLIPTA-ODK-PILOT v2026.10", { exact: false })).toBeVisible();
   await page.getByRole("button", { name: "Close / Fechar", exact: true }).click();
   await page.getByRole("link", { name: "Importar dados", exact: true }).click();
-  await page.getByLabel("Ficheiro de avaliações", { exact: true }).setInputFiles(path.join(__dirname, "../public/demo/assessments.csv"));
+  await page.getByLabel("Ficheiro de avaliações", { exact: true }).setInputFiles(path.join(__dirname, "../public/demo/slipta-pilot-assessments.csv"));
   await page.getByRole("button", { name: "Pré-validar ficheiro" }).click();
   await expect(page.getByText("Pré-validação concluída — sem gravação", { exact: true })).toBeVisible();
   await expect(page.locator(".import-result")).toContainText("9");
@@ -63,7 +76,7 @@ test("assessment, filters, idempotent import, action evidence and independent ve
   await page.getByRole("button", { name: "Menu", exact: true }).click();
   await page.getByRole("link", { name: "Overview", exact: true }).click();
   await expect(page.getByRole("heading", { level: 1, name: "Overview" })).toBeVisible();
-  await expect(page.locator(".metric").first()).toContainText("63,3%");
+  await expect(page.locator(".metric").first()).toContainText("71,2%");
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await expect.poll(() => page.locator(".sidebar").evaluate(element => element.getBoundingClientRect().right)).toBeLessThanOrEqual(0);
   await page.screenshot({ path: testInfo.outputPath("dashboard-mobile.png"), fullPage: true });

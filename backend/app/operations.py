@@ -10,6 +10,7 @@ from .schemas import *
 from .security import *
 from .services import *
 from .connection_checks import check_connection
+from .demo import PILOT
 from typing import Literal
 
 
@@ -271,7 +272,7 @@ def system_status(db: Session = DB, user: User = ACTOR):
     cfg = settings()
     return {"version": "0.1.0", "ai_configured": bool(cfg.model_api_key), "model": cfg.model_id,
             "email_configured": cfg.smtp_configured, "odk_configured": bool(cfg.odk_url and cfg.odk_email and cfg.odk_password),
-            "storage": "private_local_volume", "demo_instrument": "DEMO-QMS 1.0 — fictitious, not SLIPTA scoring"}
+            "storage": "private_local_volume", "demo_instrument": "SLIPTA-ODK-PILOT 2026.10 — 151 items, provisional 365-point rubric; no official stars"}
 
 
 @router.post("/integrations/odk/sync", status_code=202)
@@ -286,6 +287,40 @@ def queue_odk(body: ODKIn, db: Session = DB, user: User = ACTOR):
     db.flush()
     audit(db, user, "odk.sync_requested", job)
     return {"job_id": job.id, "status": job.status}
+
+
+@router.get("/integrations/odk/subscription")
+def odk_subscription(db: Session = DB, user: User = ACTOR):
+    role(user, {"admin"})
+    row = db.scalar(select(ODKSyncConfig).where(ODKSyncConfig.organization_id == user.organization_id))
+    return {"project_id": row.project_id, "form_id": row.form_id, "active": row.active,
+            "next_run_at": row.next_run_at} if row else None
+
+
+@router.post("/integrations/odk/subscription")
+def configure_odk_subscription(body: ODKSubscriptionIn, db: Session = DB, user: User = ACTOR):
+    from .config import settings
+    role(user, {"admin"})
+    cfg = settings()
+    if not (cfg.odk_url and cfg.odk_email and cfg.odk_password):
+        raise HTTPException(503, "Configure a ligação ODK no servidor.")
+    instrument = db.scalar(select(Instrument).where(Instrument.organization_id == user.organization_id,
+        Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"],
+        Instrument.published.is_(True)))
+    if not instrument:
+        raise HTTPException(422, "Publique primeiro o instrumento piloto SLIPTA desta versão.")
+    row = db.scalar(select(ODKSyncConfig).where(ODKSyncConfig.organization_id == user.organization_id))
+    if not row:
+        row = ODKSyncConfig(organization_id=user.organization_id, project_id=body.project_id,
+            form_id=PILOT["form_id"], actor_id=user.id, active=body.active, next_run_at=now())
+        db.add(row)
+    else:
+        row.project_id, row.actor_id, row.active = body.project_id, user.id, body.active
+        row.next_run_at = now()
+    db.flush()
+    audit(db, user, "odk.subscription_updated", row, {"project_id": body.project_id, "active": body.active})
+    return {"project_id": row.project_id, "form_id": row.form_id, "active": row.active,
+            "next_run_at": row.next_run_at}
 
 
 @router.get("/jobs")

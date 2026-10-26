@@ -47,11 +47,22 @@ Todas utilizam a palavra-passe gerada no ficheiro local `.env`, campo `LQ_DEMO_P
 | `coordenacao@labquality.local` | Consulta da rede; sem edição operacional. |
 | `parceiro@labquality.local` | Indicadores agregados. |
 
-O cenário tem Sul, Centro e Norte, com três avaliações cada. Os últimos resultados são **80%, 50% e 60%**; a média é **63,33%**. Há um achado crítico no Sul apesar da melhoria global. O instrumento **DEMO-QMS 1.0 é fictício** e não atribui classificação oficial SLIPTA ou acreditação.
+O cenário renovado tem Sul, Centro e Norte, com **três auditorias simuladas por laboratório** em Agosto, Setembro e Outubro de 2026. Os 151 itens principais e os 365 pontos calculáveis foram extraídos do XLSForm fornecido. As observações descrevem problemas plausíveis para ensaiar achados e planos; **não são dados recolhidos nesses laboratórios nem atribuem classificação oficial SLIPTA**.
 
-A [conferência da checklist SLIPTA V3:2023](docs/SLIPTA_V3_2023_SCORE_AUDIT.md) identifica diferenças entre os totais das secções 1 e 5 e os máximos impressos por pergunta. Por isso, não foi publicado um instrumento SLIPTA oficial nem atribuídas estrelas. A regra genérica `sum_applicable_v1` já permite excluir do denominador itens NA justificados; a rubrica de demonstração conserva `sum_fixed_v1`.
+A [conferência da checklist SLIPTA V3:2023](docs/SLIPTA_V3_2023_SCORE_AUDIT.md) identifica diferenças entre os totais das secções 1 e 5 e os máximos impressos por pergunta. Por isso, o instrumento `SLIPTA-ODK-PILOT 2026.10` tem pontuação **provisória** e não atribui estrelas. A regra `sum_applicable_v1` exclui do denominador itens NA justificados. A rubrica antiga `DEMO-QMS` permanece apenas como exemplo legado nos testes.
 
-O [XLSForm ODK de Moçambique também foi conferido](docs/SLIPTA_V3_2023_SCORE_AUDIT.md#conferência-do-xlsform-odk-recebido): os seus 151 cálculos principais somam 365 pontos e confirmam a divergência do PDF. Foi preparada uma cópia piloto corrigida para a relevância do comentário 7.9(i), o resultado sem denominador e um media ausente, sem carregar o formulário no ODK nem publicar o instrumento no produto.
+O [XLSForm ODK de Moçambique também foi conferido](docs/SLIPTA_V3_2023_SCORE_AUDIT.md#conferência-do-xlsform-odk-recebido): os seus 151 cálculos principais somam 365 pontos e confirmam a divergência do PDF. Foi preparada uma cópia piloto corrigida para a relevância do comentário 7.9(i), o resultado sem denominador e um media ausente. O instrumento publicado na demonstração é provisório; o formulário ainda não foi carregado ou ensaiado num servidor ODK real.
+
+Para substituir os dados antigos **apenas da organização de demonstração** no SQLite Windows, pare API, trabalhador e interface; na raiz do repositório execute:
+
+```powershell
+Set-Location .\backend
+..\.venv\Scripts\python.exe -m app.bootstrap --refresh-demo
+Set-Location ..
+.\start-windows.ps1
+```
+
+O comando cria antes um backup da base e evidências em `backend\.backups`, elimina as análises e acções da demonstração antiga e recria as nove avaliações do piloto. As sessões das contas de demonstração são revogadas: use a palavra-passe `LQ_DEMO_PASSWORD` do `.env`. **Recusa a limpeza** se houver submissões ODK/manuais ou contas adicionais naquela organização; nunca apaga outras organizações. Em PostgreSQL, use backup/migração controlada, pois este comando só aceita SQLite local. Executar `--demo` numa instalação existente não faz esta substituição.
 
 ## Utilizar a aplicação
 
@@ -63,9 +74,9 @@ O [XLSForm ODK de Moçambique também foi conferido](docs/SLIPTA_V3_2023_SCORE_A
 6. Consulte riscos, ocorrências, competências e equipamentos nos registos operacionais.
 7. Depois de configurar a Meta API, solicite uma análise, consulte as fontes e reveja a proposta antes de a converter numa acção.
 
-CSV e Excel usam as mesmas colunas do exemplo em `frontend/public/demo/assessments.csv`. O JSON correspondente está em `backend/samples/assessments.json`. Uma linha tabular corresponde a um critério; a identidade da avaliação é a combinação da instituição, origem e identificador externo. Pontuações em falta permanecem em falta.
+CSV e Excel usam as mesmas colunas do novo exemplo em `frontend/public/demo/slipta-pilot-assessments.csv`. O JSON correspondente ao novo piloto está em `backend/samples/slipta-pilot-assessments.json`. Uma linha tabular corresponde a um critério; a identidade da avaliação é a combinação da instituição, origem e identificador externo. Pontuações em falta permanecem em falta.
 
-Para um instrumento publicado com `sum_applicable_v1`, indique `NA` ou `N/A` em `value` e uma justificação em `comment` no CSV/XLSX; no JSON use `{"not_applicable": true, "comment": "justificação"}` sem valor numérico. NA difere de uma resposta ainda por avaliar. A percentagem usa os pontos aplicáveis como denominador e o resultado apresenta também o máximo original e a quantidade de itens NA. Um instrumento com todos os itens NA não produz percentagem final. Este modo ainda não implementa as categorias oficiais Y/P/N, subperguntas ou estrelas SLIPTA.
+Para um instrumento publicado com `sum_applicable_v1`, indique `NA` ou `N/A` em `value` e uma justificação em `comment` no CSV/XLSX; no JSON use `{"not_applicable": true, "comment": "justificação"}` sem valor numérico. NA difere de uma resposta ainda por avaliar. A percentagem usa os pontos aplicáveis como denominador e o resultado apresenta também o máximo original e a quantidade de itens NA. Um instrumento com todos os itens NA não produz percentagem final. O piloto usa os cálculos do XLSForm para cada item principal; não atribui estrelas nem substitui a revisão das subperguntas pelo auditor.
 
 ## Configurar a Meta Model API
 
@@ -87,9 +98,11 @@ O adaptador usa a Responses API e valida uma estrutura JSON. As referências dev
 
 ## ODK e email
 
-Configure `LQ_ODK_URL`, `LQ_ODK_EMAIL` e `LQ_ODK_PASSWORD` no servidor. Em Importar dados, um administrador ou gestor define projecto, formulário e mapeamento explícito dos campos. O campo de identidade tem de se manter estável nas edições. As respostas devem ser pontuações numéricas compatíveis com o instrumento; o conector não converte automaticamente textos de uma checklist SLIPTA para pontos.
+Configure `LQ_ODK_URL`, `LQ_ODK_EMAIL` e `LQ_ODK_PASSWORD` no servidor. Em Importar dados, um administrador ou gestor define projecto, formulário e mapeamento explícito dos campos. O campo de identidade tem de se manter estável nas edições. Para o XLSForm `slipta_v3_2023_mozambique`, o servidor mapeia os 151 cálculos de pontuação, NA e comentários conferidos. Os restantes instrumentos exigem mapeamento explícito das pontuações numéricas.
 
 O conector lê OData por HTTPS e aplica as mesmas regras de importação. Não altera nem submete formulários no ODK. Uma sincronização aceita até 500 avaliações e é transaccional. A paginação só aceita o mesmo servidor e caminho esperados.
+
+No ecrã **Importar dados**, escolha o instrumento piloto e indique o **ID do projecto ODK** que contém o formulário XML `slipta_v3_2023_mozambique`. Use **Sincronizar agora** para validar o primeiro lote e, depois, como administrador, **Activar sincronização automática**: o trabalhador verifica novas submissões aproximadamente a cada cinco minutos. A identidade `__id` evita duplicados; alterações do conteúdo criam revisões históricas. O código `tf_numero_laboratorio` de cada submissão deve corresponder a `SUL`, `CENTRO` ou `NORTE` na demonstração, ou a um código do laboratório criado na instituição. A configuração e as credenciais ficam no servidor. O mapeamento ainda requer ensaio com uma exportação OData real antes de ser considerado validado para o formulário publicado.
 
 Para email, configure `LQ_SMTP_*`. Sem SMTP, as notificações permanecem disponíveis na aplicação. Os emails enviados contêm apenas um aviso genérico para entrar na aplicação. Eventos são deduplicados na base de dados. Uma falha depois da tentativa de entrega fica como `uncertain`; o trabalhador não repete automaticamente uma entrega possivelmente concluída.
 

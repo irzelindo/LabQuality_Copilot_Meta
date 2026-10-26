@@ -12,6 +12,7 @@ __pycache__/
 *.sqlite*
 storage/
 backups/
+.backups/
 artifacts/
 *.tsbuildinfo
 frontend/.env.local
