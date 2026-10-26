@@ -1,0 +1,1 @@
+"""LabQuality Copilot application."""
