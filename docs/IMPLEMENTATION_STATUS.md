@@ -32,3 +32,7 @@ As interfaces principais têm português/inglês e disposição responsiva. O co
 Validar referenciais e direitos de utilização; executar as integrações reais; testar PostgreSQL e armazenamento no servidor; definir retenção e continuidade; medir carga e recuperação; rever segurança e acessibilidade; formar utilizadores e documentar a aceitação do piloto.
 
 Os ficheiros não foram escritos directamente no disco D: do utilizador, que não está acessível no ambiente desta sessão. O instalador do pacote prepara esse destino quando executado no Windows.
+
+## Actualização em branch de trabalho, 26/10/2026
+
+O motor passou a suportar, como opção por versão de instrumento, um denominador ajustado para itens NA com justificação. Mantém os resultados da demonstração anterior e não altera esquemas da base de dados: a coluna `scoring_rule` já existia e as respostas são JSON. Os máximos original/aplicável e a contagem NA passam a estar disponíveis nos resultados, no dashboard e na exportação. Consulte [a conferência da checklist V3:2023](SLIPTA_V3_2023_SCORE_AUDIT.md) antes de qualquer mapeamento ou classificação oficial; o PDF recebido contém totais inconciliáveis nas secções 1 e 5.

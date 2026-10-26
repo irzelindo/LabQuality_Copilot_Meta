@@ -57,6 +57,7 @@ class InstrumentIn(Schema):
     version: str = Field(min_length=1, max_length=40)
     name: str = Field(min_length=2, max_length=200)
     description: str = Field(default="", max_length=5000)
+    scoring_rule: Literal["sum_fixed_v1", "sum_applicable_v1"] = "sum_fixed_v1"
     criteria: list[Criterion] = Field(min_length=1, max_length=1000)
 
     @model_validator(mode="after")
@@ -69,6 +70,13 @@ class InstrumentIn(Schema):
 class Answer(Schema):
     value: int | None = Field(default=None, ge=0, le=100)
     comment: str = Field(default="", max_length=5000)
+    not_applicable: bool = False
+
+    @model_validator(mode="after")
+    def justify_not_applicable(self):
+        if self.not_applicable and (self.value is not None or not self.comment):
+            raise ValueError("NA exige pontuação vazia e uma justificação no comentário.")
+        return self
 
 
 class AssessmentIn(Schema):

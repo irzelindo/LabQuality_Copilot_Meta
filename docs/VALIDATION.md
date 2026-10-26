@@ -23,3 +23,7 @@ O adaptador Meta e a leitura ODK foram exercitados com respostas controladas de 
 Não executado nesta sessão: instalação PowerShell/Windows, Docker, PostgreSQL real, Meta API real, ODK real, SMTP real, testes de carga, recuperação institucional ou piloto. O ambiente não disponibiliza o disco D: do utilizador.
 
 As capturas usadas na revisão visual são resultados internos dos testes e não integram o pacote de código.
+
+## Branch de pontuação com NA, 26/10/2026
+
+Após a análise do PDF recebido, a suite do backend passou de 18 para 21 testes, todos aprovados; os testes novos cobrem subtracção do denominador por secção e total, justificação NA, rejeição em instrumento de máximo fixo, importação CSV, idempotência, revisões imutáveis e denominador zero. A compilação de produção do Next.js (incluindo TypeScript) passou. Dois percursos no navegador passaram: o fluxo original da demonstração e a publicação de um instrumento com NA seguida de uma avaliação pelo formulário. Estas verificações foram executadas no ambiente Linux de desenvolvimento; a instalação Windows do utilizador e as integrações externas reais continuam por validar.

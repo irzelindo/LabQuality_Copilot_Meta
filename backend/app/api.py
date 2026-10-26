@@ -217,8 +217,10 @@ def parse_table(rows: list[dict]) -> list[AssessmentIn]:
         if code in groups[key]["answers"]:
             raise HTTPException(422, f"Critério repetido, linha {i + 2}.")
         raw = row["value"]
-        value = None if raw is None or str(raw).strip() == "" else raw
-        groups[key]["answers"][code] = {"value": value, "comment": str(row.get("comment") or "")}
+        is_na = isinstance(raw, str) and raw.strip().upper() in {"NA", "N/A"}
+        value = None if is_na or raw is None or str(raw).strip() == "" else raw
+        groups[key]["answers"][code] = {"value": value, "comment": str(row.get("comment") or ""),
+                                         "not_applicable": is_na}
     try:
         return [AssessmentIn.model_validate(v) for v in groups.values()]
     except ValueError as error:

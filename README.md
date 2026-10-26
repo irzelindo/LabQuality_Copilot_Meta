@@ -49,6 +49,8 @@ Todas utilizam a palavra-passe gerada no ficheiro local `.env`, campo `LQ_DEMO_P
 
 O cenário tem Sul, Centro e Norte, com três avaliações cada. Os últimos resultados são **80%, 50% e 60%**; a média é **63,33%**. Há um achado crítico no Sul apesar da melhoria global. O instrumento **DEMO-QMS 1.0 é fictício** e não atribui classificação oficial SLIPTA ou acreditação.
 
+A [conferência da checklist SLIPTA V3:2023](docs/SLIPTA_V3_2023_SCORE_AUDIT.md) identifica diferenças entre os totais das secções 1 e 5 e os máximos impressos por pergunta. Por isso, não foi publicado um instrumento SLIPTA oficial nem atribuídas estrelas. A regra genérica `sum_applicable_v1` já permite excluir do denominador itens NA justificados; a rubrica de demonstração conserva `sum_fixed_v1`.
+
 ## Utilizar a aplicação
 
 1. Entre como administrador e consulte os indicadores. Experimente os filtros de laboratório e datas.
@@ -60,6 +62,8 @@ O cenário tem Sul, Centro e Norte, com três avaliações cada. Os últimos res
 7. Depois de configurar a Meta API, solicite uma análise, consulte as fontes e reveja a proposta antes de a converter numa acção.
 
 CSV e Excel usam as mesmas colunas do exemplo em `frontend/public/demo/assessments.csv`. O JSON correspondente está em `backend/samples/assessments.json`. Uma linha tabular corresponde a um critério; a identidade da avaliação é a combinação da instituição, origem e identificador externo. Pontuações em falta permanecem em falta.
+
+Para um instrumento publicado com `sum_applicable_v1`, indique `NA` ou `N/A` em `value` e uma justificação em `comment` no CSV/XLSX; no JSON use `{"not_applicable": true, "comment": "justificação"}` sem valor numérico. NA difere de uma resposta ainda por avaliar. A percentagem usa os pontos aplicáveis como denominador e o resultado apresenta também o máximo original e a quantidade de itens NA. Um instrumento com todos os itens NA não produz percentagem final. Este modo ainda não implementa as categorias oficiais Y/P/N, subperguntas ou estrelas SLIPTA.
 
 ## Configurar a Meta Model API
 
@@ -146,6 +150,10 @@ Dentro de `backend`, com o Python da `.venv`:
 A ferramenta SQLite usa a API de backup da base de dados e copia os anexos privados. A recuperação verifica hashes e aceita apenas um destino vazio. O backup não contém `.env`; as configurações devem ser preservadas separadamente. Configure `LQ_DATABASE_URL` e `LQ_STORAGE_DIR` para os caminhos recuperados antes de iniciar a cópia restaurada.
 
 Para PostgreSQL, preparar backup com `pg_dump` e cópia do volume de evidências, com política de consistência e recuperação ensaiada no ambiente de implantação. Os objectivos de perda e tempo de recuperação da proposta ainda não foram medidos.
+
+## Sincronização do código
+
+O código está no repositório [LabQuality_Copilot_Meta](https://github.com/irzelindo/LabQuality_Copilot_Meta). As alterações em desenvolvimento são feitas em branches `feature/*` e, depois de validadas, podem ser enviadas directamente para o repositório sem pull request. Execute `git fetch origin` e mude para a branch pretendida no clone do projecto; conserve o `.env`, a base SQLite e os anexos locais fora dos commits. O ZIP 0.1.0 corresponde à entrega inicial e não recebe automaticamente as alterações das branches.
 
 ## Participação e próximos marcos
 

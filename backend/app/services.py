@@ -11,25 +11,41 @@ from .security import audit, laboratory_ids, require_lab
 
 
 def score(assessment: Assessment, instrument: Instrument) -> dict:
+    if instrument.scoring_rule not in {"sum_fixed_v1", "sum_applicable_v1"}:
+        raise ValueError("Regra de pontuação desconhecida.")
+    allow_na = instrument.scoring_rule == "sum_applicable_v1"
     sections = {}
     answered = 0
     total = 0
     maximum = 0
+    full_maximum = 0
+    not_applicable = 0
     for criterion in instrument.criteria:
-        section = sections.setdefault(criterion["section"], {"obtained": 0, "maximum": 0, "answered": 0, "items": 0})
-        value = assessment.answers.get(criterion["code"], {}).get("value")
+        section = sections.setdefault(criterion["section"], {"obtained": 0, "maximum": 0, "full_maximum": 0,
+                                                                "answered": 0, "items": 0, "not_applicable": 0})
+        answer = assessment.answers.get(criterion["code"], {})
+        value = answer.get("value")
+        full_maximum += criterion["maximum"]
+        section["full_maximum"] += criterion["maximum"]
+        section["items"] += 1
+        if allow_na and answer.get("not_applicable", False):
+            answered += 1
+            not_applicable += 1
+            section["answered"] += 1
+            section["not_applicable"] += 1
+            continue
         maximum += criterion["maximum"]
         section["maximum"] += criterion["maximum"]
-        section["items"] += 1
         if value is not None:
             answered += 1
             total += value
             section["obtained"] += value
             section["answered"] += 1
-    complete = answered == len(instrument.criteria)
+    complete = answered == len(instrument.criteria) and maximum > 0
     for item in sections.values():
-        item["percentage"] = round(item["obtained"] / item["maximum"] * 100, 2) if item["answered"] == item["items"] else None
-    return {"obtained": total, "maximum": maximum, "answered": answered, "items": len(instrument.criteria),
+        item["percentage"] = round(item["obtained"] / item["maximum"] * 100, 2) if item["answered"] == item["items"] and item["maximum"] > 0 else None
+    return {"obtained": total, "maximum": maximum, "full_maximum": full_maximum,
+            "not_applicable": not_applicable, "answered": answered, "items": len(instrument.criteria),
             "coverage": round(answered / len(instrument.criteria) * 100, 2),
             "complete": complete, "percentage": round(total / maximum * 100, 2) if complete else None, "sections": sections}
 
@@ -81,9 +97,18 @@ def import_assessments(db: Session, user: User, records: list[AssessmentIn]) -> 
         if set(row.answers) - set(criteria):
             raise HTTPException(422, f"Critérios desconhecidos no registo {idx + 1}.")
         for code, answer in row.answers.items():
+            if answer.not_applicable and instrument.scoring_rule != "sum_applicable_v1":
+                raise HTTPException(422, f"NA não permitido neste instrumento para {code}, registo {idx + 1}.")
             if answer.value is not None and answer.value > criteria[code]["maximum"]:
                 raise HTTPException(422, f"Pontuação acima do máximo para {code}, registo {idx + 1}.")
-        answers = {c: row.answers[c].model_dump() if c in row.answers else {"value": None, "comment": ""} for c in criteria}
+        # Keep the legacy JSON/checksum unchanged when the new NA flag is false.
+        answers = {}
+        for code in criteria:
+            answer = row.answers.get(code)
+            answers[code] = {"value": answer.value if answer else None,
+                             "comment": answer.comment if answer else ""}
+            if answer and answer.not_applicable:
+                answers[code]["not_applicable"] = True
         content = {"laboratory_id": lab.id, "instrument_id": instrument.id, "date": row.assessment_date.isoformat(), "answers": answers}
         checksum = hashlib.sha256(json.dumps(content, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
         prepared.append((row, lab, instrument, answers, checksum))

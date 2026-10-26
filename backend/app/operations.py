@@ -182,6 +182,9 @@ def dashboard(laboratory_id: str | None = None, start: date | None = None, end: 
         difference = round(percentage - same_instrument[0]["percentage"], 2) if percentage is not None and same_instrument else None
         lab_rows.append({"id": lab.id, "code": lab.code, "name": lab.name, "region": lab.region, "assessments": len(items),
                          "latest_date": latest[0].assessment_date if latest else None, "percentage": percentage,
+                         "maximum": latest[1]["maximum"] if latest else None,
+                         "full_maximum": latest[1]["full_maximum"] if latest else None,
+                         "not_applicable": latest[1]["not_applicable"] if latest else 0,
                          "change": difference, "trend": "improving" if difference is not None and difference > 0 else
                          "declining" if difference is not None and difference < 0 else "stable" if difference == 0 else "unavailable",
                          "coverage": latest[1]["coverage"] if latest else 0,
@@ -240,7 +243,7 @@ def export_assessments(laboratory_id: str | None = None, start: date | None = No
     out = io.StringIO()
     out.write("\ufeff")
     writer = csv.writer(out)
-    writer.writerow(["assessment_id", "laboratory", "date", "instrument", "instrument_version", "revision", "status", "obtained", "maximum", "percentage", "coverage"])
+    writer.writerow(["assessment_id", "laboratory", "date", "instrument", "instrument_version", "revision", "status", "obtained", "maximum", "percentage", "coverage", "full_maximum", "not_applicable"])
     def safe(value):
         s = str(value)
         return "'" + s if s.startswith(("=", "+", "-", "@", "\t", "\r")) else s
@@ -248,7 +251,7 @@ def export_assessments(laboratory_id: str | None = None, start: date | None = No
         instrument = db.get(Instrument, a.instrument_id)
         s = score(a, instrument)
         writer.writerow([safe(v) for v in [a.id, db.get(Laboratory, a.laboratory_id).name, a.assessment_date, instrument.code,
-                         instrument.version, a.revision, a.status, s["obtained"], s["maximum"], s["percentage"] if s["percentage"] is not None else "", s["coverage"]]])
+                         instrument.version, a.revision, a.status, s["obtained"], s["maximum"], s["percentage"] if s["percentage"] is not None else "", s["coverage"], s["full_maximum"], s["not_applicable"]]])
     if rows:
         audit(db, user, "report.exported", rows[0], {"rows": len(rows), "laboratory_id": laboratory_id, "start": str(start), "end": str(end)})
     return Response(out.getvalue(), media_type="text/csv; charset=utf-8", headers={"Content-Disposition": 'attachment; filename="labquality-assessments.csv"'})
