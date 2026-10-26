@@ -181,6 +181,7 @@ def fake_meta(url, **kwargs):
     context = json.loads(kwargs["json"]["input"][1]["content"])
     finding = next(f for f in context["findings"] if f["criterion_code"] == "C04")
     source = next(s for s in context["sources"] if "C04" in s["criterion_codes"])
+    assert finding["allowed_source_ids"] == [source["id"]]
     result = {"summary": "Proposta fundamentada para revisão humana.", "insufficient_evidence": False,
               "recommendations": [{"title": "Investigar e regularizar o registo", "justification": "O achado indica um registo em falta.",
                 "priority": "critical", "steps": ["Investigar a causa com a equipa.", "Rever os registos e atribuir uma verificação."],
@@ -219,6 +220,20 @@ def test_grounding_rejects_invented_quotes():
          "completion_criterion": "The record was reviewed.", "finding_ids": ["f1"], "citations": [{"source_id": "d1", "quote": "This quote was invented by the model."}]}]})
     with pytest.raises(ValueError, match="citação"):
         validate_grounding(result, {"findings": [{"id": "f1", "criterion_code": "C04"}], "sources": [{"id": "d1", "criterion_codes": ["C04"], "content": "Real source text."}]})
+
+
+def test_grounding_rejects_a_valid_quote_from_an_unrelated_procedure():
+    result = RecommendationResult.model_validate({"summary": "Proposta a validar.", "insufficient_evidence": False,
+        "recommendations": [{"title": "Verificar equipamento", "justification": "Há um achado de equipamento.",
+            "priority": "high", "steps": ["Investigar a causa."],
+            "completion_criterion": "Registo de verificação revisto.", "finding_ids": ["f-c04"],
+            "citations": [{"source_id": "d-capa", "quote": "Investigue a causa do achado antes de escolher a acção."}]}]})
+    context = {"findings": [{"id": "f-c04", "criterion_code": "C04", "allowed_source_ids": ["d-eqp"]}],
+               "sources": [{"id": "d-eqp", "criterion_codes": ["C04"], "content": "Registe a verificação do equipamento."},
+                           {"id": "d-capa", "criterion_codes": ["C05"],
+                            "content": "Investigue a causa do achado antes de escolher a acção."}]}
+    with pytest.raises(ValueError, match="não se aplica"):
+        validate_grounding(result, context)
 
 
 def test_incomplete_meta_response_is_reported_without_creating_proposals(client, monkeypatch):

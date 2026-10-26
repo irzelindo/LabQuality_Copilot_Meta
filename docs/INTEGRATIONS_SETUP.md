@@ -18,6 +18,8 @@ LQ_MODEL_BASE_URL=https://api.meta.ai/v1
 
 Se uma análise mostrar **Falhou** com «Unterminated string», confirme que instalou a versão actual desta branch e reinicie o trabalhador. Esse erro surgiu depois de uma resposta HTTP 200 com texto JSON incompleto. O adaptador passou a limitar a resposta a três propostas concisas, reservar mais tokens para a saída e reconhecer explicitamente respostas incompletas. As análises já marcadas como falhadas continuam no histórico; faça uma **nova análise** depois da actualização. Se voltar a falhar, consulte a mensagem em **Consultar** e os registos do trabalhador, sem divulgar a chave.
 
+Se aparecer «A fonte não se aplica aos critérios indicados», a Meta citou um documento cujo âmbito não inclui o critério daquele achado. A aplicação rejeita essa proposta. A versão actual envia ao modelo a lista de fontes permitidas por achado, mas continua a exigir uma citação textual exacta e a recusar associações incompatíveis. Volte a ensaiar com uma nova análise após actualizar o código; se persistir, reveja os códigos dos critérios atribuídos aos documentos publicados e o detalhe do achado, sem alterar retroactivamente documentos controlados.
+
 ## ODK Central — ligação antes do mapeamento
 
 Se já existe um servidor ODK Central seu ou autorizado, use a URL base HTTPS, sem `/v1` no fim, e uma conta com acesso ao projecto e autenticação compatível com Basic Auth:
