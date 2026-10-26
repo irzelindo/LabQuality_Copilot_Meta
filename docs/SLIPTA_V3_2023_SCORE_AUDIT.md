@@ -36,3 +36,23 @@ As instruções também atribuem os pontos máximos a **Y**, 1 ponto a **P** e 0
 - **Não** foi publicado um instrumento oficial SLIPTA, nem atribuídas estrelas a partir deste PDF inconsistente. Nenhum ponto foi acrescentado a perguntas por suposição.
 
 Para completar o mapeamento oficial: obter uma versão/corrigenda validada dos pontos por pergunta e dos totais das secções 1 e 5, confirmar a contagem de perguntas efectivamente utilizada em Moçambique, definir o arredondamento das estrelas e validar com auditores o tratamento de subperguntas e a correspondência com o formulário ODK. Depois, publicar um instrumento versionado e testes de casos conhecidos, sem alterar avaliações anteriores.
+
+## Conferência do XLSForm ODK recebido
+
+Em 26/10/2026 foi conferido, sem incluir o ficheiro no repositório, `SLIPTA_ODK_V3_validacao_tecnica.xlsx` (SHA-256 `279e5340ef544ce7af465f4afae48282c578433026a3539f2053204a196dd511`). O formulário declara `form_id=slipta_v3_2023_mozambique`, versão original `2026090801`; a folha `VALIDAÇÃO_TÉCNICA` apresenta-o como piloto e reconhece a divergência de 145/373 versus 151/365.
+
+Na folha `survey`, há 613 respostas `select_one answers` com valores internos `sim`, `nao`, `parcial`, `na`, 151 cálculos de pontuação de **perguntas principais** (`p2_s{secção}_{secção}_{pergunta}_calculate`) e doze totais de secção. A distribuição das 151 perguntas e a soma dos seus máximos reproduzem exactamente a coluna de pontos individuais da tabela acima. Cada total de secção refere cada cálculo principal uma vez, sem omissões ou duplicações; os doze cálculos de exclusão N/A têm 151 termos e os respectivos pesos somam igualmente 365. As fórmulas de pontuação são expressões XLSForm/ODK na coluna `calculation`, não fórmulas de célula Excel.
+
+O máximo calculável da versão recebida é **365**, gravado explicitamente em `survey!M2899`, e `denominador_aplicavel` retira `pontos_na_total`. O resultado e as estrelas são apresentados como **provisórios**. A soma do formulário confirma os pesos individuais, mas não resolve os 8 pontos nem as 6 perguntas de diferença em relação ao quadro do PDF. Não se deve trocar silenciosamente o denominador por 373 ou publicar a classificação como oficial.
+
+| Constatação no XLSForm recebido | Localização | Tratamento na cópia corrigida |
+|---|---|---|
+| O comentário obrigatório de 7.9(i) dependia de 7.9(g). | `survey!G1479` | Passa a depender de 7.9(i). |
+| Sem itens aplicáveis, a percentagem era zero e o resultado mostrava zero estrelas. | `survey!M2901:M2903`, `C2904` | Percentagem vazia e classificação «Indeterminada (sem itens aplicáveis)». |
+| A nota inicial ainda referia `WHO_LOGO.svg`, apesar da indicação de que o media fora retirado. | `survey!C3`, `H3`, `S3`; `VALIDAÇÃO_TÉCNICA!D5` | A nota apresenta título textual; remove a referência ao ficheiro ausente. |
+
+A cópia corrigida foi gerada separadamente, com `settings!C2=2026102601` e registo das três correcções em `VALIDAÇÃO_TÉCNICA!A18:D20`. O original continua intacto. Conferimos todas as células de conteúdo antes/depois: fora as células indicadas, a versão do formulário, o texto de data da folha de validação e as três linhas novas, não houve alterações nos valores das folhas. A exportação e essa comparação não equivalem a uma compilação do formulário nem a testes de submissão no ODK.
+
+Há ainda **34 subitens `select_one answers` sem `required=yes`**, concentrados nas perguntas 2.5, 2.6, 2.8 e 2.9. As fórmulas podem tratar respostas ausentes como zero enquanto uma parte da pergunta obtém pontos. Esta política de completude deve ser decidida com os auditores antes de a alterar: campo opcional pode corresponder a um fluxo intencional de recolha. Confirmar também as regras de arredondamento das estrelas, uma submissão real OData (caminhos dos grupos e identidade estável), e o comportamento nos clientes ODK Collect e Enketo, incluindo todos N/A e gravações incompletas.
+
+O conector da aplicação só consome **pontuações numéricas por critério** através de campos explicitamente mapeados; ainda não importa os subitens `sim`/`nao`/`parcial`/`na`, as justificações, nem identifica automaticamente uma pergunta principal inteiramente N/A. Mapear apenas os 151 campos `*_calculate` agora faria uma pergunta totalmente N/A parecer uma resposta numérica zero e perderia a exclusão do denominador. Por isso, a cópia piloto não foi ligada a um instrumento publicado nem usada para importar avaliações reais.

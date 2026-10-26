@@ -51,6 +51,8 @@ O cenário tem Sul, Centro e Norte, com três avaliações cada. Os últimos res
 
 A [conferência da checklist SLIPTA V3:2023](docs/SLIPTA_V3_2023_SCORE_AUDIT.md) identifica diferenças entre os totais das secções 1 e 5 e os máximos impressos por pergunta. Por isso, não foi publicado um instrumento SLIPTA oficial nem atribuídas estrelas. A regra genérica `sum_applicable_v1` já permite excluir do denominador itens NA justificados; a rubrica de demonstração conserva `sum_fixed_v1`.
 
+O [XLSForm ODK de Moçambique também foi conferido](docs/SLIPTA_V3_2023_SCORE_AUDIT.md#conferência-do-xlsform-odk-recebido): os seus 151 cálculos principais somam 365 pontos e confirmam a divergência do PDF. Foi preparada uma cópia piloto corrigida para a relevância do comentário 7.9(i), o resultado sem denominador e um media ausente, sem carregar o formulário no ODK nem publicar o instrumento no produto.
+
 ## Utilizar a aplicação
 
 1. Entre como administrador e consulte os indicadores. Experimente os filtros de laboratório e datas.
