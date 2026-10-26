@@ -1,6 +1,7 @@
 import argparse
 import logging
 import smtplib
+import ssl
 import time
 from datetime import timedelta
 from email.message import EmailMessage
@@ -37,9 +38,10 @@ def dispatch_email(db, notification, actor):
     notification.email_status = "sending"
     db.commit()
     try:
-        with smtplib.SMTP(cfg.smtp_host, cfg.smtp_port, timeout=20) as smtp:
-            if cfg.smtp_starttls:
-                import ssl
+        smtp = (smtplib.SMTP_SSL(cfg.smtp_host, cfg.smtp_port, timeout=20, context=ssl.create_default_context())
+                if cfg.smtp_port == 465 else smtplib.SMTP(cfg.smtp_host, cfg.smtp_port, timeout=20))
+        with smtp:
+            if cfg.smtp_starttls and cfg.smtp_port != 465:
                 smtp.starttls(context=ssl.create_default_context())
             if cfg.smtp_username:
                 smtp.login(cfg.smtp_username, cfg.smtp_password)

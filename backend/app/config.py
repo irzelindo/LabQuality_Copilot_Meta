@@ -22,6 +22,10 @@ class Settings(BaseSettings):
     odk_email: str = ""
     odk_password: str = ""
 
+    @property
+    def smtp_configured(self) -> bool:
+        return bool(self.smtp_host and self.smtp_from and self.smtp_username and self.smtp_password)
+
 
 @lru_cache
 def settings() -> Settings:

@@ -35,6 +35,8 @@ Os ficheiros não foram escritos directamente no disco D: do utilizador, que nã
 
 ## Actualização em branch de trabalho, 26/10/2026
 
+A página Configuração inclui agora testes de ligação exclusivos para o administrador: consulta da lista de modelos Meta, autenticação ODK e autenticação SMTP sem envio. Os indicadores reflectem a presença dos campos necessários, não a validação externa. [Guia de configuração](INTEGRATIONS_SETUP.md). As nove avaliações da demonstração são momentos distintos e foram preservadas.
+
 O motor passou a suportar, como opção por versão de instrumento, um denominador ajustado para itens NA com justificação. Mantém os resultados da demonstração anterior e não altera esquemas da base de dados: a coluna `scoring_rule` já existia e as respostas são JSON. Os máximos original/aplicável e a contagem NA passam a estar disponíveis nos resultados, no dashboard e na exportação. Consulte [a conferência da checklist V3:2023](SLIPTA_V3_2023_SCORE_AUDIT.md) antes de qualquer mapeamento ou classificação oficial; o PDF recebido contém totais inconciliáveis nas secções 1 e 5.
 
 O XLSForm ODK recebido confirma os 151 itens e os 365 pontos calculáveis. Uma cópia piloto foi corrigida em três pontos documentados na conferência, preservando o ficheiro original. Falta compilar e ensaiar o formulário no ODK, decidir a completude de 34 subitens opcionais e validar uma submissão OData antes de implementar a conversão das respostas `sim`/`nao`/`parcial`/`na` com exclusões e comentários no conector. A classificação oficial mantém-se por homologar.

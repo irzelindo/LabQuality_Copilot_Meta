@@ -1,6 +1,21 @@
 import { test, expect } from "@playwright/test";
 import path from "node:path";
 
+test("administrator can check missing integrations without external side effects", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("Email", { exact: true }).fill("admin@labquality.local");
+  await page.getByLabel("Palavra-passe", { exact: true }).fill("Local-e2e-test-only-2026!");
+  await page.getByRole("button", { name: "Entrar no espaço de trabalho" }).click();
+  await page.getByRole("link", { name: "Configuração", exact: true }).click();
+  for (const name of ["Meta Model API", "ODK Central", "Email"]) {
+    await page.getByRole("button", { name: `Testar ligação ${name}` }).click();
+  }
+  await expect(page.getByRole("status")).toHaveCount(3);
+  await expect(page.getByRole("status").first()).toContainText("Defina LQ_MODEL_API_KEY");
+  await expect(page.getByRole("status").nth(1)).toContainText("Defina LQ_ODK_URL");
+  await expect(page.getByRole("status").nth(2)).toContainText("Defina LQ_SMTP_HOST");
+});
+
 test("assessment, filters, idempotent import, action evidence and independent verification", async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));

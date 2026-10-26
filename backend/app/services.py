@@ -68,12 +68,13 @@ def notify(db: Session, actor: User, owner_id: str, lab_id: str, event_key: str,
     existing = db.scalar(select(Notification).where(Notification.user_id == owner_id, Notification.event_key == event_key))
     if existing:
         return
+    smtp_ready = settings().smtp_configured
     notification = Notification(organization_id=actor.organization_id, user_id=owner_id, laboratory_id=lab_id,
                                 event_key=event_key, title=title, message=message,
-                                email_status="queued" if settings().smtp_host else "disabled")
+                                email_status="queued" if smtp_ready else "disabled")
     db.add(notification)
     db.flush()
-    if settings().smtp_host:
+    if smtp_ready:
         db.add(Job(organization_id=actor.organization_id, actor_id=actor.id, kind="email", entity_id=notification.id))
 
 

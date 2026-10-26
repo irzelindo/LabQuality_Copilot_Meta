@@ -9,12 +9,20 @@ from .models import *
 from .schemas import *
 from .security import *
 from .services import *
+from .connection_checks import check_connection
+from typing import Literal
 
 
 def documents_for(db, user):
     ids = laboratory_ids(db, user)
     return select(Document).where(Document.organization_id == user.organization_id,
             (Document.laboratory_id.is_(None)) | (Document.laboratory_id.in_(ids)))
+
+
+@router.post("/system/connections/{service}/check")
+def check_service_connection(service: Literal["model", "odk", "email"], user: User = ACTOR):
+    role(user, {"admin"})
+    return check_connection(service)
 
 
 @router.get("/documents")
@@ -262,7 +270,7 @@ def system_status(db: Session = DB, user: User = ACTOR):
     from .config import settings
     cfg = settings()
     return {"version": "0.1.0", "ai_configured": bool(cfg.model_api_key), "model": cfg.model_id,
-            "email_configured": bool(cfg.smtp_host), "odk_configured": bool(cfg.odk_url and cfg.odk_email and cfg.odk_password),
+            "email_configured": cfg.smtp_configured, "odk_configured": bool(cfg.odk_url and cfg.odk_email and cfg.odk_password),
             "storage": "private_local_volume", "demo_instrument": "DEMO-QMS 1.0 — fictitious, not SLIPTA scoring"}
 
 

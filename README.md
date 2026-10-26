@@ -69,6 +69,8 @@ Para um instrumento publicado com `sum_applicable_v1`, indique `NA` ou `N/A` em 
 
 ## Configurar a Meta Model API
 
+Siga o [guia de configuração e testes das três integrações](docs/INTEGRATIONS_SETUP.md) na sua instalação Windows. A página **Configuração** permite ao administrador testar Meta, ODK e SMTP sem importar avaliações ou enviar emails.
+
 Obtenha a chave da conta autorizada em [Meta Model API](https://dev.meta.ai/products/meta-model-api). No `.env` da raiz:
 
 ```dotenv
