@@ -4,11 +4,12 @@ Run from backend/ so Settings reads the root .env and the local database URL.
 No credentials or raw answers are printed or persisted outside the assessment store.
 """
 import argparse
+import asyncio
 import re
 from pathlib import Path
 
 import httpx
-from fastapi import HTTPException
+from fastapi import HTTPException, UploadFile
 from sqlalchemy import select
 
 from .backup import create_backup
@@ -38,14 +39,39 @@ def laboratory_names(records, metadata) -> dict[str, str]:
     return {code: next(iter(variants)) for code, variants in sorted(names.items())}
 
 
-def check_scope(db, actor, names: dict[str, str]):
+def check_scope(db, actor, names: dict[str, str], xlsform_path: Path | None = None):
     instrument = db.scalar(select(Instrument).where(Instrument.organization_id == actor.organization_id,
-        Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"],
-        Instrument.published.is_(True)))
+        Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"]))
+    if instrument is None:
+        if xlsform_path is None:
+            raise ValueError("Instrumento SLIPTA-ODK-PILOT 2026.10 ausente nesta instituição. "
+                "Carregue o XLSForm validado em Instrumentos ou indique --xlsform com o caminho do ficheiro. "
+                "Nenhum dado foi gravado.")
+        if not xlsform_path.is_file():
+            raise ValueError("O XLSForm indicado não foi encontrado. Nenhum dado foi gravado.")
+        # Use the same SHA-256, form ID, sheet and size checks as the UI uploader.
+        from .api import import_pilot_xlsform
+        with xlsform_path.open("rb") as source:
+            uploaded = UploadFile(file=source, filename=xlsform_path.name)
+            asyncio.run(import_pilot_xlsform(file=uploaded, dry_run=False, db=db, user=actor))
+        instrument = db.scalar(select(Instrument).where(Instrument.organization_id == actor.organization_id,
+            Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"]))
     expected = [{key: criterion[key] for key in ("code", "section", "title", "maximum", "critical")}
                 for criterion in PILOT["criteria"]]
-    if not instrument or instrument.scoring_rule != "sum_applicable_v1" or instrument.criteria != expected:
-        raise ValueError("O instrumento piloto publicado não corresponde aos critérios e à pontuação esperados.")
+    if not instrument.published:
+        raise ValueError("O instrumento piloto existe mas não está publicado. Nenhum dado foi gravado.")
+    if instrument.scoring_rule != "sum_applicable_v1":
+        raise ValueError(f"Regra de pontuação do instrumento piloto incompatível: {instrument.scoring_rule}. "
+                         "A versão existente não foi alterada.")
+    if instrument.criteria != expected:
+        actual = instrument.criteria
+        if len(actual) != len(expected):
+            difference = f"{len(actual)} critérios existentes; esperados {len(expected)}"
+        else:
+            index = next(i for i, (left, right) in enumerate(zip(actual, expected, strict=True)) if left != right)
+            difference = f"diferença no critério {expected[index]['code']} (posição {index + 1})"
+        raise ValueError(f"O instrumento piloto existente tem pontuação/mapeamento diferente: {difference}. "
+                         "A versão existente não foi alterada.")
     known = {lab.code: lab for lab in db.scalars(select(Laboratory).where(
         Laboratory.organization_id == actor.organization_id))}
     mismatches = [code for code, name in names.items() if code in known and known[code].name != name]
@@ -55,7 +81,8 @@ def check_scope(db, actor, names: dict[str, str]):
     return {code: name for code, name in names.items() if code not in known}
 
 
-def run(project_id: int, expected: int, admin_email: str, apply: bool, register_missing: bool):
+def run(project_id: int, expected: int, admin_email: str, apply: bool, register_missing: bool,
+        xlsform_path: Path | None = None):
     if project_id < 1 or expected < 1:
         raise ValueError("O projecto e a contagem esperada devem ser positivos.")
     cfg = settings()
@@ -72,7 +99,7 @@ def run(project_id: int, expected: int, admin_email: str, apply: bool, register_
         actor = db.scalar(select(User).where(User.email == admin_email.lower(), User.active.is_(True), User.role == "admin"))
         if not actor:
             raise ValueError("Administrador activo não encontrado. Indique --admin-email.")
-        missing = check_scope(db, actor, names)
+        missing = check_scope(db, actor, names, xlsform_path)
         for code, name in names.items():
             print(f"Laboratório {code}: {name} ({'por cadastrar' if code in missing else 'cadastrado'})")
         if missing and not register_missing:
@@ -98,7 +125,7 @@ def run(project_id: int, expected: int, admin_email: str, apply: bool, register_
         actor = db.scalar(select(User).where(User.email == admin_email.lower(), User.active.is_(True), User.role == "admin"))
         if not actor:
             raise ValueError("Administrador activo não encontrado após o backup.")
-        missing = check_scope(db, actor, names)
+        missing = check_scope(db, actor, names, xlsform_path)
         if missing and not register_missing:
             raise ValueError("Há laboratórios por cadastrar. Nada foi gravado.")
         for code, name in missing.items():
@@ -116,9 +143,10 @@ def main():
     parser.add_argument("--admin-email", default="admin@labquality.local")
     parser.add_argument("--apply", action="store_true", help="Criar backup e aplicar o lote validado.")
     parser.add_argument("--register-missing", action="store_true", help="Cadastrar os códigos/nome ODK ainda ausentes.")
+    parser.add_argument("--xlsform", type=Path, help="XLSForm original validado, necessário se o instrumento ainda não existir.")
     args = parser.parse_args()
     try:
-        run(args.project_id, args.expected, args.admin_email, args.apply, args.register_missing)
+        run(args.project_id, args.expected, args.admin_email, args.apply, args.register_missing, args.xlsform)
     except httpx.HTTPStatusError as error:
         parser.exit(2, f"Importação interrompida: ODK devolveu HTTP {error.response.status_code}. Nada foi gravado.\n")
     except httpx.RequestError:
