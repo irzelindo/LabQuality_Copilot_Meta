@@ -53,7 +53,7 @@ Confira a contagem, os códigos e os nomes dos laboratórios apresentados. Se fo
 Se receber **«Instrumento SLIPTA-ODK-PILOT 2026.10 ausente»**, a base ainda só contém o instrumento fictício da demonstração. Carregue o XLSForm original em **Instrumentos → Carregar XLSForm SLIPTA**, ou indique o caminho do XLSForm original em ambas as execuções com `--xlsform`:
 
 ```powershell
-..\.venv\Scripts\python.exe -m app.import_odk_pilot --project-id 1 --expected 9 --xlsform "C:\caminho\SLIPTA_ODK_V3_validacao_tecnica.xlsx"
+..\.venv\Scripts\python.exe -m app.import_odk_pilot --project-id 1 --expected 9 --register-missing --xlsform "C:\caminho\SLIPTA_ODK_V3_validacao_tecnica.xlsx"
 ..\.venv\Scripts\python.exe -m app.import_odk_pilot --project-id 1 --expected 9 --apply --register-missing --xlsform "C:\caminho\SLIPTA_ODK_V3_validacao_tecnica.xlsx"
 ```
 
