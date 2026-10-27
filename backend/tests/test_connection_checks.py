@@ -134,3 +134,25 @@ def test_smtp_auth_failure_reports_only_numeric_code(client, monkeypatch):
     assert result["status"] == "failed"
     assert "535" in result["message"]
     assert "secret-for-test" not in str(result)
+
+
+def test_smtp_disconnect_identifies_stage_without_server_text(client, monkeypatch):
+    login(client)
+    cfg = settings()
+    cfg.smtp_host, cfg.smtp_from = "smtp.example", "noreply@example.invalid"
+    cfg.smtp_username, cfg.smtp_password, cfg.smtp_port, cfg.smtp_starttls = "login", "secret-for-test", 587, True
+
+    class FakeSMTP:
+        def __init__(self, *args, **kwargs): pass
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+        def ehlo(self): pass
+        def starttls(self, **kwargs): pass
+        def login(self, *args):
+            raise smtplib.SMTPServerDisconnected("secret-for-test in server response")
+
+    monkeypatch.setattr("app.connection_checks.smtplib.SMTP", FakeSMTP)
+    result = client.post("/api/v1/system/connections/email/check").json()
+    assert result["status"] == "failed"
+    assert "durante a autenticação" in result["message"]
+    assert "secret-for-test" not in str(result)

@@ -69,6 +69,7 @@ def check_connection(service: str) -> dict[str, str]:
     if service == "email":
         if not cfg.smtp_configured:
             return {"status": "unconfigured", "message": "Defina LQ_SMTP_HOST, LQ_SMTP_FROM, LQ_SMTP_USERNAME e LQ_SMTP_PASSWORD no .env e reinicie a API."}
+        phase = "a ligação TCP"
         try:
             context = ssl.create_default_context()
             if cfg.smtp_port == 465:
@@ -76,11 +77,16 @@ def check_connection(service: str) -> dict[str, str]:
             else:
                 smtp = smtplib.SMTP(cfg.smtp_host, cfg.smtp_port, timeout=8)
             with smtp:
+                phase = "a saudação SMTP"
                 smtp.ehlo()
                 if cfg.smtp_starttls and cfg.smtp_port != 465:
+                    phase = "o STARTTLS"
                     smtp.starttls(context=context)
+                    phase = "a saudação após TLS"
                     smtp.ehlo()
+                phase = "a autenticação"
                 smtp.login(cfg.smtp_username, cfg.smtp_password)
+                phase = "a confirmação da sessão"
                 code, _ = smtp.noop()
                 if code != 250:
                     return {"status": "failed", "message": "Servidor SMTP não confirmou a ligação autenticada."}
@@ -97,7 +103,9 @@ def check_connection(service: str) -> dict[str, str]:
             return {"status": "failed", "message": "A ligação SMTP expirou. Confira o endereço, a porta e a conectividade."}
         except socket.gaierror:
             return {"status": "failed", "message": "O endereço do servidor SMTP não foi encontrado. Confira LQ_SMTP_HOST."}
+        except smtplib.SMTPServerDisconnected:
+            return {"status": "failed", "message": f"A ligação SMTP foi interrompida durante {phase}. Confira a porta, TLS e a rede."}
         except (smtplib.SMTPException, OSError):
-            return {"status": "failed", "message": "Não foi possível estabelecer ou manter a ligação SMTP. Confira o endereço, a porta e a rede."}
+            return {"status": "failed", "message": f"Falha de ligação SMTP durante {phase}. Confira o endereço, a porta e a rede."}
 
     raise ValueError("Serviço desconhecido.")
