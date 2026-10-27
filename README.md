@@ -34,6 +34,15 @@ Set-Location -LiteralPath 'D:\irzelindo\Documentos Pessoais\Candidaturas\Meta Ha
 
 A interface precisa da API; a análise por IA, as sincronizações ODK e o envio de email precisam também do trabalhador.
 
+Se a API e o trabalhador falharem com `ImportError: DLL load failed while importing _util_cy: An Application Control policy has blocked this file`, o Windows bloqueou uma extensão nativa do SQLAlchemy. Pare as três janelas e, na raiz da instalação, execute:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\repair-sqlalchemy-windows.ps1
+.\start-windows.ps1
+```
+
+O reparador usa a versão fixada em `backend/requirements.lock` e instala o SQLAlchemy a partir do código-fonte, sem extensões Cython. Precisa de acesso à Internet para obter o pacote. Preserva `.env`, contas e avaliações; a política de segurança do Windows permanece activa. O instalador passou a detectar esta falha e a executar o reparador automaticamente. Se surgir outro módulo bloqueado depois da reparação, guarde o novo traceback para diagnóstico.
+
 ## Contas da demonstração
 
 Todas utilizam a palavra-passe gerada no ficheiro local `.env`, campo `LQ_DEMO_PASSWORD`. Essa palavra-passe só serve para as contas fictícias da instalação inicial. Alterá-la em `.env` não redefine palavras-passe de contas já existentes.
