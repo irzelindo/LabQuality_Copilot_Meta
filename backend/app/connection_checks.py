@@ -1,6 +1,7 @@
 """Read-only connection checks. No model inference, ODK import, or email delivery."""
 
 import smtplib
+import socket
 import ssl
 from urllib.parse import urlparse
 
@@ -48,8 +49,14 @@ def check_connection(service: str) -> dict[str, str]:
             return {"status": "failed", "message": "LQ_ODK_URL deve usar HTTPS."}
         try:
             response = _http_check(base + "/v1/users/current", auth=(cfg.odk_email, cfg.odk_password))
-            if response.status_code in (401, 403):
-                return {"status": "failed", "message": "Credenciais ODK recusadas ou sem permissão; contas com SSO podem não aceitar Basic Auth."}
+            if response.status_code == 401:
+                return {"status": "failed", "message": "ODK respondeu HTTP 401: confirme o email e a palavra-passe do utilizador Web; SSO pode impedir Basic Auth."}
+            if response.status_code == 403:
+                return {"status": "failed", "message": "ODK respondeu HTTP 403: a conta autenticou, mas não tem permissão para esta operação."}
+            if 300 <= response.status_code < 400:
+                return {"status": "failed", "message": "ODK redireccionou o pedido. Confirme a URL base HTTPS, sem /v1 e sem página de login."}
+            if response.status_code == 404:
+                return {"status": "failed", "message": "ODK respondeu HTTP 404: confirme a URL base do ODK Central, sem /v1."}
             if response.status_code != 200:
                 return {"status": "failed", "message": f"ODK Central respondeu HTTP {response.status_code}."}
             payload = response.json()
@@ -78,7 +85,19 @@ def check_connection(service: str) -> dict[str, str]:
                 if code != 250:
                     return {"status": "failed", "message": "Servidor SMTP não confirmou a ligação autenticada."}
             return {"status": "connected", "message": "Ligação e autenticação SMTP verificadas. Nenhum email foi enviado."}
-        except (smtplib.SMTPException, OSError, ssl.SSLError):
-            return {"status": "failed", "message": "Não foi possível autenticar no servidor SMTP."}
+        except smtplib.SMTPAuthenticationError as exc:
+            return {"status": "failed", "message": f"SMTP recusou as credenciais (código {exc.smtp_code}). Verifique o utilizador e a chave ou palavra-passe SMTP activa."}
+        except smtplib.SMTPNotSupportedError:
+            return {"status": "failed", "message": "O servidor SMTP não suporta STARTTLS ou o método de autenticação solicitado. Confira a porta e o tipo de TLS."}
+        except smtplib.SMTPResponseException as exc:
+            return {"status": "failed", "message": f"Servidor SMTP recusou a operação (código {exc.smtp_code}). Confirme a porta, TLS e permissões da conta."}
+        except ssl.SSLError:
+            return {"status": "failed", "message": "Falhou a negociação TLS com o servidor SMTP. Confira a porta, TLS e o certificado."}
+        except (TimeoutError, socket.timeout):
+            return {"status": "failed", "message": "A ligação SMTP expirou. Confira o endereço, a porta e a conectividade."}
+        except socket.gaierror:
+            return {"status": "failed", "message": "O endereço do servidor SMTP não foi encontrado. Confira LQ_SMTP_HOST."}
+        except (smtplib.SMTPException, OSError):
+            return {"status": "failed", "message": "Não foi possível estabelecer ou manter a ligação SMTP. Confira o endereço, a porta e a rede."}
 
     raise ValueError("Serviço desconhecido.")

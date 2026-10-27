@@ -32,6 +32,8 @@ LQ_ODK_PASSWORD=<palavra_passe_odk>
 
 Reinicie a API e clique em **Testar**. O teste consulta somente `/v1/users/current` e confirma a autenticação, mas não verifica um projecto, formulário ou submissão. Contas que exigem SSO podem não autenticar por este método.
 
+Se o teste devolver **HTTP 401**, confira que `LQ_ODK_EMAIL` e `LQ_ODK_PASSWORD` pertencem a um **utilizador Web** do Central, não a um App User do ODK Collect; confirme a palavra-passe no próprio Central. Se o servidor usa SSO/OIDC, o Basic Auth necessário a esta integração não funciona e será preciso outro método de autenticação. **HTTP 403** indica falta de permissão para o pedido de teste; a permissão no projecto e formulário terá de ser conferida depois, na sincronização. Redireccionamento ou **HTTP 404** sugere conferir a URL base HTTPS, sem `/v1`, caminho de formulário ou `/login`. Não publique credenciais nem copie o cabeçalho `Authorization` ao relatar o erro.
+
 O instrumento `SLIPTA-ODK-PILOT 2026.10` contém os 151 itens e 365 pontos calculáveis do XLSForm partilhado. No ecrã **Importar dados**, indique o projecto ODK e seleccione este instrumento: o servidor usa os campos calculados, as respostas NA e os comentários mapeados para esta versão. Faça a primeira sincronização com uma submissão de ensaio e confirme o código de laboratório, a data, os achados e a exclusão NA. Só depois active a sincronização automática, com verificação aproximadamente a cada cinco minutos. **Não apresente as avaliações ou estrelas como classificação SLIPTA oficial:** o formulário ainda tem divergências de totais face ao PDF e os caminhos OData carecem de teste num servidor real. As submissões idênticas não duplicam e as edições ficam em revisões.
 
 ## Email SMTP — opcional
@@ -48,6 +50,8 @@ LQ_SMTP_STARTTLS=true
 ```
 
 Para SMTP sobre TLS implícito, use `LQ_SMTP_PORT=465`; os testes e o trabalhador utilizam essa modalidade automaticamente. Reinicie API e trabalhador e clique em **Testar**. Esse teste autentica e encerra a ligação sem enviar mensagem. Para ensaiar a entrega real, associe uma conta de teste com endereço sob o seu controlo, provoque uma notificação e confirme o estado no trabalhador e na caixa de entrada. Os endereços `@labquality.local` da demonstração não recebem emails. Sem SMTP, as notificações continuam disponíveis na aplicação.
+
+Se surgir **SMTP 535**, o servidor recusou a autenticação: confira o login exacto do fornecedor e use uma chave SMTP activa ou palavra-passe de aplicação quando exigida, em vez da chave de API ou da palavra-passe normal da conta. Se utilizar **Brevo**, o servidor é `smtp-relay.brevo.com`, a porta normal é `587` com `LQ_SMTP_STARTTLS=true`, o utilizador é o **SMTP login** indicado em *SMTP & API*, e a senha é uma **chave SMTP**; confirme que não foi desactivada por inactividade. Um erro de STARTTLS/TLS pede conferir a combinação porta e cifragem; um timeout aponta para rede, firewall ou porta. O teste não verifica o remetente `LQ_SMTP_FROM` nem a entrega, pois não envia mensagens.
 
 ## Demonstração e limites
 

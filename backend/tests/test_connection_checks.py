@@ -1,4 +1,5 @@
 import httpx
+import smtplib
 
 from app.config import settings
 from conftest import login
@@ -96,3 +97,40 @@ def test_smtp_465_uses_implicit_tls_without_delivery(client, monkeypatch):
     monkeypatch.setattr("app.connection_checks.smtplib.SMTP_SSL", FakeSMTPSSL)
     assert client.post("/api/v1/system/connections/email/check").json()["status"] == "connected"
     assert calls == ["ehlo", "login"]
+
+
+def test_odk_rejection_identifies_authentication_or_permission(client, monkeypatch):
+    login(client)
+    cfg = settings()
+    cfg.odk_url, cfg.odk_email, cfg.odk_password = "https://odk.example", "test@example.invalid", "secret-for-test"
+
+    for code, expected in ((401, "email e a palavra-passe"), (403, "permissão"), (302, "redireccionou")):
+        def reject(url, **kwargs):
+            return httpx.Response(code, request=httpx.Request("GET", url), headers={"Location": "https://login.example/secret-for-test"})
+        monkeypatch.setattr("app.connection_checks._http_check", reject)
+        result = client.post("/api/v1/system/connections/odk/check").json()
+        assert result["status"] == "failed"
+        assert expected in result["message"]
+        assert "secret-for-test" not in str(result)
+
+
+def test_smtp_auth_failure_reports_only_numeric_code(client, monkeypatch):
+    login(client)
+    cfg = settings()
+    cfg.smtp_host, cfg.smtp_from = "smtp.example", "noreply@example.invalid"
+    cfg.smtp_username, cfg.smtp_password, cfg.smtp_port, cfg.smtp_starttls = "login", "secret-for-test", 587, True
+
+    class FakeSMTP:
+        def __init__(self, *args, **kwargs): pass
+        def __enter__(self): return self
+        def __exit__(self, *args): pass
+        def ehlo(self): pass
+        def starttls(self, **kwargs): pass
+        def login(self, *args):
+            raise smtplib.SMTPAuthenticationError(535, b"Invalid secret-for-test")
+
+    monkeypatch.setattr("app.connection_checks.smtplib.SMTP", FakeSMTP)
+    result = client.post("/api/v1/system/connections/email/check").json()
+    assert result["status"] == "failed"
+    assert "535" in result["message"]
+    assert "secret-for-test" not in str(result)
