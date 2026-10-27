@@ -1,11 +1,12 @@
 "use client";
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { CheckCircle2, Download, FileSpreadsheet, RefreshCw, UploadCloud } from "lucide-react";
 import { api, post } from "@/lib/api";
 import { ErrorBox, Field, Loading, Panel, PanelTitle, Status, Submit, can, editors, fmtDate, useApp, useData, useMutation, useT } from "../ui";
 
 type ImportResult = { created: number; revised: number; unchanged: number; dry_run?: boolean };
 type Job = { id: string; kind: string; status: string; created_at: string; error: string; attempts: number };
+type ODKPreview = { submissions: number; ready: boolean; source: string; laboratories: { code: string; names: string[]; submissions: number; first_date: string; last_date: string; missing_scores: number; registered: boolean }[]; message: string; changes: { created: number; revised: number; unchanged: number } | null };
 export default function ImportView() {
   const app = useApp(), t = useT(), mutation = useMutation(), [file, setFile] = useState<File | null>(null), [result, setResult] = useState<ImportResult | null>(null);
   const jobs = useData<Job[]>(can(app.user, ["admin", "manager"]) ? "/jobs" : null);
@@ -14,22 +15,29 @@ export default function ImportView() {
 }
 
 function ODKForm({ done }: { done: () => void }) {
-  const app = useApp(), t = useT(), mutation = useMutation(), [instrument, setInstrument] = useState(""), [fields, setFields] = useState<Record<string, string>>({});
+  const app = useApp(), t = useT(), mutation = useMutation(), formRef = useRef<HTMLFormElement>(null), [instrument, setInstrument] = useState(""), [fields, setFields] = useState<Record<string, string>>({}), [preview, setPreview] = useState<ODKPreview | null>(null), [previewProject, setPreviewProject] = useState(0);
   const subscription = useData<{ project_id: number; form_id: string; active: boolean; next_run_at: string } | null>(app.user?.role === "admin" ? "/integrations/odk/subscription" : null);
   const [project, setProject] = useState("");
   const selected = app.instruments.find(i => i.id === instrument);
   const pilot = selected?.code === "SLIPTA-ODK-PILOT" && selected.version === "2026.10";
+  const previewReady = !!preview?.ready && previewProject === Number(project);
+  function requestBody(data: FormData) { if (!selected) throw new Error("Seleccione o instrumento."); return {
+    project_id: Number(data.get("project")), form_id: pilot ? "slipta_v3_2023_mozambique" : data.get("form"),
+    stable_id_field: pilot ? "__id" : data.get("stable"),
+    laboratory_code_field: pilot ? "tt_pp_01.tf_numero_laboratorio" : data.get("lab"),
+    assessment_date_field: pilot ? "tt_pp_01.data_group.df_data_auditoria_actual" : data.get("date"),
+    revision_field: "__system.updatedAt", instrument_code: selected.code, instrument_version: selected.version,
+    criterion_fields: pilot ? {} : Object.fromEntries(selected.criteria.map(c => [c.code, fields[c.code] || c.code]))
+  }; }
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault(); if (!selected) return;
     const data = new FormData(event.currentTarget);
-    await mutation.run(() => post("/integrations/odk/sync", {
-      project_id: Number(data.get("project")), form_id: pilot ? "slipta_v3_2023_mozambique" : data.get("form"),
-      stable_id_field: pilot ? "__id" : data.get("stable"),
-      laboratory_code_field: pilot ? "tt_pp_01.tf_numero_laboratorio" : data.get("lab"),
-      assessment_date_field: pilot ? "tt_pp_01.data_group.df_data_auditoria_actual" : data.get("date"),
-      revision_field: "__system.updatedAt", instrument_code: selected.code, instrument_version: selected.version,
-      criterion_fields: pilot ? {} : Object.fromEntries(selected.criteria.map(c => [c.code, fields[c.code] || c.code]))
-    }), () => { app.toast(t("Sincronização ODK adicionada à fila.", "ODK synchronization queued.")); done(); });
+    await mutation.run(() => post("/integrations/odk/sync", requestBody(data)), () => { app.toast(t("Sincronização ODK adicionada à fila.", "ODK synchronization queued.")); done(); });
+  }
+  async function previewNow() {
+    if (!formRef.current || !pilot || !project) return;
+    setPreview(null);
+    await mutation.run(async () => { const data = await post<ODKPreview>("/integrations/odk/preview", requestBody(new FormData(formRef.current!))); setPreview(data); setPreviewProject(Number(project)); });
   }
   async function configure(active: boolean) {
     await mutation.run(() => post("/integrations/odk/subscription", {
@@ -38,13 +46,15 @@ function ODKForm({ done }: { done: () => void }) {
   }
   return <Panel><PanelTitle title="ODK Central" subtitle={t("Submissões importadas com identidade estável e revisão histórica", "Submissions imported with stable identity and revision history")} />
     {!app.system?.odk_configured && <div className="notice warning">{t("Configure o endereço e as credenciais ODK no servidor para activar a ligação.", "Configure the ODK URL and credentials on the server to enable this connection.")}</div>}
-    <form onSubmit={submit} className="stack-form padded-form">
-      <div className="form-grid"><Field label={t("ID do projecto ODK", "ODK project ID")}><input name="project" type="number" required min={1} value={project} onChange={e => setProject(e.target.value)} /></Field>
-        <Field label={t("Instrumento e versão", "Instrument and version")}><select required value={instrument} onChange={e => { setInstrument(e.target.value); setFields({}); }}><option value="">—</option>{app.instruments.map(i => <option key={i.id} value={i.id}>{i.code} v{i.version}</option>)}</select></Field></div>
+    <form ref={formRef} onSubmit={submit} className="stack-form padded-form">
+      <div className="form-grid"><Field label={t("ID do projecto ODK", "ODK project ID")}><input name="project" type="number" required min={1} value={project} onChange={e => { setProject(e.target.value); setPreview(null); }} /></Field>
+        <Field label={t("Instrumento e versão", "Instrument and version")}><select required value={instrument} onChange={e => { setInstrument(e.target.value); setFields({}); setPreview(null); }}><option value="">—</option>{app.instruments.map(i => <option key={i.id} value={i.id}>{i.code} v{i.version}</option>)}</select></Field></div>
       {pilot ? <div className="notice"><FileSpreadsheet size={20} /><p>{t("XLSForm SLIPTA do piloto: 151 itens, pontuação provisória de 365 pontos. Mapeamento das perguntas, comentários e NA preparado; confirme no ODK o número do laboratório e os caminhos OData antes de activar. As avaliações não representam classificação oficial.", "Pilot SLIPTA XLSForm: 151 items and provisional 365-point scoring. Question, comment and N/A mapping is prepared; verify the laboratory number and OData paths in ODK before enabling. Assessments are not an official classification.")}</p></div> : <><Field label={t("ID XML do formulário", "Form XML ID")}><input name="form" required maxLength={200} /></Field><Field label={t("Campo de identidade estável", "Stable ID field")}><input name="stable" required maxLength={200} placeholder="__id" /></Field><div className="form-grid"><Field label={t("Campo do laboratório", "Lab field")}><input name="lab" required maxLength={200} /></Field><Field label={t("Campo de data", "Date field")}><input name="date" required maxLength={200} /></Field></div>
         {selected && <details className="disclosure"><summary>{t("Mapear pontuações numéricas", "Map numeric scores")}</summary><div className="form-grid">{selected.criteria.map(c => <Field key={c.code} label={c.code}><input value={fields[c.code] ?? c.code} onChange={e => setFields(old => ({ ...old, [c.code]: e.target.value }))} required maxLength={200} /></Field>)}</div></details>}</>}
-      <ErrorBox message={mutation.error || subscription.error} /><div className="button-row wrap"><button className="button secondary" disabled={!app.system?.odk_configured || !selected || mutation.busy}>{t("Sincronizar agora", "Sync now")}</button>
-        {pilot && app.user?.role === "admin" && <button className="button primary" type="button" disabled={!app.system?.odk_configured || mutation.busy || !(project || subscription.data?.project_id)} onClick={() => configure(!subscription.data?.active)}>{subscription.data?.active ? t("Pausar sincronização automática", "Pause automatic sync") : t("Activar sincronização automática", "Enable automatic sync")}</button>}</div>
+      {pilot && app.user?.role === "admin" && <div className="notice"><div><b>{t("Pré-valide as submissões reais antes de as importar", "Preview real submissions before importing")}</b><p>{t("A pré-validação consulta o ODK sem gravar avaliações. Registe em Laboratórios cada código ODK encontrado antes da sincronização.", "The preview reads ODK without saving assessments. Register each ODK laboratory code before syncing.")}</p></div></div>}
+      {pilot && preview && <div className="table-scroll"><p><b>{preview.submissions}</b> {t("submissões encontradas", "submissions found")}</p><p>{preview.message}</p>{preview.changes && <p>{t("Novas", "New")}: {preview.changes.created} · {t("Revisões", "Revisions")}: {preview.changes.revised} · {t("Sem alteração", "Unchanged")}: {preview.changes.unchanged}</p>}<table><thead><tr><th>{t("CÓDIGO ODK", "ODK CODE")}</th><th>{t("LABORATÓRIO", "LABORATORY")}</th><th>{t("AVALIAÇÕES", "ASSESSMENTS")}</th><th>{t("DATAS", "DATES")}</th><th>{t("PONTOS POR AVALIAR", "MISSING SCORES")}</th><th>{t("REGISTO", "REGISTRATION")}</th></tr></thead><tbody>{preview.laboratories.map(lab => <tr key={lab.code}><td>{lab.code}</td><td>{lab.names.join(" / ") || "—"}</td><td>{lab.submissions}</td><td>{fmtDate(lab.first_date)} – {fmtDate(lab.last_date)}</td><td>{lab.missing_scores}</td><td>{lab.registered ? t("Cadastrado", "Registered") : t("Por cadastrar", "Not registered")}</td></tr>)}</tbody></table>{!preview.ready && preview.laboratories.some(lab => !lab.registered) && <button type="button" className="text-button" onClick={() => app.navigate("laboratories")}>{t("Cadastrar laboratórios em falta", "Register missing laboratories")}</button>}</div>}
+      <ErrorBox message={mutation.error || subscription.error} /><div className="button-row wrap">{pilot && app.user?.role === "admin" && <button type="button" className="button secondary" disabled={!app.system?.odk_configured || !selected || !project || mutation.busy} onClick={previewNow}>{t("Pré-validar submissões ODK", "Preview ODK submissions")}</button>}<button className="button secondary" disabled={!app.system?.odk_configured || !selected || mutation.busy || (pilot && app.user?.role === "admin" && !previewReady)}>{t("Sincronizar agora", "Sync now")}</button>
+        {pilot && app.user?.role === "admin" && <button className="button primary" type="button" disabled={!app.system?.odk_configured || mutation.busy || (!subscription.data?.active && !previewReady)} onClick={() => configure(!subscription.data?.active)}>{subscription.data?.active ? t("Pausar sincronização automática", "Pause automatic sync") : t("Activar sincronização automática", "Enable automatic sync")}</button>}</div>
       {subscription.data && <p className="muted">{t("Projecto", "Project")}: {subscription.data.project_id} · {subscription.data.active ? t("Activo · consulta a cada cinco minutos", "Active · polls every five minutes") : t("Pausado", "Paused")}</p>}
     </form></Panel>;
 }

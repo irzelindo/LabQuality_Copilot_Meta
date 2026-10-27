@@ -18,7 +18,7 @@ def nested(value, path: str):
     return current
 
 
-def fetch_odk(body: ODKIn) -> list[AssessmentIn]:
+def fetch_odk_with_metadata(body: ODKIn) -> tuple[list[AssessmentIn], list[dict]]:
     cfg = settings()
     base = cfg.odk_url.rstrip("/")
     parsed = urlparse(base)
@@ -43,6 +43,7 @@ def fetch_odk(body: ODKIn) -> list[AssessmentIn]:
     path = f"/v1/projects/{body.project_id}/forms/{quote(body.form_id, safe='')}.svc/Submissions"
     url = base + path + "?$top=100"
     records = []
+    metadata = []
     with httpx.Client(auth=(cfg.odk_email, cfg.odk_password), timeout=45, follow_redirects=False) as client:
         for _ in range(100):
             page = client.get(url)
@@ -73,13 +74,21 @@ def fetch_odk(body: ODKIn) -> list[AssessmentIn]:
                     instrument_code=body.instrument_code, instrument_version=body.instrument_version,
                     assessment_date=str(assessment_date)[:10],
                     answers=answers, reason="Importado da submissão ODK; rever achados antes de propor acções."))
+                if pilot:
+                    lab_name = nested(row, "tt_pp_01.tf_nome_laboratorio")
+                    metadata.append({"laboratory_code": str(lab_code),
+                        "laboratory_name": str(lab_name).strip()[:200] if lab_name is not None else ""})
                 if len(records) > 500:
                     raise ValueError("Limite de 500 avaliações por sincronização. Divida a origem em lotes.")
             next_url = data.get("@odata.nextLink")
             if not next_url:
-                return records
+                return records, metadata
             url = urljoin(url, next_url)
             target = urlparse(url)
             if (target.scheme, target.netloc) != (parsed.scheme, parsed.netloc) or not target.path.startswith(parsed.path + path):
                 raise ValueError("A paginação ODK apontou para um endereço inesperado.")
     raise ValueError("A sincronização excedeu o limite de páginas.")
+
+
+def fetch_odk(body: ODKIn) -> list[AssessmentIn]:
+    return fetch_odk_with_metadata(body)[0]

@@ -147,3 +147,69 @@ def test_odk_pilot_na_comments_identity_and_polling(client, monkeypatch):
     schedule_odk()
     with session_factory()() as db:
         assert len(list(db.scalars(select(Job).where(Job.kind == "odk")))) == 1
+
+
+def test_odk_preview_validates_real_lab_codes_without_importing(client, monkeypatch):
+    settings().odk_url, settings().odk_email, settings().odk_password = "https://odk.example", "test@example.invalid", "test-secret"
+    with session_factory()() as db:
+        refresh_demo(db, PASSWORD)
+        db.commit()
+    login(client)
+    first = odk_row()
+    set_nested(first, "tt_pp_01.tf_nome_laboratorio", "Laboratório Sul")
+    second = odk_row()
+    second["__id"] = "uuid:real-4"
+    set_nested(second, PILOT["laboratory_code_field"], "4")
+    set_nested(second, "tt_pp_01.tf_nome_laboratorio", "Laboratório do projecto")
+    second["auditor_private_phone"] = "not-for-preview"
+    criterion = PILOT["criteria"][0]
+    set_nested(second, criterion["odk"]["score"], None)
+
+    class FakeClient:
+        def __init__(self, **kwargs): pass
+        def __enter__(self): return self
+        def __exit__(self, *_): pass
+        def get(self, url): return httpx.Response(200, request=httpx.Request("GET", url), json={"value": [first, second]})
+
+    monkeypatch.setattr("app.integrations.httpx.Client", FakeClient)
+    url = "/api/v1/integrations/odk/preview"
+    body = pilot_request().model_dump()
+    response = client.post(url, json=body)
+    assert response.status_code == 200, response.text
+    assert not response.json()["ready"] and response.json()["changes"] is None
+    assert response.json()["submissions"] == 2
+    assert response.json()["laboratories"][0]["code"] == "4"
+    assert response.json()["laboratories"][0]["missing_scores"] == 1
+    assert "not-for-preview" not in response.text
+    assert "uuid:real-4" not in response.text
+    assert client.post("/api/v1/laboratories", json={"code": "4", "name": "Laboratório do projecto"}).status_code == 201
+    response = client.post(url, json=body)
+    assert response.status_code == 200, response.text
+    assert response.json()["ready"] and response.json()["changes"] == {"created": 2, "revised": 0, "unchanged": 0}
+    with session_factory()() as db:
+        assert not db.scalar(select(AssessmentRoot).where(AssessmentRoot.source == f'odk:15:{PILOT["form_id"]}'))
+    login(client, "gestor@labquality.local")
+    assert client.post(url, json=body).status_code == 403
+
+
+def test_odk_preview_rejects_unmapped_form(client, monkeypatch):
+    settings().odk_url, settings().odk_email, settings().odk_password = "https://odk.example", "test@example.invalid", "test-secret"
+    with session_factory()() as db:
+        refresh_demo(db, PASSWORD)
+        db.commit()
+    login(client)
+    row = odk_row()
+    for criterion in PILOT["criteria"]:
+        set_nested(row, criterion["odk"]["score"], None)
+
+    class FakeClient:
+        def __init__(self, **kwargs): pass
+        def __enter__(self): return self
+        def __exit__(self, *_): pass
+        def get(self, url): return httpx.Response(200, request=httpx.Request("GET", url), json={"value": [row]})
+
+    monkeypatch.setattr("app.integrations.httpx.Client", FakeClient)
+    result = client.post("/api/v1/integrations/odk/preview", json=pilot_request().model_dump())
+    assert result.status_code == 200
+    assert not result.json()["ready"]
+    assert result.json()["changes"] is None

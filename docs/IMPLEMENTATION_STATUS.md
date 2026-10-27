@@ -2,6 +2,8 @@
 
 Data: 23/10/2026. Plataforma em desenvolvimento. Este registo distingue código funcional, integrações ainda sem validação externa e trabalho pendente da V1.
 
+Actualização do percurso ODK/Meta em 27/10/2026: a instalação do utilizador confirmou autenticação no ODK e no SMTP e aceitação da chave Meta/modelo. A pré-validação ODK foi acrescentada para consultar o formulário piloto, apresentar laboratórios e contagens de submissões e simular a importação sem persistir dados. Uma exportação CSV histórica confirmou os 151 caminhos calculados para uma submissão; **a leitura das submissões actuais pela API OData, a primeira importação e uma análise Meta de avaliação real ainda não foram verificadas nesta instalação**. As avaliações simuladas continuam preservadas e assinaladas na interface. Consulte o [percurso de validação](INTEGRATIONS_SETUP.md#odk-central--ligação-antes-do-mapeamento).
+
 | Módulo V1 | Implementado nesta entrega | Limites e validação seguinte |
 |---|---|---|
 | Organizações e acessos | Instituição, laboratórios, contas, perfis, sessão HttpOnly revogável e autorização no servidor. | Convites por email, SSO/MFA e controlo distribuído de tentativas por implementar. Administração de uma instituição por sessão. |

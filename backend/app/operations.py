@@ -1,5 +1,6 @@
 import csv
 import io
+import httpx
 from datetime import date
 from fastapi import HTTPException, Response
 from sqlalchemy import func, select
@@ -287,6 +288,66 @@ def queue_odk(body: ODKIn, db: Session = DB, user: User = ACTOR):
     db.flush()
     audit(db, user, "odk.sync_requested", job)
     return {"job_id": job.id, "status": job.status}
+
+
+@router.post("/integrations/odk/preview")
+def preview_odk(body: ODKIn, db: Session = DB, user: User = ACTOR):
+    """Read ODK submissions without writing them or exposing the full questionnaire."""
+    from .config import settings
+    from .integrations import fetch_odk_with_metadata
+    role(user, {"admin"})
+    cfg = settings()
+    if not (cfg.odk_url and cfg.odk_email and cfg.odk_password):
+        raise HTTPException(503, "Configure a ligação ODK no servidor.")
+    if body.instrument_code != PILOT["instrument_code"] or body.instrument_version != PILOT["instrument_version"]:
+        raise HTTPException(422, "A pré-validação está disponível para o instrumento piloto SLIPTA.")
+    instrument = db.scalar(select(Instrument).where(Instrument.organization_id == user.organization_id,
+        Instrument.code == body.instrument_code, Instrument.version == body.instrument_version,
+        Instrument.published.is_(True)))
+    if not instrument:
+        raise HTTPException(422, "Publique primeiro o instrumento piloto SLIPTA desta versão.")
+    try:
+        records, metadata = fetch_odk_with_metadata(body)
+    except httpx.HTTPStatusError as error:
+        code = error.response.status_code
+        if code in (401, 403):
+            raise HTTPException(422, "O ODK recusou o acesso ao projecto ou formulário. Confirme as permissões da conta.") from error
+        if code == 404:
+            raise HTTPException(422, "O projecto ou formulário ODK não foi encontrado. Confirme o ID do projecto e o XML ID.") from error
+        raise HTTPException(502, "O servidor ODK não conseguiu responder à pré-validação.") from error
+    except httpx.RequestError as error:
+        raise HTTPException(502, "Não foi possível estabelecer ligação ao ODK. Confirme a rede e o endereço.") from error
+    except ValueError as error:
+        raise HTTPException(422, str(error)) from error
+    known = {lab.code for lab in db.scalars(select(Laboratory).where(Laboratory.organization_id == user.organization_id))}
+    groups: dict[str, dict] = {}
+    for row, details in zip(records, metadata):
+        group = groups.setdefault(row.laboratory_code, {"code": row.laboratory_code,
+            "names": set(), "submissions": 0, "first_date": row.assessment_date.isoformat(),
+            "last_date": row.assessment_date.isoformat(), "missing_scores": 0, "registered": row.laboratory_code in known})
+        if details["laboratory_name"]:
+            group["names"].add(details["laboratory_name"])
+        group["submissions"] += 1
+        group["first_date"] = min(group["first_date"], row.assessment_date.isoformat())
+        group["last_date"] = max(group["last_date"], row.assessment_date.isoformat())
+        group["missing_scores"] += sum(answer.value is None and not answer.not_applicable for answer in row.answers.values())
+    laboratories = [{**group, "names": sorted(group["names"])[:5]} for group in sorted(groups.values(), key=lambda item: item["code"])]
+    mapped = any(answer.value is not None or answer.not_applicable
+        for row in records for answer in row.answers.values())
+    ready = bool(records) and mapped and all(group["registered"] for group in laboratories)
+    changes = None
+    if ready:
+        transaction = db.begin_nested()
+        try:
+            result = import_assessments(db, user, records)
+            changes = {key: result[key] for key in ("created", "revised", "unchanged")}
+        finally:
+            transaction.rollback()
+    return {"submissions": len(records), "laboratories": laboratories,
+        "ready": ready, "changes": changes,
+        "source": f"odk:{body.project_id}:{body.form_id}",
+        "message": ("Nenhum dos 151 campos de pontuação/NA foi reconhecido. Confirme a versão do formulário ODK."
+            if records and not mapped else "Pré-validação sem importação. Confirme os laboratórios e as respostas antes da análise Meta.")}
 
 
 @router.get("/integrations/odk/subscription")
