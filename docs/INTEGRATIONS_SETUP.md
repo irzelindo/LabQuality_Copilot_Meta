@@ -38,6 +38,20 @@ O XLSForm `SLIPTA_ODK_V3_validacao_tecnica.xlsx` define o questionário, não as
 
 No ecrã **Importar dados → ODK Central**, indique o ID do projecto ODK (a imagem recebida mostra `1`) e seleccione `SLIPTA-ODK-PILOT 2026.10`. O formulário XML esperado é `slipta_v3_2023_mozambique`. Clique em **Pré-validar submissões ODK**: a aplicação consulta o formulário sem importar, mostra os códigos e nomes de laboratórios, datas, respostas por avaliar e o número de avaliações novas, revistas ou inalteradas. O teste de ligação em **Configuração** não substitui esta validação. A imagem do servidor mostra nove submissões em 27/10/2026 às 17:49 (hora de Moçambique); a contagem efectiva da API deve ser verificada na pré-validação. Uma exportação CSV histórica recebida contém apenas uma submissão e não representa necessariamente as nove actuais.
 
+Para importar as nove submissões directamente na **instalação Windows que contém o seu `.env` e a sua base SQLite**, actualize primeiro a branch `feature/slipta-v3-scoring`, pare a API, o frontend e o trabalhador e abra PowerShell em `LabQuality_Copilot_0.1.0\backend`. Confirme que as migrações foram aplicadas (`..\.venv\Scripts\python.exe -m alembic upgrade head`); se precisar de migrar uma base existente, faça uma cópia de segurança antes. Execute uma consulta sem gravação:
+
+```powershell
+..\.venv\Scripts\python.exe -m app.import_odk_pilot --project-id 1 --expected 9
+```
+
+Confira a contagem, os códigos e os nomes dos laboratórios apresentados. Se forem os esperados, execute a importação, incluindo o cadastro dos códigos ainda ausentes:
+
+```powershell
+..\.venv\Scripts\python.exe -m app.import_odk_pilot --project-id 1 --expected 9 --apply --register-missing
+```
+
+O comando aborta se a API devolver uma contagem diferente, identidades repetidas, nomes incompatíveis com laboratórios existentes ou um instrumento diferente do piloto. Antes de gravar, pré-valida o lote completo e cria uma cópia SQLite e dos anexos em `LabQuality_Copilot_0.1.0\backups`. Indica quantas avaliações são novas, revistas ou inalteradas; voltar a executá-lo sem alteração das respostas não cria avaliações duplicadas. Se todos os laboratórios já estiverem cadastrados, omita `--register-missing`. Reinicie os serviços, filtre **Submissões reais ODK** e confira nove avaliações da fonte `odk:1:slipta_v3_2023_mozambique`. O comando usa exclusivamente as credenciais do `.env` local; não as coloque na linha de comandos nem envie o ficheiro para o Git.
+
 Se aparecerem códigos ODK sem cadastro, crie os laboratórios em **Laboratórios** com o código exacto `tf_numero_laboratorio` e confirme o nome com o responsável; os códigos fictícios `SUL`, `CENTRO` e `NORTE` da demonstração não correspondem automaticamente a números da conta real. Volte a pré-validar e só então use **Sincronizar agora**. Mantenha o trabalhador activo e confirme a tarefa em **Importar dados → Tarefas de integração**; abra as avaliações marcadas **Real · ODK** e reveja a pontuação, os NA, as observações e os achados. Uma avaliação incompleta pode ficar sem percentagem. As nove avaliações da demonstração continuam identificadas como **Simulada** e não devem ser confundidas com as submissões da conta ODK.
 
 Depois da primeira importação bem-sucedida, confirme projecto e laboratórios e active a sincronização automática; o trabalhador consulta aproximadamente a cada cinco minutos. A identidade `__id` evita duplicados por repetição da mesma submissão; uma edição de respostas ou comentários cria revisão histórica. Se o trabalhador indicar `no such table: odk_sync_configs`, pare os processos, faça uma cópia da base SQLite e, em `backend`, execute `..\.venv\Scripts\python.exe -m alembic upgrade head` antes de voltar a iniciar. **Não apresente os resultados ou estrelas como classificação SLIPTA oficial:** os totais do formulário e do PDF divergem em algumas secções e a importação da API em produção ainda precisa de ser confirmada na instalação autorizada.
