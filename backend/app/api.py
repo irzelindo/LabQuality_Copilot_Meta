@@ -6,6 +6,7 @@ import time
 import zipfile
 from datetime import date, datetime
 from pathlib import Path
+from typing import Literal
 from zoneinfo import ZoneInfo
 from fastapi import APIRouter, Depends, File, Header, HTTPException, Query, Request, Response, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
@@ -156,6 +157,59 @@ def add_instrument(body: InstrumentIn, db: Session = DB, user: User = ACTOR):
     return record(row)
 
 
+@router.post("/instruments/xlsform")
+async def import_pilot_xlsform(file: UploadFile = File(...), dry_run: bool = True,
+                               db: Session = DB, user: User = ACTOR):
+    """Recognize the audited SLIPTA XLSForm, without guessing scoring for other forms."""
+    from .demo import PILOT
+    role(user, {"admin", "manager"})
+    if not (file.filename or "").lower().endswith(".xlsx"):
+        raise HTTPException(415, "Seleccione o XLSForm em formato XLSX.")
+    content = await file.read(2_000_001)
+    if len(content) > 2_000_000:
+        raise HTTPException(413, "Limite do XLSForm: 2 MB.")
+    try:
+        with zipfile.ZipFile(io.BytesIO(content)) as archive:
+            if sum(item.file_size for item in archive.infolist()) > 30_000_000:
+                raise HTTPException(413, "O XLSForm expandido excede o limite.")
+        import openpyxl
+        workbook = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+        try:
+            if not {"survey", "choices", "settings"}.issubset(workbook.sheetnames):
+                raise HTTPException(422, "Faltam as folhas survey, choices ou settings do XLSForm.")
+            rows = workbook["settings"].iter_rows(min_row=1, max_row=2, values_only=True)
+            headers, values = next(rows), next(rows)
+            metadata = dict(zip(headers, values))
+        finally:
+            workbook.close()
+    except (zipfile.BadZipFile, ValueError, KeyError, StopIteration, OSError) as error:
+        raise HTTPException(422, "Não foi possível ler o XLSForm.") from error
+    form_id = str(metadata.get("form_id") or "")
+    if form_id != PILOT["form_id"] or hashlib.sha256(content).hexdigest() != PILOT["source_sha256"]:
+        raise HTTPException(422, "Este XLSForm ou esta revisão ainda não tem mapeamento de pontuação validado. Não foi criado um instrumento.")
+    criteria = [{key: item[key] for key in ("code", "section", "title", "maximum", "critical")}
+                for item in PILOT["criteria"]]
+    existing = db.scalar(select(Instrument).where(Instrument.organization_id == user.organization_id,
+        Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"]))
+    if existing and (existing.criteria != criteria or existing.scoring_rule != "sum_applicable_v1"):
+        raise HTTPException(409, "A versão do instrumento já existe com critérios diferentes. Reveja-a antes de importar.")
+    summary = {"form_id": form_id, "form_version": str(metadata.get("version") or ""),
+        "instrument_code": PILOT["instrument_code"], "instrument_version": PILOT["instrument_version"],
+        "criteria_count": len(criteria), "maximum": sum(c["maximum"] for c in criteria),
+        "existing": bool(existing), "dry_run": dry_run}
+    if dry_run or existing:
+        return {**summary, "instrument_id": existing.id if existing else None,
+                "message": "O instrumento já existe nesta instituição." if existing else "XLSForm reconhecido; pode criar o instrumento piloto."}
+    row = Instrument(organization_id=user.organization_id, code=PILOT["instrument_code"],
+        version=PILOT["instrument_version"], name="Checklist SLIPTA ODK · piloto",
+        description="151 itens/365 pontos do XLSForm validado. Pontuação provisória; sem classificação oficial SLIPTA.",
+        scoring_rule="sum_applicable_v1", criteria=criteria)
+    db.add(row)
+    db.flush()
+    audit(db, user, "instrument.published", row, {"source": "xlsform", "form_id": form_id})
+    return {**summary, "instrument_id": row.id, "message": "Instrumento piloto criado a partir do XLSForm validado."}
+
+
 def assessment_out(db: Session, row: Assessment, detail=False):
     instrument = db.get(Instrument, row.instrument_id)
     root = db.get(AssessmentRoot, row.root_id)
@@ -176,9 +230,11 @@ def assessment_out(db: Session, row: Assessment, detail=False):
 
 @router.get("/assessments")
 def assessments(laboratory_id: str | None = None, start: date | None = None, end: date | None = None,
-                offset: int = Query(0, ge=0), limit: int = Query(100, ge=1, le=500), db: Session = DB, user: User = ACTOR):
+                origin: Literal["all", "odk", "demo"] = "all", offset: int = Query(0, ge=0),
+                limit: int = Query(100, ge=1, le=500), db: Session = DB, user: User = ACTOR):
     require_details(user)
-    rows = current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None)
+    rows = filter_assessments_by_origin(db,
+        current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None), origin)
     return {"items": [assessment_out(db, a) for a in rows[offset:offset + limit]], "total": len(rows)}
 
 
@@ -249,6 +305,8 @@ async def import_file(file: UploadFile = File(...), dry_run: bool = False, db: S
                     raise HTTPException(413, "O Excel expandido excede o limite.")
             workbook = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
             try:
+                if {"survey", "choices", "settings"}.issubset(workbook.sheetnames):
+                    raise HTTPException(422, "Este ficheiro é um XLSForm, não uma tabela de avaliações. Abra Instrumentos → Carregar XLSForm; para ler respostas use a ligação ODK Central.")
                 sheet = workbook.active
                 iterator = sheet.iter_rows(values_only=True)
                 headers = [str(v) for v in next(iterator)]

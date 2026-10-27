@@ -1,6 +1,6 @@
 "use client";
 import { useState, type FormEvent } from "react";
-import { ArrowRight, Check, ClipboardList, FlaskConical, Plus, RefreshCw, ShieldCheck, Users } from "lucide-react";
+import { ArrowRight, Check, ClipboardList, FileSpreadsheet, FlaskConical, Plus, RefreshCw, ShieldCheck, Users } from "lucide-react";
 import { api, post } from "@/lib/api";
 import type { Criterion, Instrument, Lab, User } from "@/lib/types";
 import { Empty, ErrorBox, Field, Loading, Modal, Panel, PanelTitle, Status, Submit, can, fmtDate, useApp, useData, useMutation, useT } from "../ui";
@@ -13,7 +13,29 @@ export function LabsView() {
 
 export function InstrumentsView() {
   const app = useApp(), t = useT(), [creating, setCreating] = useState(false), [selected, setSelected] = useState<Instrument | null>(null);
-  return <><Panel><PanelTitle title={t("Catálogo de instrumentos", "Instrument catalog")} subtitle={t("Cada versão mantém os seus critérios e regras de pontuação", "Each version preserves its criteria and scoring rules")} action={can(app.user, ["admin", "manager"]) && <button className="button primary small" onClick={() => setCreating(true)}><Plus size={16} />{t("Publicar instrumento", "Publish instrument")}</button>} /><div className="notice">{t("Escolha a regra de cada instrumento: máximo fixo ou exclusão de itens NA justificados. A classificação oficial SLIPTA requer reconciliação da checklist e validação técnica.", "Choose each instrument’s rule: fixed maximum or exclusion of justified NA items. Official SLIPTA classification requires checklist reconciliation and technical validation.")}</div><div className="table-scroll"><table><thead><tr><th>{t("INSTRUMENTO", "INSTRUMENT")}</th><th>{t("VERSÃO", "VERSION")}</th><th>{t("CRITÉRIOS", "CRITERIA")}</th><th>{t("PONTOS POSSÍVEIS", "POSSIBLE POINTS")}</th><th /></tr></thead><tbody>{app.instruments.map(i => <tr key={i.id}><td><b>{i.name}</b><small>{i.code}</small></td><td>{i.version}</td><td>{i.criteria.length}</td><td>{i.criteria.reduce((s, c) => s + c.maximum, 0)}</td><td><button className="button secondary small" onClick={() => setSelected(i)}>{t("Ver critérios", "View criteria")}</button></td></tr>)}</tbody></table></div></Panel>{selected && <Modal title={selected.name} close={() => setSelected(null)} wide><p>{selected.description}</p>{selected.criteria.map(c => <div className="criterion-row" key={c.code}><b>{c.code}</b><div><p>{c.title}</p><small>{c.section}</small></div><span>{c.maximum} {t("pontos", "points")}</span>{c.critical && <Status value="critical" />}</div>)}</Modal>}{creating && <InstrumentForm close={() => setCreating(false)} done={() => { setCreating(false); app.refresh(); }} />}</>;
+  return <><Panel><PanelTitle title={t("Catálogo de instrumentos", "Instrument catalog")} subtitle={t("Cada versão mantém os seus critérios e regras de pontuação", "Each version preserves its criteria and scoring rules")} action={can(app.user, ["admin", "manager"]) && <button className="button primary small" onClick={() => setCreating(true)}><Plus size={16} />{t("Publicar instrumento", "Publish instrument")}</button>} /><div className="notice">{t("Escolha a regra de cada instrumento: máximo fixo ou exclusão de itens NA justificados. A classificação oficial SLIPTA requer reconciliação da checklist e validação técnica.", "Choose each instrument’s rule: fixed maximum or exclusion of justified NA items. Official SLIPTA classification requires checklist reconciliation and technical validation.")}</div><div className="table-scroll"><table><thead><tr><th>{t("INSTRUMENTO", "INSTRUMENT")}</th><th>{t("VERSÃO", "VERSION")}</th><th>{t("CRITÉRIOS", "CRITERIA")}</th><th>{t("PONTOS POSSÍVEIS", "POSSIBLE POINTS")}</th><th /></tr></thead><tbody>{app.instruments.map(i => <tr key={i.id}><td><b>{i.name}</b><small>{i.code}</small></td><td>{i.version}</td><td>{i.criteria.length}</td><td>{i.criteria.reduce((s, c) => s + c.maximum, 0)}</td><td><button className="button secondary small" onClick={() => setSelected(i)}>{t("Ver critérios", "View criteria")}</button></td></tr>)}</tbody></table></div></Panel>{can(app.user, ["admin", "manager"]) && <InstrumentUpload />}{selected && <Modal title={selected.name} close={() => setSelected(null)} wide><p>{selected.description}</p>{selected.criteria.map(c => <div className="criterion-row" key={c.code}><b>{c.code}</b><div><p>{c.title}</p><small>{c.section}</small></div><span>{c.maximum} {t("pontos", "points")}</span>{c.critical && <Status value="critical" />}</div>)}</Modal>}{creating && <InstrumentForm close={() => setCreating(false)} done={() => { setCreating(false); app.refresh(); }} />}</>;
+}
+
+type XLSFormResult = { form_id: string; form_version: string; instrument_code: string; instrument_version: string; criteria_count: number; maximum: number; existing: boolean; dry_run: boolean; message: string };
+
+function InstrumentUpload() {
+  const app = useApp(), t = useT(), mutation = useMutation();
+  const [file, setFile] = useState<File | null>(null), [summary, setSummary] = useState<XLSFormResult | null>(null);
+  async function upload(dryRun: boolean) {
+    if (!file) return;
+    const data = new FormData();
+    data.set("file", file);
+    await mutation.run(async () => {
+      const result = await api<XLSFormResult>(`/instruments/xlsform?dry_run=${dryRun}`, { method: "POST", body: data });
+      setSummary(result);
+    }, () => { if (!dryRun) app.refresh(); });
+  }
+  return <Panel><PanelTitle title={t("Carregar XLSForm SLIPTA", "Upload SLIPTA XLSForm")} subtitle={t("Criar o instrumento a partir da revisão do formulário conferida", "Create the instrument from the verified form revision")} />
+    <div className="notice"><FileSpreadsheet size={19} /><p>{t("Este ficheiro define os critérios, não contém as respostas das auditorias. Esta versão do XLSForm já tem 151 itens mapeados; outras versões exigem revisão técnica antes da publicação. As submissões são lidas separadamente no ODK Central.", "This file defines criteria, not audit responses. This XLSForm revision has 151 mapped items; other revisions require technical review before publishing. Submissions are read separately from ODK Central.")}</p></div>
+    <div className="padded-form stack-form"><Field label={t("Ficheiro XLSForm (.xlsx)", "XLSForm file (.xlsx)")}><input type="file" accept=".xlsx" onChange={e => { setFile(e.target.files?.[0] || null); setSummary(null); }} /></Field>
+      <div className="button-row wrap"><button className="button secondary" disabled={!file || mutation.busy} onClick={() => upload(true)}>{t("Pré-validar XLSForm", "Validate XLSForm")}</button><button className="button primary" disabled={!file || mutation.busy || !summary?.dry_run || summary.existing} onClick={() => upload(false)}>{t("Criar instrumento", "Create instrument")}</button></div>
+      <ErrorBox message={mutation.error} />{summary && <div className="notice" role="status"><div><b>{summary.message}</b><p>{summary.form_id} · v{summary.form_version} · {summary.criteria_count} {t("critérios", "criteria")} · {summary.maximum} {t("pontos provisórios", "provisional points")}</p></div></div>}
+    </div></Panel>;
 }
 
 function InstrumentForm({ close, done }: { close: () => void; done: () => void }) {

@@ -161,8 +161,9 @@ def audit_events(offset: int = 0, db: Session = DB, user: User = ACTOR):
 
 @router.get("/dashboard")
 def dashboard(laboratory_id: str | None = None, start: date | None = None, end: date | None = None,
-              db: Session = DB, user: User = ACTOR):
-    assessments = current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None)
+              origin: Literal["all", "odk", "demo"] = "all", db: Session = DB, user: User = ACTOR):
+    assessments = filter_assessments_by_origin(db,
+        current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None), origin)
     labs = [laboratory_id] if laboratory_id else laboratory_ids(db, user)
     by_lab = {}
     by_date = {}
@@ -203,6 +204,9 @@ def dashboard(laboratory_id: str | None = None, start: date | None = None, end: 
     latest_instruments = {db.get(Assessment, assessment_id).instrument_id for assessment_id in latest_ids}
     comparable = len(latest_instruments) <= 1
     actions = list(db.scalars(select(Action).where(Action.organization_id == user.organization_id, Action.laboratory_id.in_(labs))))
+    if origin != "all":
+        actions = [action for action in actions if filter_assessments_by_origin(db,
+            [db.get(Assessment, db.get(Finding, action.finding_id).assessment_id)], origin)]
     open_actions = [a for a in actions if a.status != "closed"]
     closed = [a for a in actions if a.status == "closed" and a.closed_at]
     critical = list(db.scalars(select(Finding).where(Finding.assessment_id.in_(latest_ids), Finding.critical.is_(True))))
@@ -238,7 +242,7 @@ def dashboard(laboratory_id: str | None = None, start: date | None = None, end: 
               "critical_count": len(unresolved), "laboratories": lab_rows, "series": series,
               "sections": sorted([{"section": k, "percentage": round(sum(v) / len(v), 2) if v else None, "coverage": len(v)} for k, v in section_stats.items()],
                                   key=lambda x: x["percentage"] if x["percentage"] is not None else -1),
-              "filters": {"laboratory_id": laboratory_id, "start": start, "end": end}, "as_of": today()}
+              "filters": {"laboratory_id": laboratory_id, "start": start, "end": end, "origin": origin}, "as_of": today()}
     if user.role != "partner":
         result["critical_findings"] = [record(f) for f in unresolved]
         result["prolonged_actions"] = [{"id": a.id, "title": a.title, "days_open": (now() - a.created_at).days, "due_date": a.due_date} for a in sorted(open_actions, key=lambda a: a.created_at)[:10]]
@@ -247,9 +251,10 @@ def dashboard(laboratory_id: str | None = None, start: date | None = None, end: 
 
 @router.get("/reports/assessments.csv")
 def export_assessments(laboratory_id: str | None = None, start: date | None = None, end: date | None = None,
-                       db: Session = DB, user: User = ACTOR):
+                       origin: Literal["all", "odk", "demo"] = "all", db: Session = DB, user: User = ACTOR):
     require_details(user)
-    rows = current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None)
+    rows = filter_assessments_by_origin(db,
+        current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None), origin)
     out = io.StringIO()
     out.write("\ufeff")
     writer = csv.writer(out)

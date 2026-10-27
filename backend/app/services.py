@@ -55,6 +55,15 @@ def ensure_version(entity, expected: int):
         raise HTTPException(409, "O registo foi alterado. Actualize a página antes de guardar.")
 
 
+def filter_assessments_by_origin(db: Session, rows: list[Assessment], origin: str) -> list[Assessment]:
+    if origin == "all":
+        return rows
+    def matches(row):
+        source = db.get(AssessmentRoot, row.root_id).source
+        return source.startswith("odk:") if origin == "odk" else source == "demo"
+    return [row for row in rows if matches(row)]
+
+
 def eligible_owner(db: Session, actor: User, owner_id: str, lab_id: str) -> User:
     owner = db.get(User, owner_id)
     if not owner or not owner.active or owner.organization_id != actor.organization_id or owner.role in {"partner", "coordinator"}:

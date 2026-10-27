@@ -213,3 +213,22 @@ def test_odk_preview_rejects_unmapped_form(client, monkeypatch):
     assert result.status_code == 200
     assert not result.json()["ready"]
     assert result.json()["changes"] is None
+
+
+def test_real_source_filter_keeps_demo_records_without_mixing_indicators(client):
+    with session_factory()() as db:
+        refresh_demo(db, PASSWORD)
+        actor = db.scalar(select(User).where(User.email == "admin@labquality.local"))
+        real = pilot_assessments()[0].model_copy(update={
+            "source": f'odk:1:{PILOT["form_id"]}', "external_id": "uuid:source-test",
+            "reason": "Submissão ODK em teste de filtro."})
+        import_assessments(db, actor, [real])
+        db.commit()
+    login(client)
+    assert client.get("/api/v1/assessments?origin=odk").json()["total"] == 1
+    assert client.get("/api/v1/assessments?origin=demo").json()["total"] == 9
+    assert client.get("/api/v1/dashboard?origin=odk").json()["assessment_count"] == 1
+    assert client.get("/api/v1/dashboard?origin=odk").json()["open_actions"] == 0
+    assert client.get("/api/v1/dashboard?origin=demo").json()["assessment_count"] == 9
+    assert client.get("/api/v1/dashboard?origin=all").json()["assessment_count"] == 10
+    assert len(client.get("/api/v1/reports/assessments.csv?origin=odk").text.splitlines()) == 2
