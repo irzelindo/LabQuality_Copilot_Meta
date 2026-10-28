@@ -6,9 +6,10 @@ import pytest
 from sqlalchemy import select
 from app.config import settings
 from app.database import session_factory
-from app.demo import sample_assessments
-from app.models import Document, Laboratory, Organization, User
-from app.schemas import RecommendationResult
+from app.demo import PILOT, sample_assessments
+from app.models import Document, Instrument, Laboratory, Organization, User
+from app.schemas import AssessmentIn, RecommendationResult
+from app.services import import_assessments
 from app.security import passwords
 from app.ai import parse_response, validate_grounding
 from app.worker import process_one
@@ -156,6 +157,45 @@ def test_documents_require_separate_approval_and_publish_retires_old_version(cli
     assert approved.status_code == 200
     published = client.post(f"/api/v1/documents/{document['id']}/transition", json={"status": "published", "version": approved.json()["version"]})
     assert published.status_code == 200
+
+
+def test_odk_ai_readiness_distinguishes_legacy_sources_and_unblocks_after_review(client):
+    with session_factory()() as db:
+        admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
+        db.add(Instrument(organization_id=admin.organization_id, code=PILOT["instrument_code"],
+            version=PILOT["instrument_version"], name="SLIPTA piloto", scoring_rule="sum_applicable_v1",
+            criteria=[{key: c[key] for key in ("code", "section", "title", "maximum", "critical")}
+                      for c in PILOT["criteria"]]))
+        db.flush()
+        result = import_assessments(db, admin, [AssessmentIn(
+            source=f"odk:1:{PILOT['form_id']}", external_id="uuid:readiness-test", laboratory_code="SUL",
+            instrument_code=PILOT["instrument_code"], instrument_version=PILOT["instrument_version"],
+            assessment_date="2026-09-19", answers={"8.19": {"value": 0, "comment": "Excursão sem investigação."}})])
+        db.commit()
+    assessment_id = result["assessment_ids"][0]
+    settings().model_api_key = "test-only"
+    login(client)
+    readiness = client.get(f"/api/v1/ai/readiness/{assessment_id}").json()
+    assert readiness["findings_count"] == 1
+    assert readiness["published_sources_count"] == 3
+    assert readiness["applicable_sources_count"] == 0
+    assert readiness["uncovered_criteria"] == ["8.19"] and not readiness["ready"]
+    blocked = client.post("/api/v1/ai/runs", json={"assessment_id": assessment_id})
+    assert blocked.status_code == 422 and "8.19" in blocked.json()["detail"]
+
+    document = client.post("/api/v1/documents", json={
+        "code": "REVIEWED-8-19", "title": "Controlo de temperatura revisto",
+        "content": "Investigar excursões de temperatura dos reagentes, registar impacto e documentar a decisão.",
+        "criterion_codes": ["8.19"]}).json()
+    document = client.post(f"/api/v1/documents/{document['id']}/transition", json={"status": "review", "version": document["version"]}).json()
+    login(client, "verificador@labquality.local")
+    document = client.post(f"/api/v1/documents/{document['id']}/transition", json={"status": "approved", "version": document["version"]}).json()
+    client.post(f"/api/v1/documents/{document['id']}/transition", json={"status": "published", "version": document["version"]}).raise_for_status()
+    login(client)
+    ready = client.get(f"/api/v1/ai/readiness/{assessment_id}").json()
+    assert ready["ready"] and ready["applicable_findings_count"] == 1
+    assert ready["applicable_sources_count"] == 1
+    assert client.post("/api/v1/ai/runs", json={"assessment_id": assessment_id}).status_code == 202
 
 
 def test_csv_upload_and_export_filters(client):

@@ -32,7 +32,7 @@ Return the requested JSON schema and no surrounding markdown."""
 
 def published_sources(db: Session, user: User, laboratory_id: str):
     return list(db.scalars(documents_for(db, user).where(Document.status == "published",
-                       (Document.laboratory_id.is_(None)) | (Document.laboratory_id == laboratory_id)).order_by(Document.code).limit(20)))
+                       (Document.laboratory_id.is_(None)) | (Document.laboratory_id == laboratory_id)).order_by(Document.code).limit(500)))
 
 
 def build_context(db: Session, user: User, assessment: Assessment):
@@ -48,6 +48,27 @@ def build_context(db: Session, user: User, assessment: Assessment):
                          for f in findings[:30]],
             "sources": [{"id": d.id, "code": d.code, "revision": d.revision, "title": d.title,
                          "criterion_codes": d.criterion_codes, "content": d.content[:6000]} for d in relevant]}
+
+
+def assessment_readiness(db: Session, user: User, assessment: Assessment) -> dict:
+    context = build_context(db, user, assessment)
+    findings = context["findings"]
+    applicable = [finding for finding in findings if finding["allowed_source_ids"]]
+    published_count = len(published_sources(db, user, assessment.laboratory_id))
+    return {"ready": bool(applicable),
+            "findings_count": db.scalar(select(func.count()).select_from(Finding).where(Finding.assessment_id == assessment.id)),
+            "applicable_findings_count": len(applicable),
+            "published_sources_count": published_count,
+            "applicable_sources_count": len(context["sources"]),
+            "uncovered_criteria": sorted({finding["criterion_code"] for finding in findings
+                                           if not finding["allowed_source_ids"]})[:10]}
+
+
+@router.get("/ai/readiness/{assessment_id}")
+def ai_readiness(assessment_id: str, db: Session = DB, user: User = ACTOR):
+    role(user, EDITORS | {"verifier"})
+    assessment = get_scoped(db, Assessment, assessment_id, user)
+    return assessment_readiness(db, user, assessment)
 
 
 def validate_grounding(result: RecommendationResult, context: dict):
@@ -139,8 +160,14 @@ def queue_ai(body: AIRunIn, db: Session = DB, user: User = ACTOR):
     if assessment.revision != db.get(AssessmentRoot, assessment.root_id).head_revision:
         raise HTTPException(409, "Seleccione a revisão actual.")
     context = build_context(db, user, assessment)
-    if not context["findings"] or not context["sources"]:
-        raise HTTPException(422, "São necessários achados e documentos publicados aplicáveis.")
+    if not context["findings"]:
+        raise HTTPException(422, "Esta avaliação não tem achados (pontuações abaixo do máximo). Seleccione uma avaliação com achados confirmados.")
+    if not context["sources"]:
+        published = len(published_sources(db, user, assessment.laboratory_id))
+        if not published:
+            raise HTTPException(422, "A avaliação tem achados, mas não há documentos publicados acessíveis a este laboratório. Publique uma fonte revista em Documentos.")
+        codes = ", ".join(sorted({finding["criterion_code"] for finding in context["findings"]})[:10])
+        raise HTTPException(422, f"Há documentos publicados, mas nenhum é aplicável aos achados SLIPTA ({codes}). Associe uma fonte revista aos critérios correctos e publique-a em Documentos.")
     count = db.scalar(select(func.count()).select_from(AIExecution).where(AIExecution.actor_id == user.id,
                          AIExecution.created_at > now() - timedelta(hours=1)))
     if count >= 20:
