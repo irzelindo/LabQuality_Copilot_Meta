@@ -29,6 +29,27 @@ test("pilot import presents the SLIPTA mapping and keeps sync disabled without O
   await expect(page.getByRole("button", { name: "Activar sincronização automática" })).toBeDisabled();
 });
 
+test("guide explains the ODK to Meta workflow and incomplete assessments cannot be finalized", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("Email", { exact: true }).fill("admin@labquality.local");
+  await page.getByLabel("Palavra-passe", { exact: true }).fill("Local-e2e-test-only-2026!");
+  await page.getByRole("button", { name: "Entrar no espaço de trabalho" }).click();
+  await page.getByRole("link", { name: "Guia de utilização" }).click();
+  await expect(page.getByRole("heading", { name: "Por onde começar" })).toBeVisible();
+  await expect(page.getByText("Zero acções", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Abrir avaliações" }).click();
+  await page.getByRole("button", { name: "Nova avaliação" }).click();
+  const form = page.getByRole("dialog");
+  await form.getByRole("combobox", { name: "Instrumento" }).selectOption({ label: "SLIPTA-ODK-PILOT v2026.10" });
+  await form.getByRole("button", { name: "Guardar avaliação" }).click();
+  const row = page.getByRole("row").filter({ hasText: "Manual" }).first();
+  await row.getByRole("button", { name: "Abrir" }).click();
+  const details = page.getByRole("dialog");
+  await expect(details.getByRole("button", { name: "Finalizar avaliação" })).toBeDisabled();
+  await expect(details.getByText(/151 critério\(s\) por avaliar/)).toBeVisible();
+  await expect(details.locator(".big-score")).toContainText("pontos provisórios");
+});
+
 test("assessment, filters, idempotent import, action evidence and independent verification", async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));

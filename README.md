@@ -75,6 +75,8 @@ O comando cria antes um backup da base e evidências em `backend\.backups`, elim
 
 ## Utilizar a aplicação
 
+Para um percurso completo com as nove submissões ODK, os avisos de avaliação incompleta, a publicação de fontes SLIPTA e o primeiro ensaio Meta, consulte o [guia de utilização](docs/GUIA_UTILIZADOR.md). O resumo também está disponível no menu **Guia de utilização** da aplicação.
+
 1. Entre como administrador e consulte os indicadores. Experimente os filtros de laboratório e datas.
 2. Em Avaliações, abra um resultado, consulte os achados e as revisões. Crie uma avaliação ou uma correcção.
 3. Em Importar dados, descarregue o exemplo CSV, pré-valide-o e aplique a importação. Repetir o mesmo conteúdo não cria avaliações duplicadas.
