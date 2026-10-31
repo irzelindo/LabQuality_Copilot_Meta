@@ -258,7 +258,7 @@ def export_assessments(laboratory_id: str | None = None, start: date | None = No
 def system_status(db: Session = DB, user: User = ACTOR):
     from .config import settings
     cfg = settings()
-    return {"version": "0.1.0", "ai_configured": bool(cfg.model_api_key), "model": cfg.model_id,
+    return {"version": "0.2.0", "ai_configured": bool(cfg.model_api_key), "model": cfg.model_id,
             "email_configured": bool(cfg.smtp_host), "odk_configured": bool(cfg.odk_url and cfg.odk_email and cfg.odk_password),
             "storage": "private_local_volume", "demo_instrument": "DEMO-QMS 1.0 — fictitious, not SLIPTA scoring"}
 
