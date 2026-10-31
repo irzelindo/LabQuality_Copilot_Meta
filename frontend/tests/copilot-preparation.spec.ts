@@ -1,0 +1,50 @@
+import { test, expect } from '@playwright/test';
+
+test('guide, readiness, missing Meta key and selected-assessment navigation', async ({ page }, testInfo) => {
+  const errors: string[] = [];
+  page.on('pageerror', e => errors.push(e.message));
+  await page.goto('/');
+  await page.getByLabel('Email', {exact:true}).fill('admin@labquality.local');
+  await page.getByLabel('Palavra-passe', {exact:true}).fill('Local-e2e-test-only-2026!');
+  await page.getByRole('button', {name:'Entrar no espaço de trabalho'}).click();
+  await page.getByRole('link', {name:'Como utilizar',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'O seu primeiro percurso completo'})).toBeVisible();
+  await expect(page.locator('.journey-card')).toHaveCount(6);
+  await page.getByRole('link', {name:'Avaliações',exact:true}).click();
+  await page.getByRole('button', {name:'Abrir',exact:true}).first().click();
+  await page.getByRole('button', {name:'Analisar com Meta',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Preparar a análise',exact:true})).toBeVisible();
+  await expect(page.getByText('Falta configurar a chave',{exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Gerar propostas com Meta'})).toBeDisabled();
+  await expect(page.locator('.readiness-grid')).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath('copilot-preparation-desktop.png'),fullPage:true});
+  await page.getByRole('button',{name:'PT',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Prepare the analysis',exact:true})).toBeVisible();
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await page.screenshot({path:testInfo.outputPath('copilot-preparation-mobile.png'),fullPage:true});
+  expect(errors).toEqual([]);
+});
+
+test('reference import previews without saving and keeps imported sources in draft', async ({page}) => {
+  await page.goto('/');
+  await page.getByLabel('Email',{exact:true}).fill('admin@labquality.local');
+  await page.getByLabel('Palavra-passe',{exact:true}).fill('Local-e2e-test-only-2026!');
+  await page.getByRole('button',{name:'Entrar no espaço de trabalho'}).click();
+  await page.getByRole('link',{name:'Documentos',exact:true}).click();
+  const pack={pack_version:'slipta-sources-v1',provenance:{pdf_sha256:'synthetic-test-source'},documents:[{code:'SLIPTA-TEST-1.1',title:'Synthetic reference for UI validation',content:'This synthetic reference supports only an automated application workflow test.',criterion_codes:['1.1']}]};
+  await page.getByLabel('Pacote de referências SLIPTA (.json)',{exact:true}).setInputFiles({name:'sources.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(pack))});
+  await page.getByRole('button',{name:'Pré-validar referências',exact:true}).click();
+  await expect(page.getByRole('status').filter({hasText:'Pré-validação sem gravação.'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Synthetic reference for UI validation',exact:false})).toHaveCount(0);
+  await page.getByRole('button',{name:'Importar rascunhos',exact:true}).click();
+  await page.getByLabel('Pesquisar documentos',{exact:true}).fill('SLIPTA-TEST-1.1');
+  const card=page.locator('.document-card').filter({hasText:'Synthetic reference for UI validation'});
+  await expect(card).toBeVisible();
+  await expect(card.locator('.badge')).toHaveText('Rascunho');
+  await card.click();
+  await page.getByRole('button',{name:'Submeter à revisão',exact:true}).click();
+  await page.locator('.document-card').filter({hasText:'Synthetic reference for UI validation'}).click();
+  await expect(page.getByText('A aprovação deve ser feita por outra pessoa autorizada.',{exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Aprovar documento',exact:true})).toHaveCount(0);
+});
