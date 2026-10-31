@@ -17,3 +17,8 @@ artifacts/
 frontend/.env.local
 frontend/test-results/
 frontend/playwright-report/
+
+# Local SLIPTA references and real submissions
+private/
+slipta_sources*.json
+submission*.json
