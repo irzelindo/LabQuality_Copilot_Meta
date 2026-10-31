@@ -141,6 +141,8 @@ class RegisterIn(Schema):
 
 class AIRunIn(Schema):
     assessment_id: str
+    finding_ids: list[str] = Field(default_factory=list, max_length=5)
+    language: Literal["pt", "en"] = "pt"
 
 
 class Citation(Schema):
