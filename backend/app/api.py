@@ -90,18 +90,71 @@ def change_password(body: PasswordChange, response: Response, db: Session = DB, 
 
 
 @router.get("/laboratories")
-def labs(db: Session = DB, user: User = ACTOR):
-    return [record(l) for l in db.scalars(select(Laboratory).where(Laboratory.id.in_(laboratory_ids(db, user))).order_by(Laboratory.name))]
+def labs(include_inactive: bool = False, db: Session = DB, user: User = ACTOR):
+    if include_inactive:
+        role(user, {"admin"})
+        query = select(Laboratory).where(Laboratory.organization_id == user.organization_id)
+    else:
+        query = select(Laboratory).where(Laboratory.id.in_(laboratory_ids(db, user)))
+    return [record(l) for l in db.scalars(query.order_by(Laboratory.name))]
 
 
 @router.post("/laboratories", status_code=201)
 def add_lab(body: LabIn, db: Session = DB, user: User = ACTOR):
     role(user, {"admin"})
+    if db.scalar(select(Laboratory.id).where(Laboratory.organization_id == user.organization_id,
+                                              Laboratory.code == body.code)):
+        raise HTTPException(409, "Já existe um laboratório com este código, mesmo que esteja desactivado.")
     lab = Laboratory(organization_id=user.organization_id, **body.model_dump())
     db.add(lab)
     db.flush()
     audit(db, user, "laboratory.created", lab)
     return record(lab)
+
+
+def managed_lab(db: Session, user: User, lab_id: str) -> Laboratory:
+    role(user, {"admin"})
+    lab = db.get(Laboratory, lab_id)
+    if not lab or lab.organization_id != user.organization_id:
+        raise HTTPException(404, "Laboratório não encontrado.")
+    return lab
+
+
+@router.patch("/laboratories/{lab_id}")
+def edit_lab(lab_id: str, body: LabEdit, db: Session = DB, user: User = ACTOR):
+    lab = managed_lab(db, user, lab_id)
+    before = {"name": lab.name, "region": lab.region}
+    lab.name, lab.region = body.name, body.region
+    audit(db, user, "laboratory.updated", lab, {"before": before, "after": body.model_dump()})
+    return record(lab)
+
+
+@router.post("/laboratories/{lab_id}/status")
+def lab_status(lab_id: str, body: LabStatus, db: Session = DB, user: User = ACTOR):
+    lab = managed_lab(db, user, lab_id)
+    if lab.active == body.active:
+        raise HTTPException(409, "O laboratório já está neste estado.")
+    lab.active = body.active
+    audit(db, user, "laboratory.reactivated" if body.active else "laboratory.deactivated", lab,
+          {"reason": body.reason})
+    return record(lab)
+
+
+@router.delete("/laboratories/{lab_id}")
+def delete_lab(lab_id: str, body: DeleteReason, db: Session = DB, user: User = ACTOR):
+    lab = managed_lab(db, user, lab_id)
+    if any(lab.id in member.laboratory_ids for member in db.scalars(select(User).where(
+            User.organization_id == user.organization_id))):
+        raise HTTPException(409, "Retire primeiro as atribuições da equipa a este laboratório.")
+    # Reject every persisted reference, including audit history with a laboratory FK.
+    for table in Base.metadata.tables.values():
+        for column in table.columns:
+            if any(fk.column.table is Laboratory.__table__ for fk in column.foreign_keys):
+                if db.execute(select(column).where(column == lab.id).limit(1)).first():
+                    raise HTTPException(409, "Este laboratório tem registos associados. Desactive-o para preservar o histórico.")
+    db.delete(lab)
+    audit(db, user, "laboratory.deleted", lab, {"code": lab.code, "name": lab.name, "reason": body.reason})
+    return {"ok": True}
 
 
 @router.get("/users")
@@ -115,6 +168,8 @@ def users(db: Session = DB, user: User = ACTOR):
 @router.post("/users", status_code=201)
 def add_user(body: UserIn, db: Session = DB, user: User = ACTOR):
     role(user, {"admin"})
+    if db.scalar(select(User.id).where(User.email == body.email)):
+        raise HTTPException(409, "Este email já pertence a outra conta.")
     for lab_id in body.laboratory_ids:
         require_lab(db, user, lab_id)
     values = body.model_dump(exclude={"password"})
@@ -132,12 +187,18 @@ def update_access(user_id: str, body: AccessUpdate, db: Session = DB, user: User
     if row.id == user.id and (not body.active or body.role != "admin"):
         raise HTTPException(409, "Não pode remover o seu próprio acesso de administrador.")
     for lab_id in body.laboratory_ids:
+        if lab_id in row.laboratory_ids and db.scalar(select(Laboratory.id).where(
+                Laboratory.id == lab_id, Laboratory.organization_id == user.organization_id)):
+            continue  # An existing inactive assignment may be kept, but grants no access.
         require_lab(db, user, lab_id)
-    for k, v in body.model_dump().items():
+    values = body.model_dump(exclude_none=True)
+    if "email" in values and values["email"] != row.email and db.scalar(select(User.id).where(User.email == values["email"])):
+        raise HTTPException(409, "Este email já pertence a outra conta.")
+    for k, v in values.items():
         setattr(row, k, v)
     if not body.active:
         db.execute(delete(LoginSession).where(LoginSession.user_id == row.id))
-    audit(db, user, "user.access_changed", row, body.model_dump())
+    audit(db, user, "user.access_changed", row, values)
     return user_out(row)
 
 

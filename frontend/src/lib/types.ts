@@ -1,6 +1,6 @@
 export type Role = "admin" | "coordinator" | "manager" | "quality" | "assessor" | "verifier" | "partner";
 export interface User { id: string; name: string; email: string; role: Role; laboratory_ids: string[]; active: boolean }
-export interface Lab { id: string; code: string; name: string; region: string }
+export interface Lab { id: string; code: string; name: string; region: string; active: boolean }
 export interface Criterion { code: string; section: string; title: string; maximum: number; critical: boolean }
 export interface Instrument { id: string; code: string; version: string; name: string; description: string; criteria: Criterion[]; scoring_rule: "sum_fixed_v1" | "sum_applicable_v1" }
 export interface Score { obtained: number; maximum: number; full_maximum: number; not_applicable: number; answered: number; items: number; coverage: number; complete: boolean; percentage: number | null; sections: Record<string, { obtained: number; maximum: number; full_maximum: number; not_applicable: number; percentage: number | null; answered: number; items: number }> }

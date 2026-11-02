@@ -23,7 +23,7 @@ export default function GuideView() {
     <Panel><div className="guide-heading"><BookOpenCheck size={21} /><div><h2>{t("Outros ecrãs", "Other screens")}</h2><p>{t("Use-os conforme a sua função e as permissões atribuídas.", "Use them according to your role and assigned permissions.")}</p></div></div><dl className="guide-directory">
       <dt>{t("Visão geral", "Overview")}</dt><dd>{t("Indicadores, filtros de origem, laboratório e datas.", "Indicators and filters for source, laboratory and dates.")}</dd>
       <dt>{t("Registos operacionais", "Operational registers")}</dt><dd>{t("Riscos, ocorrências, competências e equipamento.", "Risks, incidents, competencies and equipment.")}</dd>
-      <dt>{t("Laboratórios e Equipa", "Laboratories and Team")}</dt><dd>{t("Cadastro, responsáveis e acesso por laboratório; algumas opções exigem administrador.", "Records, owners and laboratory access; some options require an administrator.")}</dd>
+      <dt>{t("Laboratórios e Equipa", "Laboratories and Team")}</dt><dd>{t("O administrador edita e desactiva laboratórios, elimina apenas cadastros vazios e gere nomes, emails, perfis e acessos da equipa.", "The administrator edits and deactivates laboratories, deletes only empty records, and manages team names, emails, roles and access.")}</dd>
       <dt>{t("Auditoria", "Audit trail")}</dt><dd>{t("Histórico das operações para responsáveis autorizados.", "History of operations for authorized staff.")}</dd>
       <dt>{t("Configuração", "Settings")}</dt><dd>{t("Estado e testes de Meta, ODK e email; as credenciais ficam no servidor. Também permite alterar a sua palavra-passe.", "Status and checks for Meta, ODK and email; credentials stay on the server. You can also change your password.")}</dd>
     </dl></Panel>

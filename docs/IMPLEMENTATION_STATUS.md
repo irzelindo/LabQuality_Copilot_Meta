@@ -6,7 +6,7 @@ Actualização do percurso ODK/Meta em 28/10/2026: a instalação Windows do uti
 
 | Módulo V1 | Implementado nesta entrega | Limites e validação seguinte |
 |---|---|---|
-| Organizações e acessos | Instituição, laboratórios, contas, perfis, sessão HttpOnly revogável e autorização no servidor. | Convites por email, SSO/MFA e controlo distribuído de tentativas por implementar. Administração de uma instituição por sessão. |
+| Organizações e acessos | Instituição, laboratórios com edição/desactivação/reactivação, eliminação apenas sem registos nem equipa atribuída, edição de identidade/perfil/acesso dos utilizadores, sessão HttpOnly revogável e autorização no servidor. | Laboratórios desactivados conservam avaliações e ficam fora dos dados activos até reactivação. Convites por email, SSO/MFA e controlo distribuído de tentativas por implementar. Administração de uma instituição por sessão. |
 | Avaliações e instrumentos | Instrumento versionado, questionário, achados, cálculo determinístico, finalização e correcções com revisão. | Apenas soma com denominador fixo; sem classificação oficial SLIPTA. Instrumentos reais exigem revisão técnica. |
 | Importação e integração | CSV, XLSX, JSON, pré-validação, lote transaccional, idempotência e revisões; conector ODK OData. | Nove submissões ODK de teste importadas na instalação do utilizador; confirmar pontuações, NA e histórico no ecrã. Limite de 500 avaliações/lote. |
 | Não conformidades e acções | Achado ligado à acção, causa, prioridade, responsável, prazo, estados, verificação independente e reabertura. | Não existe ainda catálogo complexo de causas, subtarefas ou configuração institucional da separação de funções. |

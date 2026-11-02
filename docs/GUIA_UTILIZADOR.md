@@ -43,8 +43,8 @@ O percurso de uma acção é **Proposta → Aprovada → Em execução → Em ve
 | **Registos operacionais** | Acompanhar riscos, ocorrências, competências e equipamentos; não substituem o formulário de auditoria. |
 | **Importar dados** | Ler respostas CSV/XLSX ou submissões ODK. O exemplo CSV tem **uma linha por critério**; o XLSForm que define o questionário não é um ficheiro de respostas. |
 | **Instrumentos** | Consultar a versão e os critérios, pré-validar e carregar o XLSForm SLIPTA conferido. A pontuação de 365 é provisória, sem estrelas oficiais. |
-| **Laboratórios** | Confirmar os códigos estáveis do ODK e os laboratórios a que a equipa pode aceder. |
-| **Equipa e acessos** | Um administrador define perfis, laboratórios autorizados e revoga acessos. |
+| **Laboratórios** | O administrador edita nome/região, desactiva ou reactiva com motivo; elimina apenas cadastros sem avaliações, documentos, outros registos ou pessoas atribuídas. O código ODK não se altera. |
+| **Equipa e acessos** | O administrador edita nome, email, perfil e laboratórios autorizados; pode revogar ou restabelecer o acesso da conta. |
 | **Auditoria** | Consultar o histórico de operações, conforme as permissões. |
 | **Configuração** | Testar a ligação Meta, ODK e SMTP, ver o estado e alterar a própria palavra-passe. “Configurado” indica parâmetros presentes, não garante uma análise concluída. |
 | **Guia de utilização** | Ver o percurso resumido e os avisos mais frequentes dentro da aplicação. |
@@ -58,5 +58,7 @@ Se as nove avaliações já aparecem em **Avaliações**, não precisa importar 
 ## Papéis e limites
 
 O administrador gere a instituição. Gestores, responsáveis da qualidade e avaliadores operam conforme o laboratório; administradores, gestores e verificadores podem aprovar determinadas etapas, com separação de pessoas para aprovação de documento e verificação de eficácia. A coordenação consulta a rede; o parceiro vê indicadores agregados. Se um botão não aparecer, confira o perfil e a atribuição ao laboratório com o administrador.
+
+Para suspender um laboratório sem perder as avaliações ODK, abra **Laboratórios → Gerir laboratório → Desactivar laboratório** e registe o motivo. A instituição conserva o histórico, mas o laboratório deixa de aparecer nos filtros e as operações ficam suspensas até à reactivação. Se foi apenas um cadastro vazio criado por engano, retire primeiro as atribuições em **Equipa e acessos** e use **Eliminar laboratório sem registos**. O servidor recusará a eliminação se encontrar qualquer registo associado. As alterações são visíveis em **Auditoria**.
 
 O piloto SLIPTA usa 151 itens e um total calculável de 365 pontos do XLSForm recebido. Existem divergências entre o XLSForm e totais publicados na checklist de referência; por isso, não atribui estrelas nem uma classificação oficial. Os laboratórios `TESTE` e os documentos `DEMO` servem para ensaio. Antes de utilização institucional, valide o instrumento, as fontes, as permissões, as integrações e a política de dados com a equipa responsável.

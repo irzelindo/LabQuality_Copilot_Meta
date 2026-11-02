@@ -18,6 +18,20 @@ class LabIn(Schema):
     region: str = Field(default="", max_length=100)
 
 
+class LabEdit(Schema):
+    name: str = Field(min_length=2, max_length=200)
+    region: str = Field(default="", max_length=100)
+
+
+class LabStatus(Schema):
+    active: bool
+    reason: str = Field(min_length=5, max_length=500)
+
+
+class DeleteReason(Schema):
+    reason: str = Field(min_length=5, max_length=500)
+
+
 class UserIn(Schema):
     name: str = Field(min_length=2, max_length=200)
     email: str = Field(min_length=5, max_length=254)
@@ -37,6 +51,15 @@ class AccessUpdate(Schema):
     role: Literal["admin", "coordinator", "manager", "quality", "assessor", "verifier", "partner"]
     active: bool
     laboratory_ids: list[str] = Field(max_length=1000)
+    name: str | None = Field(default=None, min_length=2, max_length=200)
+    email: str | None = Field(default=None, min_length=5, max_length=254)
+
+    @field_validator("email")
+    @classmethod
+    def email_shape(cls, value):
+        if value is not None and ("@" not in value or "." not in value.split("@")[-1]):
+            raise ValueError("Email inválido")
+        return value.lower() if value is not None else None
 
 
 class PasswordChange(Schema):

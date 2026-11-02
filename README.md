@@ -79,6 +79,8 @@ Para um percurso completo com as nove submissões ODK, os avisos de avaliação 
 
 Para os critérios das 12 secções, consulte os [12 documentos de verificação SLIPTA V3:2023](docs/SLIPTA_V3_FONTES_META.md), com evidência a verificar para cada um dos 151 itens, um importador de rascunhos/revisões controladas e o percurso de publicação em **Documentos**. Os três roteiros anteriores para dez achados específicos permanecem disponíveis como referências históricas.
 
+Em **Laboratórios**, o administrador pode actualizar nome/região, desactivar/reactivar com motivo e eliminar apenas um cadastro vazio, sem registos ou pessoas atribuídas. O código do laboratório é estável para preservar a ligação ODK. A desactivação conserva as avaliações, mas suspende o acesso e a importação até à reactivação. Em **Equipa e acessos**, pode editar nome, email, perfil, laboratórios atribuídos e o estado da conta; os acessos revogados deixam de ter sessão válida. Estas operações são registadas em **Auditoria**.
+
 1. Entre como administrador e consulte os indicadores. Experimente os filtros de laboratório e datas.
 2. Em Avaliações, abra um resultado, consulte os achados e as revisões. Crie uma avaliação ou uma correcção.
 3. Em Importar dados, descarregue o exemplo CSV, pré-valide-o e aplique a importação. Repetir o mesmo conteúdo não cria avaliações duplicadas.
