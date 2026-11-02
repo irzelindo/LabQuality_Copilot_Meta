@@ -1,8 +1,8 @@
 # Fontes de verificação para o piloto SLIPTA V3:2023
 
-Estas três minutas foram redigidas para **Documentos → Novo documento** no LabQuality Copilot. Cobrem os dez códigos mostrados no aviso da avaliação da Beira. São resumos originais de apoio à revisão dos achados, baseados na [checklist SLIPTA V3:2023 publicada pela ASLM](https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf). Não são uma norma nova, um procedimento operacional do laboratório nem prova de conformidade. O auditor deve confrontar cada recomendação com a submissão ODK, os documentos locais, os registos e a observação directa. A classificação SLIPTA continua fora do âmbito desta versão do produto.
+Estas três minutas foram redigidas para **Documentos** no LabQuality Copilot. Os respectivos ficheiros de texto estão em `backend/samples/slipta_sources/`. Cobrem os dez códigos mostrados no aviso da avaliação da Beira. São resumos originais de apoio à revisão dos achados, baseados na [checklist SLIPTA V3:2023 publicada pela ASLM](https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf). Não são uma norma nova, um procedimento operacional do laboratório nem prova de conformidade. O auditor deve confrontar cada recomendação com a submissão ODK, os documentos locais, os registos e a observação directa. A classificação SLIPTA continua fora do âmbito desta versão do produto.
 
-Na aplicação, crie **três documentos separados**, cada um com o código, título, âmbito, critérios e conteúdo abaixo. O âmbito **Toda a instituição** só é apropriado para esta referência geral se a equipa validar que as três fontes se aplicam aos laboratórios abrangidos. Se forem usados documentos locais em vez deste resumo, atribua o laboratório correspondente. Preserve as páginas e o URL da fonte no campo de conteúdo. A pessoa que redige não pode aprovar a sua própria revisão.
+Na aplicação, crie **três documentos separados**, cada um com o código, título, âmbito, critérios e conteúdo abaixo, ou utilize o importador local descrito adiante. O âmbito **Toda a instituição** só é apropriado para esta referência geral se a equipa validar que as três fontes se aplicam aos laboratórios abrangidos. Se forem usados documentos locais em vez deste resumo, atribua o laboratório correspondente. Preserve as páginas e o URL da fonte no campo de conteúdo. A pessoa que redige não pode aprovar a sua própria revisão.
 
 ## 1. Sistema de gestão, revisão de registos e direcção
 
@@ -68,7 +68,17 @@ Ao interpretar um achado ODK: uma suspeita de risco imediato requer confirmaçã
 
 ## Publicação e ensaio na aplicação
 
-1. Um utilizador com permissão de edição guarda cada texto em **Documentos** com os respectivos códigos exactos. `C05` ou outros códigos do instrumento `DEMO-QMS` não substituem os códigos SLIPTA.
+Depois de fazer o pull da branch, na instalação Windows existente, execute **a partir de `backend`**:
+
+```powershell
+Set-Location -LiteralPath 'D:\irzelindo\Documentos Pessoais\Candidaturas\Meta Hackathon\hackathon\LabQuality_Copilot_0.1.0\backend'
+& ..\.venv\Scripts\python.exe -m app.import_slipta_sources --admin-email admin@labquality.local
+& ..\.venv\Scripts\python.exe -m app.import_slipta_sources --admin-email admin@labquality.local --apply
+```
+
+Use o email de um administrador activo da **instituição que contém as avaliações ODK** se for diferente. O primeiro comando só pré-valida e mostra o que seria criado; o segundo grava as três fontes como **rascunhos** em toda essa instituição. Repetir `--apply` com o mesmo conteúdo não cria cópias; uma revisão diferente ou retirada bloqueia todo o lote e deve ser tratada pela interface. Não altera avaliações, achados, pontuações ou documentos anteriores. O pull do Git por si só não escreve na base SQLite local.
+
+1. Confira os três rascunhos em **Documentos** com os respectivos códigos exactos e valide a aplicabilidade, o texto e o âmbito. `C05` ou outros códigos do instrumento `DEMO-QMS` não substituem os códigos SLIPTA.
 2. Em cada documento, use **Submeter à revisão**. Outra pessoa autorizada confirma correspondência com a checklist, texto, âmbito e direitos de uso; depois usa **Aprovar documento** e **Publicar versão**. Se o âmbito for um laboratório, o aprovador também precisa de acesso a ele.
 3. Abra de novo a avaliação da Beira. O aviso deve indicar fontes para os achados cobertos. Se a avaliação tiver **outros achados** além dos dez apresentados, estes podem continuar sem cobertura; a aplicação lista no máximo dez códigos no aviso. Verifique a contagem de achados e a prontidão antes de iniciar a análise.
 4. Escolha **Analisar com Meta**, com o trabalhador em execução. Confira no **Copiloto de qualidade** a proposta e as citações. O documento de referência ajuda a formular verificações e acções; os dados ODK e a evidência do laboratório continuam a exigir revisão pelo auditor.
