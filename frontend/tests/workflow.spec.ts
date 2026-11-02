@@ -139,5 +139,6 @@ test("justified NA excludes points in an applicable instrument", async ({ page }
   const details = page.getByRole("dialog");
   await expect(details.locator(".big-score")).toContainText("2/2 pontos");
   await expect(details.getByText("1 NA", { exact: false })).toBeVisible();
+  await expect(details.getByText("Resultados incompletos não têm percentagem final.")).toHaveCount(0);
   await expect(details.getByRole("row").filter({ hasText: "A1" })).toContainText("NA");
 });
