@@ -8,10 +8,10 @@ Roteiro de verificação:
 - Confirmar investigação de causa, acção correctiva, responsável, prazo e verificação posterior da eficácia; distinguir uma tarefa aberta de uma melhoria concluída (10.5).
 
 Critérios do instrumento:
-10.1 — Procedimento e/ou Processo para Tratamento de Trabalhos Não Conformes, Não Conformidades e Ações Corretivas
-10.2 — Identificação e Gestão de Trabalhos Não Conformes e Não Conformidades
-10.3 — Records of Identification and Management of Nonconforming Work and Nonconformities
-10.4 — Resumption of Testing
-10.5 — Corrective Action
+10.1 — Procedimento e/ou Processo para Tratamento de Trabalhos Não Conformes, Não Conformidades e Ações Corretivas | Evidência a verificar: Procedimento para detectar, conter, investigar e escalar trabalho não conforme.
+10.2 — Identificação e Gestão de Trabalhos Não Conformes e Não Conformidades | Evidência a verificar: Caso real com decisão sobre actividade e resultados potencialmente afectados.
+10.3 — Records of Identification and Management of Nonconforming Work and Nonconformities | Evidência a verificar: Registo de comunicação ao requisitante quando a não conformidade afecta o paciente.
+10.4 — Resumption of Testing | Evidência a verificar: Autorização documentada para retomar ensaios após interrupção e verificação de condições.
+10.5 — Corrective Action | Evidência a verificar: Investigação de causa, acção correctiva executada e verificação posterior da eficácia.
 
-Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

@@ -1,3 +1,4 @@
+from datetime import datetime
 import pytest
 from sqlalchemy import func, select
 
@@ -18,7 +19,9 @@ def test_source_files_cover_exact_criteria_and_import_once_as_drafts(client):
     }
     assert sum(len(body.criterion_codes) for body in bodies) == 151
     assert len({body.code for body in bodies}) == len(SOURCES) == 12
-    assert all("https://aslm.org/" in body.content and body.laboratory_id is None for body in bodies)
+    assert all("https://aslm.org/" in body.content and body.laboratory_id is None
+               and "Evidência a verificar:" in body.content and "a pontuação e o título não demonstram a causa"
+               in body.content for body in bodies)
 
     with session_factory()() as db:
         admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
@@ -76,6 +79,32 @@ def test_conflicting_revision_blocks_whole_batch_and_other_org_is_independent(cl
             Document.organization_id == other.id, Document.code.in_([source.code for source in SOURCES]))) == 12
 
 
+def test_explicit_upgrade_creates_drafts_without_replacing_published_sources(client):
+    with session_factory()() as db:
+        admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
+        import_sources(db, admin, apply=True)
+        old = db.scalar(select(Document).where(Document.organization_id == admin.organization_id,
+                                               Document.code == SOURCES[0].code))
+        old.content = "Primeira versão a rever pelo auditor."
+        old.status = "published"
+        db.commit()
+        with pytest.raises(ValueError, match="revisão diferente"):
+            import_sources(db, admin, apply=True)
+        preview = dict(import_sources(db, admin, apply=False, new_revisions=True))
+        assert preview[SOURCES[0].code] == "revised"
+        assert sum(status == "unchanged" for status in preview.values()) == 11
+        assert dict(import_sources(db, admin, apply=True, new_revisions=True)) == preview
+        db.commit()
+        latest = list(db.scalars(select(Document).where(Document.organization_id == admin.organization_id,
+                                                      Document.code == SOURCES[0].code).order_by(Document.revision)))
+        assert [(doc.revision, doc.status) for doc in latest] == [(1, "published"), (2, "draft")]
+        assert all(status == "unchanged" for _, status in import_sources(db, admin, apply=True))
+        latest[-1].status = "withdrawn"
+        db.commit()
+        with pytest.raises(ValueError, match="retirada"):
+            import_sources(db, admin, apply=True, new_revisions=True)
+
+
 def test_meta_can_select_applicable_sources_across_all_twelve_sections(client):
     with session_factory()() as db:
         admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
@@ -99,10 +128,18 @@ def test_meta_can_select_applicable_sources_across_all_twelve_sections(client):
             answers={code: {"value": 0, "comment": "Verificação por concluir."} for code in codes})])
         db.flush()
         assessment = db.get(Assessment, imported["assessment_ids"][0])
+        db.add(Document(organization_id=admin.organization_id, scope_key="organization",
+                        code="SLIPTA-REF-LEGADO", revision=1, title="Fonte antiga genérica",
+                        content="Verificar esta secção.", criterion_codes=["1.1", "2.1", "3.1"], status="published",
+                        author_id=admin.id, created_at=datetime(2020, 1, 1)))
+        db.flush()
         context = build_context(db, admin, assessment)
         readiness = assessment_readiness(db, admin, assessment)
         assert readiness["findings_count"] == readiness["applicable_findings_count"] == 12
         assert readiness["uncovered_criteria"] == [] and readiness["ready"]
         assert all(finding["allowed_source_ids"] for finding in context["findings"])
+        first = next(f for f in context["findings"] if f["criterion_code"] == "1.1")
+        source_by_id = {source["id"]: source["code"] for source in context["sources"]}
+        assert {source_by_id[source_id] for source_id in first["allowed_source_ids"]} == {SOURCES[0].code}
         assert "SLIPTA-SEC-12-2023" in {source["code"] for source in context["sources"]}
         assert len(context["sources"]) <= 12

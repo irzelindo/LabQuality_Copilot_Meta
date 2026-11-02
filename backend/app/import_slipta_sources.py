@@ -45,10 +45,17 @@ def source_bodies() -> list[DocumentIn]:
     mapped_codes = [code for source in SOURCES for code in source.criterion_codes]
     if len(SOURCES) != 12 or len(mapped_codes) != len(set(mapped_codes)) or set(mapped_codes) != set(instrument_codes):
         raise ValueError("As secções das fontes não correspondem aos critérios do instrumento piloto.")
+    lines = (SOURCE_DIR / "criterion_evidence.tsv").read_text(encoding="utf-8").splitlines()
+    if any(line.count("\t") != 1 for line in lines):
+        raise ValueError("O catálogo de evidências por critério tem linhas inválidas.")
+    evidence = dict(line.split("\t", 1) for line in lines)
+    if len(evidence) != len(lines) or set(evidence) != set(instrument_codes) or any(len(value) < 35 for value in evidence.values()):
+        raise ValueError("O catálogo de evidências deve cobrir uma vez cada critério do instrumento.")
     bodies = []
     for source in SOURCES:
         content = (SOURCE_DIR / f"{source.code}.txt").read_text(encoding="utf-8").strip()
         expected_entries = [f"{criterion['code']} — {criterion['title'].removeprefix(criterion['code']).strip()}"
+                            f" | Evidência a verificar: {evidence[criterion['code']]}"
                             for criterion in PILOT["criteria"] if criterion["code"] in source.criterion_codes]
         if len(content) > 6000 or any(entry not in content for entry in expected_entries):
             raise ValueError(f"Fonte {source.code} incompatível com os critérios ou com o limite de contexto Meta.")
@@ -57,7 +64,7 @@ def source_bodies() -> list[DocumentIn]:
     return bodies
 
 
-def plan(db: Session, actor: User) -> list[tuple[DocumentIn, str]]:
+def plan(db: Session, actor: User, *, new_revisions: bool = False) -> list[tuple[DocumentIn, str]]:
     if not actor.active or actor.role != "admin":
         raise ValueError("É necessária uma conta de administrador activa da instituição.")
     result = []
@@ -71,18 +78,20 @@ def plan(db: Session, actor: User) -> list[tuple[DocumentIn, str]]:
         elif (existing.status != "withdrawn" and existing.title == body.title
               and existing.content == body.content and existing.criterion_codes == body.criterion_codes):
             result.append((body, "unchanged"))
+        elif existing.status != "withdrawn" and new_revisions:
+            result.append((body, "revised"))
         else:
             raise ValueError(f"{body.code} já tem uma revisão diferente ou retirada nesta instituição. "
-                             "Reveja-a e crie uma nova revisão pela interface; nenhuma fonte foi criada.")
+                             "Confirme a revisão e use --new-revisions se não estiver retirado; nenhuma fonte foi criada.")
     return result
 
 
-def import_sources(db: Session, actor: User, *, apply: bool) -> list[tuple[str, str]]:
+def import_sources(db: Session, actor: User, *, apply: bool, new_revisions: bool = False) -> list[tuple[str, str]]:
     """Preflight all twelve sources, then create drafts in the caller's transaction."""
-    pending = plan(db, actor)
+    pending = plan(db, actor, new_revisions=new_revisions)
     if apply:
         for body, status in pending:
-            if status == "new":
+            if status in {"new", "revised"}:
                 add_document(body, db=db, user=actor)
     return [(body.code, status) for body, status in pending]
 
@@ -91,6 +100,7 @@ def main():
     parser = argparse.ArgumentParser(description="Pré-validar ou criar doze fontes SLIPTA como rascunhos controlados.")
     parser.add_argument("--admin-email", default="admin@labquality.local")
     parser.add_argument("--apply", action="store_true", help="Criar rascunhos; exige revisão e aprovação na aplicação.")
+    parser.add_argument("--new-revisions", action="store_true", help="Criar novas revisões para fontes existentes com texto alterado.")
     args = parser.parse_args()
     try:
         with session_factory()() as db:
@@ -98,11 +108,14 @@ def main():
                                                   User.active.is_(True), User.role == "admin"))
             if actor is None:
                 raise ValueError("Administrador activo não encontrado. Indique --admin-email.")
-            result = import_sources(db, actor, apply=args.apply)
+            result = import_sources(db, actor, apply=args.apply, new_revisions=args.new_revisions)
             if args.apply:
                 db.commit()
         for code, status in result:
-            print(f"{code}: {'rascunho criado' if args.apply and status == 'new' else 'já existente' if status == 'unchanged' else 'por criar'}")
+            label = {"new": "rascunho criado" if args.apply else "por criar",
+                     "revised": "nova revisão em rascunho" if args.apply else "nova revisão por criar",
+                     "unchanged": "já existente"}[status]
+            print(f"{code}: {label}")
         print("Concluído. Revise, aprove com outra conta e publique em Documentos." if args.apply
               else "Só consulta: nenhum documento foi criado. Use --apply após conferir as fontes.")
     except (ValueError, OSError) as error:

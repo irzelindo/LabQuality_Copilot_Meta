@@ -9,29 +9,29 @@ Roteiro de verificação:
 - Seguir incidentes e lesões até à investigação e acções, verificar designação e actividade do responsável pela segurança e medidas de biossegurança/biosegurança aplicáveis (12.21, 12.23–12.24). Uma suspeita de risco imediato exige encaminhamento local urgente.
 
 Critérios do instrumento:
-12.1 — Procedimento e/ou Processo para Segurança Laboratorial
-12.2 — Instalações e condições ambientais
-12.3 — Adequação de Tamanho e Layout do Laboratório
-12.4 — Áreas de Atendimento ao Paciente
-12.5 — Limpeza
-12.6 — Ambiente Físico de Trabalho
-12.7 — Acesso ao Laboratório
-12.8 — Áreas de Armazenamento de Laboratório
-12.9 — Instalações laboratoriais
-12.10 — Gabinete de segurança (gabinete de biossegurança, capela de laboratório, etc.)
-12.11 — Programa de Segurança
-12.12 — Manual de Segurança de Laboratório
-12.13 — Eliminação de Resíduos
-12.14 — Produtos Químicos Perigosos
-12.15 — Segurança contra Incêndios
-12.16 — Auditorias de Segurança
-12.17 — Equipamentos de Segurança
-12.18 — Equipamento de proteção individual
-12.19 — Vacinação do Pessoal
-12.20 — Profilaxia Pós-Exposição
-12.21 — Gestão de Incidentes Adversos ou Lesões
-12.22 — Treinamento de Segurança
-12.23 — Oficial de Segurança do Laboratório
-12.24 — Bio-segurança
+12.1 — Procedimento e/ou Processo para Segurança Laboratorial | Evidência a verificar: Procedimento de segurança que abrange riscos locais, responsabilidades e seguimento.
+12.2 — Instalações e condições ambientais | Evidência a verificar: Condições ambientais e desenho do espaço confrontados com exames/POCT realizados.
+12.3 — Adequação de Tamanho e Layout do Laboratório | Evidência a verificar: Observação do layout, circulação e separação de áreas face aos riscos e volume.
+12.4 — Áreas de Atendimento ao Paciente | Evidência a verificar: Privacidade, acessibilidade e segurança observadas na área de atendimento.
+12.5 — Limpeza | Evidência a verificar: Plano de limpeza, execução registada e observação das superfícies e instalações.
+12.6 — Ambiente Físico de Trabalho | Evidência a verificar: Temperatura, ventilação, iluminação, água e energia de reserva conforme necessidades.
+12.7 — Acesso ao Laboratório | Evidência a verificar: Controlo de entrada, sinalização e acesso restrito a áreas com risco ou dados sensíveis.
+12.8 — Áreas de Armazenamento de Laboratório | Evidência a verificar: Segregação e condições de áreas de armazenamento de amostras, químicos e material.
+12.9 — Instalações laboratoriais | Evidência a verificar: Conservação e adequação de instalações, pontos de água, energia e manutenção.
+12.10 — Gabinete de segurança (gabinete de biossegurança, capela de laboratório, etc.) | Evidência a verificar: Certificação, manutenção e uso correcto de cabine/capela adequada ao risco.
+12.11 — Programa de Segurança | Evidência a verificar: Programa de segurança implementado com inspecções, incidentes, responsáveis e acções.
+12.12 — Manual de Segurança de Laboratório | Evidência a verificar: Manual de segurança vigente, acessível, conhecido e adaptado aos riscos locais.
+12.13 — Eliminação de Resíduos | Evidência a verificar: Segregação, recipientes, transporte e eliminação de resíduos com registos pertinentes.
+12.14 — Produtos Químicos Perigosos | Evidência a verificar: Inventário, rótulos, fichas de segurança e segregação de químicos perigosos.
+12.15 — Segurança contra Incêndios | Evidência a verificar: Inspecção de saídas, extintores, alarmes e treino/simulação de resposta a incêndio.
+12.16 — Auditorias de Segurança | Evidência a verificar: Relatórios de auditoria de segurança e seguimento das medidas identificadas.
+12.17 — Equipamentos de Segurança | Evidência a verificar: Disponibilidade, inspecção e uso de lava-olhos, chuveiro e outros meios aplicáveis.
+12.18 — Equipamento de proteção individual | Evidência a verificar: EPI apropriado ao risco, disponibilidade, formação e observação de utilização.
+12.19 — Vacinação do Pessoal | Evidência a verificar: Política e registos de vacinação do pessoal pertinentes ao risco e privacidade.
+12.20 — Profilaxia Pós-Exposição | Evidência a verificar: Protocolo de pós-exposição, acesso, encaminhamento e registo confidencial de caso.
+12.21 — Gestão de Incidentes Adversos ou Lesões | Evidência a verificar: Registo de incidente/lesão, resposta, investigação e prevenção de recorrência.
+12.22 — Treinamento de Segurança | Evidência a verificar: Formação em segurança inicial e periódica, competência e exercício de resposta.
+12.23 — Oficial de Segurança do Laboratório | Evidência a verificar: Designação e actividade documentada do responsável por coordenar a segurança.
+12.24 — Bio-segurança | Evidência a verificar: Avaliação do risco, controlo de acesso e protecção dos materiais biológicos segundo a política local aplicável.
 
-Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

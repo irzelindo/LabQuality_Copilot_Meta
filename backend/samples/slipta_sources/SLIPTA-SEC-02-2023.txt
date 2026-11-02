@@ -8,16 +8,16 @@ Roteiro de verificação:
 - Seguir uma revisão pela direcção desde os dados de entrada e a reunião até às decisões, comunicação, responsáveis, prazos e conclusão documentada das acções (2.6–2.11).
 
 Critérios do instrumento:
-2.1 — Procedimento e/ou Processo para Código de Conduta Organizacional
-2.2 — Implementação do Código de Conduta Organizacional
-2.3 — Delegação de Tarefas
-2.4 — Projeções Orçamentárias
-2.5 — Revisão de rotina de registos técnicos e de qualidade
-2.6 — Procedimento e/ou Processo para Revisão na Gestão
-2.7 — Conduta de Revisões Gerenciais
-2.8 — Revisão na Gestão
-2.9 — Resultados da Revisão na Gestão
-2.10 — Comunicação das conclusões da revisão
-2.11 — Conclusão e Monitoramento dos Itens de Ação da Revisão
+2.1 — Procedimento e/ou Processo para Código de Conduta Organizacional | Evidência a verificar: Procedimento de ética, imparcialidade, confidencialidade e conduta conhecido pela equipa.
+2.2 — Implementação do Código de Conduta Organizacional | Evidência a verificar: Registos e entrevistas que demonstrem aplicação do código de conduta e tratamento de violações.
+2.3 — Delegação de Tarefas | Evidência a verificar: Delegações por escrito, âmbito das funções e substituição quando o titular está ausente.
+2.4 — Projeções Orçamentárias | Evidência a verificar: Previsão orçamental associada a necessidades de pessoal, equipamento, reagentes e serviços.
+2.5 — Revisão de rotina de registos técnicos e de qualidade | Evidência a verificar: Amostra datada de registos técnicos e de qualidade revistos, decisões e problemas seguidos.
+2.6 — Procedimento e/ou Processo para Revisão na Gestão | Evidência a verificar: Procedimento que define frequência, entradas, participantes e saídas da revisão pela direcção.
+2.7 — Conduta de Revisões Gerenciais | Evidência a verificar: Actas de revisões efectivamente realizadas, com participantes, dados examinados e decisões.
+2.8 — Revisão na Gestão | Evidência a verificar: Evidência de análise de auditorias, indicadores, reclamações, riscos e acções anteriores.
+2.9 — Resultados da Revisão na Gestão | Evidência a verificar: Decisões sobre eficácia, recursos e melhorias, com responsáveis e prazos documentados.
+2.10 — Comunicação das conclusões da revisão | Evidência a verificar: Registo de comunicação das conclusões aos profissionais e partes interessadas pertinentes.
+2.11 — Conclusão e Monitoramento dos Itens de Ação da Revisão | Evidência a verificar: Plano e evidência de conclusão/verificação dos itens decididos na revisão anterior.
 
-Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

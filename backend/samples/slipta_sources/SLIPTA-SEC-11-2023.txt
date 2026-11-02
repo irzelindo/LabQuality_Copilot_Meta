@@ -8,8 +8,8 @@ Roteiro de verificação:
 - Examinar a comunicação dos resultados à direcção, à equipa e aos utilizadores relevantes, respeitando a confidencialidade dos dados do laboratório (11.3).
 
 Critérios do instrumento:
-11.1 — Procedimento e/ou Processo para Melhoria Contínua
-11.2 — Implementação de Melhoria Contínua do Sistema de Gestão
-11.3 — Comunicação de Atividades de Melhoria Contínua
+11.1 — Procedimento e/ou Processo para Melhoria Contínua | Evidência a verificar: Oportunidades identificadas nas fases pré, analítica e pós, plano comunicado, execução e medida da eficácia.
+11.2 — Implementação de Melhoria Contínua do Sistema de Gestão | Evidência a verificar: Caso rastreável de melhoria implementada, resultado medido e eficácia revista.
+11.3 — Comunicação de Atividades de Melhoria Contínua | Evidência a verificar: Acta ou comunicação dos resultados de melhoria à direcção, equipa e utilizadores.
 
-Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

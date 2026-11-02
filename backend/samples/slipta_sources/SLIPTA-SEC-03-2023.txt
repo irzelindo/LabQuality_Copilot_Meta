@@ -8,19 +8,19 @@ Roteiro de verificação:
 - Verificar avaliações de desempenho, actas de reuniões e registos individuais de pessoal, incluindo reciclagem e seguimento quando forem identificadas necessidades (3.12–3.14).
 
 Critérios do instrumento:
-3.1 — Procedimento e/ou Processo para Gestão de Pessoas
-3.2 — Escala de Serviço e Rotina Diária
-3.3 — Organograma e Sistemas de Relatórios Externos/Internos
-3.4 — Gestão Laboratorial
-3.5 — Conformidade com o Sistema de Gestão Laboratorial
-3.6 — Procedimento e/ou Processo para Autorização
-3.7 — Autorização
-3.8 — Procedimento e/ou Processo para Treinamento de Pessoal
-3.9 — Treinamento de Pessoal de Laboratório, Educação Continuada e Desenvolvimento Profissional
-3.10 — Procedimento e/ou Processo para Avaliação de Competências
-3.11 — Implementação de Procedimento e/ou Processo de Competência Pessoal
-3.12 — Procedimento e/ou Processo para Revisão do Desempenho do Pessoal
-3.13 — Reuniões de Pessoal
-3.14 — Registos de Pessoal
+3.1 — Procedimento e/ou Processo para Gestão de Pessoas | Evidência a verificar: Processo de recrutamento, funções, formação, autorização, competência e manutenção dos registos.
+3.2 — Escala de Serviço e Rotina Diária | Evidência a verificar: Escalas e cobertura efectiva dos turnos, incluindo substituições para tarefas críticas.
+3.3 — Organograma e Sistemas de Relatórios Externos/Internos | Evidência a verificar: Organograma actual e linhas de reporte interno e externo entendidas pela equipa.
+3.4 — Gestão Laboratorial | Evidência a verificar: Nomeação da liderança e evidência de supervisão e recursos para o serviço prestado.
+3.5 — Conformidade com o Sistema de Gestão Laboratorial | Evidência a verificar: Registos e entrevista que demonstrem adesão às políticas, sem confundir assinatura com prática.
+3.6 — Procedimento e/ou Processo para Autorização | Evidência a verificar: Procedimento que define tarefas autorizáveis, critérios, aprovação, prazo e substitutos.
+3.7 — Autorização | Evidência a verificar: Matriz nominal de autorização confrontada com tarefas, resultados emitidos e mudanças de função.
+3.8 — Procedimento e/ou Processo para Treinamento de Pessoal | Evidência a verificar: Plano de formação inicial/contínua, necessidades identificadas e avaliação da eficácia.
+3.9 — Treinamento de Pessoal de Laboratório, Educação Continuada e Desenvolvimento Profissional | Evidência a verificar: Participação, conteúdo, data e aplicação de formação/reciclagem pertinente às funções.
+3.10 — Procedimento e/ou Processo para Avaliação de Competências | Evidência a verificar: Procedimento de avaliação por actividade, método, periodicidade, critérios e reavaliação.
+3.11 — Implementação de Procedimento e/ou Processo de Competência Pessoal | Evidência a verificar: Observação e registos de competência individual; corrigir/reavaliar lacunas antes de autonomia.
+3.12 — Procedimento e/ou Processo para Revisão do Desempenho do Pessoal | Evidência a verificar: Procedimento e periodicidade da revisão de desempenho e seguimento das necessidades detectadas.
+3.13 — Reuniões de Pessoal | Evidência a verificar: Actas de reuniões com temas de qualidade, decisões, responsáveis e comunicação à equipa.
+3.14 — Registos de Pessoal | Evidência a verificar: Ficheiros individuais com qualificações, funções, formação, competência e autorizações vigentes.
 
-Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

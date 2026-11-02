@@ -8,17 +8,17 @@ Roteiro de verificação:
 - Investigar rupturas, desperdício e produtos vencidos: verificar segregação, eliminação e registos, sem deduzir conformidade apenas do saldo digital (7.10–7.12).
 
 Critérios do instrumento:
-7.1 — Procedimento e/ou Processo para Produtos e Serviços Fornecidos Externamente
-7.2 — Procedimento e/ou Processo para Compra e Controle de Estoque de Equipamentos, Reagentes e Consumíveis
-7.3 — Sistema de inventário e orçamentação
-7.4 — Especificações de Compra
-7.5 — Avaliação de Desempenho do Fornecedor de Serviços
-7.6 — Controle de Inventário
-7.7 — Análise das Solicitações de Fornecimento
-7.8 — Sistema de Inventário Laboratorial
-7.9 — Área de Armazenamento
-7.10 — Organização de Stock e Minimização de Desperdícios
-7.11 — Validade do Produto
-7.12 — Descarte de Produtos Vencidos
+7.1 — Procedimento e/ou Processo para Produtos e Serviços Fornecidos Externamente | Evidência a verificar: Critérios de selecção, aprovação e reavaliação de fornecedores e serviços externos.
+7.2 — Procedimento e/ou Processo para Compra e Controle de Estoque de Equipamentos, Reagentes e Consumíveis | Evidência a verificar: Processo de requisição, recepção, aceitação, armazenamento e controlo de consumíveis.
+7.3 — Sistema de inventário e orçamentação | Evidência a verificar: Previsões de consumo e orçamento confrontadas com rupturas e encomendas reais.
+7.4 — Especificações de Compra | Evidência a verificar: Especificações aprovadas de compras comparadas com o item recebido e o uso previsto.
+7.5 — Avaliação de Desempenho do Fornecedor de Serviços | Evidência a verificar: Avaliação periódica do fornecedor e seguimento de entregas ou serviços não conformes.
+7.6 — Controle de Inventário | Evidência a verificar: Reconciliação de saldos e lotes entre registo e contagem física numa amostra.
+7.7 — Análise das Solicitações de Fornecimento | Evidência a verificar: Requisições analisadas e aprovadas conforme necessidade e capacidade do laboratório.
+7.8 — Sistema de Inventário Laboratorial | Evidência a verificar: Movimentos de entrada/saída, lote, localização e responsável rastreáveis no inventário.
+7.9 — Área de Armazenamento | Evidência a verificar: Condições e registos de temperatura/segregação da área de armazenamento, se exigidos.
+7.10 — Organização de Stock e Minimização de Desperdícios | Evidência a verificar: Organização física, rotação por validade e análise de perdas e desperdícios.
+7.11 — Validade do Produto | Evidência a verificar: Verificação de validade por lote antes da utilização e tratamento de produtos vencidos.
+7.12 — Descarte de Produtos Vencidos | Evidência a verificar: Segregação, eliminação e registo do descarte de produtos expirados conforme regras locais.
 
-Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
