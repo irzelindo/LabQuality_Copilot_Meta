@@ -23,6 +23,8 @@ O aviso **“A análise Meta ainda não tem fontes suficientes”** é um contro
 
 **Para o primeiro ensaio:** escolha um achado real de uma das nove avaliações com comentário e pontuação abaixo do máximo. Publique um pequeno texto institucional autorizado para *esse* código depois de revisão por outra pessoa. Verifique a prontidão, execute a análise e confirme as citações. Não é necessário criar de imediato um documento para todos os 151 critérios.
 
+Para os códigos do aviso da Beira, veja as [minutas de fontes de verificação SLIPTA V3:2023](SLIPTA_V3_FONTES_META.md), preparadas a partir da checklist pública para serem revistas e publicadas em **Documentos**.
+
 ## Criar e acompanhar um plano de melhoria
 
 **Planos de melhoria → 0 acções** é normal logo depois de importar o ODK: a importação cria avaliações e achados, mas **não** cria acções. O filtro **Laboratório** também limita a lista. Para começar, abra um achado em **Avaliações → Criar acção**, ou use **Planos de melhoria → Nova acção** e escolha o achado de origem. Indique a causa ou a investigação necessária, passos concretos, critério de conclusão, prioridade, responsável e prazo.
