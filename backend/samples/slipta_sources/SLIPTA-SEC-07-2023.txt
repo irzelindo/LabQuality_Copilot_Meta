@@ -1,0 +1,24 @@
+Referência de verificação — SLIPTA V3:2023, secção 7: Fornecedores e inventário.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Seguir uma compra desde a especificação e aprovação até ao fornecedor, recepção, avaliação de desempenho e resolução de problemas com bens ou serviços externos (7.1–7.5, 7.7).
+- Conferir saldos, lotes, validade e condições de armazenamento de reagentes/consumíveis numa amostra física comparada com o sistema de inventário (7.2–7.3, 7.6, 7.8–7.11).
+- Investigar rupturas, desperdício e produtos vencidos: verificar segregação, eliminação e registos, sem deduzir conformidade apenas do saldo digital (7.10–7.12).
+
+Critérios do instrumento:
+7.1 — Procedimento e/ou Processo para Produtos e Serviços Fornecidos Externamente
+7.2 — Procedimento e/ou Processo para Compra e Controle de Estoque de Equipamentos, Reagentes e Consumíveis
+7.3 — Sistema de inventário e orçamentação
+7.4 — Especificações de Compra
+7.5 — Avaliação de Desempenho do Fornecedor de Serviços
+7.6 — Controle de Inventário
+7.7 — Análise das Solicitações de Fornecimento
+7.8 — Sistema de Inventário Laboratorial
+7.9 — Área de Armazenamento
+7.10 — Organização de Stock e Minimização de Desperdícios
+7.11 — Validade do Produto
+7.12 — Descarte de Produtos Vencidos
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

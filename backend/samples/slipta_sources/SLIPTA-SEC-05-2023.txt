@@ -1,0 +1,28 @@
+Referência de verificação — SLIPTA V3:2023, secção 5: Gestão de equipamentos.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Seleccionar equipamentos críticos e conferir disponibilidade, identificação, utilização prevista, instruções do fabricante e autorização/competência dos utilizadores (5.1–5.4, 5.15–5.16).
+- Rastrear aceitação, verificação/validação, registos, calibração e rastreabilidade metrológica segundo o tipo de equipamento; comparar datas, resultados e decisões de libertação para uso (5.5–5.7, 5.10–5.11).
+- Examinar manutenção preventiva e correctiva, avarias, retirada de serviço e comunicação de incidentes; confirmar tratamento dos resultados que possam ter sido afectados (5.8–5.9, 5.12–5.14).
+
+Critérios do instrumento:
+5.1 — Procedimento e/ou Processo para Gestão de Equipamentos Laboratoriais
+5.2 — Acesso ao Equipamento Necessário
+5.3 — Adesão ao Protocolo de Equipamento Adequado
+5.4 — Treinamento, Competência e Autorização dos Usuários dos Equipamentos
+5.5 — Procedimento e/ou Processo para Validação e Verificação de Equipamentos
+5.6 — Verificação e Documentação de Equipamentos
+5.7 — Registros de Equipamentos
+5.8 — Equipamento defeituoso aguardando reparo
+5.9 — Equipamento obsoleto
+5.10 — Procedimento e/ou Processo para Calibração de Equipamentos
+5.11 — Calibração de Equipamentos e Rastreabilidade Metrológica
+5.12 — Manutenção Preventiva de Equipamentos
+5.13 — Manutenção de Equipamentos
+5.14 — Relatório de Incidentes Adversos de Equipamentos.
+5.15 — Manual do Operador do Fabricante
+5.16 — Uso de Equipamentos
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

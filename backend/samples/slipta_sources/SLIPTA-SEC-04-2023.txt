@@ -1,0 +1,22 @@
+Referência de verificação — SLIPTA V3:2023, secção 4: Foco no cliente.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Confirmar a disponibilidade e a adequação dos serviços de consultoria e das orientações prestadas por profissionais qualificados; amostrar pedidos de esclarecimento (4.1–4.2).
+- Seguir uma reclamação ou sugestão desde a recepção até à resposta e à melhoria, verificando responsabilidades e retorno ao utilizador (4.3–4.4, 4.10).
+- Rever requisitos do paciente, contratos de serviço e POCT quando aplicáveis, informação disponibilizada aos utilizadores e comunicação de atrasos; confrontar os documentos com casos reais (4.5–4.9).
+
+Critérios do instrumento:
+4.1 — Procedimento e/ou Processo para Serviços de Consultoria
+4.2 — Aconselhamento e instrução por pessoal qualificado
+4.3 — Procedimento e/ou Processo para Tratamento de Reclamações e Retorno
+4.4 — Recebimento e Resolução de Reclamações
+4.5 — Requisitos Relativos aos Pacientes
+4.6 — Procedimento e/ou Processo para Contratos de Serviço (incluindo POCT)
+4.7 — Implementação do Procedimento e/ou Processo para Contratos de Serviço (incluindo POCT)
+4.8 — Informações Laboratoriais para Pacientes e Usuários
+4.9 — Política de Comunicação sobre Atrasos no Serviço
+4.10 — Uso do Retorno do Cliente
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

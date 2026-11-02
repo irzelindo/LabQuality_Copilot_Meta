@@ -1,0 +1,37 @@
+Referência de verificação — SLIPTA V3:2023, secção 12: Instalações e segurança.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Observar áreas de trabalho e atendimento, acessos, limpeza, instalações, armazenamento, ventilação e condições ambientais adequadas às actividades; confrontar observações com registos (12.1–12.9).
+- Verificar manutenção e uso de gabinetes de segurança quando aplicáveis, programa/manual de segurança, eliminação de resíduos, gestão de químicos e prevenção de incêndios (12.10–12.16).
+- Confirmar disponibilidade, uso e formação relativos a equipamento de segurança e protecção individual, vacinação e resposta pós-exposição conforme a política local e o risco (12.17–12.20, 12.22).
+- Seguir incidentes e lesões até à investigação e acções, verificar designação e actividade do responsável pela segurança e medidas de biossegurança/biosegurança aplicáveis (12.21, 12.23–12.24). Uma suspeita de risco imediato exige encaminhamento local urgente.
+
+Critérios do instrumento:
+12.1 — Procedimento e/ou Processo para Segurança Laboratorial
+12.2 — Instalações e condições ambientais
+12.3 — Adequação de Tamanho e Layout do Laboratório
+12.4 — Áreas de Atendimento ao Paciente
+12.5 — Limpeza
+12.6 — Ambiente Físico de Trabalho
+12.7 — Acesso ao Laboratório
+12.8 — Áreas de Armazenamento de Laboratório
+12.9 — Instalações laboratoriais
+12.10 — Gabinete de segurança (gabinete de biossegurança, capela de laboratório, etc.)
+12.11 — Programa de Segurança
+12.12 — Manual de Segurança de Laboratório
+12.13 — Eliminação de Resíduos
+12.14 — Produtos Químicos Perigosos
+12.15 — Segurança contra Incêndios
+12.16 — Auditorias de Segurança
+12.17 — Equipamentos de Segurança
+12.18 — Equipamento de proteção individual
+12.19 — Vacinação do Pessoal
+12.20 — Profilaxia Pós-Exposição
+12.21 — Gestão de Incidentes Adversos ou Lesões
+12.22 — Treinamento de Segurança
+12.23 — Oficial de Segurança do Laboratório
+12.24 — Bio-segurança
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

@@ -1,0 +1,21 @@
+Referência de verificação — SLIPTA V3:2023, secção 6: Avaliação.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Amostrar o programa e o relatório de auditoria interna, independência do auditor quando aplicável, achados, acções, prazos e evidência do seguimento (6.1–6.3).
+- Verificar identificação e revisão de riscos e oportunidades, decisões de tratamento, responsáveis e avaliação da eficácia com casos rastreáveis (6.4–6.7).
+- Seleccionar indicadores de qualidade e conferir definição, dados de origem, tendência, limites/metas e decisões documentadas decorrentes da monitorização (6.8–6.9).
+
+Critérios do instrumento:
+6.1 — Procedimento e/ou Processo para Auditorias Internas
+6.2 — Auditorias Internas
+6.3 — Recomendações de Auditoria e Plano de Ação e Acompanhamento
+6.4 — Procedimento e/ou Processo para Gestão de Riscos
+6.5 — Gestão de Riscos
+6.6 — Avaliação de Gestão de Riscos
+6.7 — Plano de Ação de Riscos e Oportunidades
+6.8 — Indicadores de Qualidade
+6.9 — Acompanhamento dos Indicadores de Qualidade
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

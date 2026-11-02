@@ -1,74 +1,28 @@
-# Fontes de verificação para o piloto SLIPTA V3:2023
+# Fontes de verificação das 12 secções SLIPTA V3:2023
 
-Estas três minutas foram redigidas para **Documentos** no LabQuality Copilot. Os respectivos ficheiros de texto estão em `backend/samples/slipta_sources/`. Cobrem os dez códigos mostrados no aviso da avaliação da Beira. São resumos originais de apoio à revisão dos achados, baseados na [checklist SLIPTA V3:2023 publicada pela ASLM](https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf). Não são uma norma nova, um procedimento operacional do laboratório nem prova de conformidade. O auditor deve confrontar cada recomendação com a submissão ODK, os documentos locais, os registos e a observação directa. A classificação SLIPTA continua fora do âmbito desta versão do produto.
+Foram preparados **12 documentos independentes**, um por secção, para revisão e publicação em **Documentos** do LabQuality Copilot. Os textos originais sintetizam verificações para o auditor e incluem os códigos/títulos dos **151 critérios do instrumento ODK piloto**. A referência externa é a [checklist SLIPTA V3:2023 publicada pela ASLM](https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf). Estes roteiros não são procedimentos internos, prova de conformidade, decisão do auditor ou classificação oficial. As diferenças de contagem/pontuação entre o resumo do PDF e os itens numerados continuam documentadas na [conferência de pontuação](SLIPTA_V3_2023_SCORE_AUDIT.md); não foram corrigidas por suposição.
 
-Na aplicação, crie **três documentos separados**, cada um com o código, título, âmbito, critérios e conteúdo abaixo, ou utilize o importador local descrito adiante. O âmbito **Toda a instituição** só é apropriado para esta referência geral se a equipa validar que as três fontes se aplicam aos laboratórios abrangidos. Se forem usados documentos locais em vez deste resumo, atribua o laboratório correspondente. Preserve as páginas e o URL da fonte no campo de conteúdo. A pessoa que redige não pode aprovar a sua própria revisão.
+| Secção | Documento no repositório | Critérios do piloto |
+|---|---|---:|
+| 01 Documentos e registos | [SLIPTA-SEC-01-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-01-2023.txt) | 10 |
+| 02 Organização e liderança | [SLIPTA-SEC-02-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-02-2023.txt) | 11 |
+| 03 Gestão de pessoal | [SLIPTA-SEC-03-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-03-2023.txt) | 14 |
+| 04 Foco no cliente | [SLIPTA-SEC-04-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-04-2023.txt) | 10 |
+| 05 Gestão de equipamentos | [SLIPTA-SEC-05-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-05-2023.txt) | 16 |
+| 06 Avaliação | [SLIPTA-SEC-06-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-06-2023.txt) | 9 |
+| 07 Fornecedores e inventário | [SLIPTA-SEC-07-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-07-2023.txt) | 12 |
+| 08 Gestão dos processos | [SLIPTA-SEC-08-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-08-2023.txt) | 27 |
+| 09 Gestão da informação | [SLIPTA-SEC-09-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-09-2023.txt) | 10 |
+| 10 Eventos não conformes | [SLIPTA-SEC-10-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-10-2023.txt) | 5 |
+| 11 Melhoria contínua | [SLIPTA-SEC-11-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-11-2023.txt) | 3 |
+| 12 Instalações e segurança | [SLIPTA-SEC-12-2023.txt](../backend/samples/slipta_sources/SLIPTA-SEC-12-2023.txt) | 24 |
+| **Total** | **12 documentos** | **151** |
 
-## 1. Sistema de gestão, revisão de registos e direcção
+Os três ficheiros anteriores `SLIPTA-REF-*` permanecem no repositório e, se já foram importados, na base de dados. O novo importador cria **apenas** os 12 documentos por secção; não apaga nem altera as fontes anteriores. Cada documento fica associado aos códigos exactos da sua secção. Os títulos reproduzem o instrumento piloto, inclusive alguns títulos ainda em inglês; o auditor deve confrontá-los com o XLSForm e a revisão adoptada antes de publicar.
 
-- **Código:** `SLIPTA-REF-GESTAO-2023`
-- **Título:** `Referência de verificação SLIPTA V3 — gestão e revisão`
-- **Âmbito sugerido:** Toda a instituição, sujeito a revisão.
-- **Códigos de critérios:** `1.5, 2.5, 2.9`
-- **Conteúdo autorizado** — copiar integralmente o bloco seguinte para o campo de texto:
+## Carregar rascunhos na instalação Windows
 
-```text
-Referência externa: WHO/ASLM, SLIPTA Checklist V3:2023, critérios 1.5 (p. 7), 2.5 (p. 8) e 2.9 (p. 9). Texto de apoio redigido para revisão humana; não comprova que o laboratório cumpre os requisitos. Fonte: https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
-
-1.5 — Documentação do sistema de gestão: verificar se os objectivos e as políticas do laboratório estão documentados, mantidos e ligados aos demais documentos do sistema. Procurar a versão aprovada, evidência de divulgação aos níveis relevantes e sinais de aplicação na rotina. Um manual isolado não demonstra, por si, que a equipa conhece ou aplica as políticas.
-
-2.5 — Revisão rotineira dos registos: verificar se existe frequência definida e registos de revisão por pessoas autorizadas. Amostrar, conforme a actividade local, registos de controlo interno, avaliação externa, amostras rejeitadas, manutenção e calibração, indicadores, reclamações e seguimento de acções anteriores. Procurar decisões, responsáveis e acompanhamento de problemas recorrentes, sem concluir conformidade apenas pela existência de uma acta.
-
-2.9 — Saídas da revisão pela direcção: verificar actas e decisões sobre eficácia do sistema de gestão, melhorias dos serviços, necessidades de recursos e alterações necessárias. Confirmar responsáveis, prazos e comunicação aos intervenientes. Comparar a decisão registada com o seguimento posterior.
-
-Ao interpretar um achado ODK: identificar a resposta e o comentário do auditor, pedir a evidência específica do laboratório, distinguir ausência de prova de incumprimento confirmado e propor verificação humana antes de recomendar uma acção.
-```
-
-## 2. Autorização, competência e melhoria contínua
-
-- **Código:** `SLIPTA-REF-PESSOAL-2023`
-- **Título:** `Referência de verificação SLIPTA V3 — pessoal e melhoria`
-- **Âmbito sugerido:** Toda a instituição, sujeito a revisão.
-- **Códigos de critérios:** `3.6, 3.10, 11.1`
-- **Conteúdo autorizado:**
-
-```text
-Referência externa: WHO/ASLM, SLIPTA Checklist V3:2023, critérios 3.6 (p. 12), 3.10 (p. 13) e 11.1 (p. 40). Texto de apoio redigido para revisão humana; não comprova que o laboratório cumpre os requisitos. Fonte: https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
-
-3.6 — Processo de autorização: verificar quais actividades exigem autorização, os critérios para concedê-la, o registo nominal das pessoas autorizadas e a designação de substitutos quando aplicável. Confrontar a matriz de autorização ou descrição de funções com tarefas efectivamente executadas, inclusive validação e emissão de resultados. A autorização documentada deve corresponder à função e ao âmbito real.
-
-3.10 — Avaliação de competência: verificar um processo que defina métodos, critérios e periodicidade por actividade. Amostrar observações directas, revisão de registos de trabalho, resultados de controlo interno e avaliação externa, devolutiva à pessoa avaliada, reciclagem quando necessária e reavaliação. Confirmar que os registos identificam a actividade, o avaliador, o resultado e o seguimento.
-
-11.1 — Melhoria contínua: verificar como o laboratório identifica oportunidades nas fases pré-analítica, analítica e pós-analítica, documenta planos, comunica metas, executa acções e mede a sua eficácia. Procurar um exemplo rastreável do problema até à verificação do resultado. Um plano sem execução ou sem verificação da eficácia ainda não demonstra melhoria concluída.
-
-Ao interpretar um achado ODK: não deduzir competência, autorização ou eficácia da pontuação isolada; comparar o comentário do auditor com os registos e solicitar confirmação humana de qualquer proposta.
-```
-
-## 3. Ambiente, programa de segurança, químicos e responsável
-
-- **Código:** `SLIPTA-REF-SEGURANCA-2023`
-- **Título:** `Referência de verificação SLIPTA V3 — instalações e segurança`
-- **Âmbito sugerido:** Toda a instituição, sujeito a revisão.
-- **Códigos de critérios:** `12.6, 12.11, 12.14, 12.23`
-- **Conteúdo autorizado:**
-
-```text
-Referência externa: WHO/ASLM, SLIPTA Checklist V3:2023, critérios 12.6 (p. 42), 12.11 (p. 43), 12.14 (p. 44) e 12.23 (p. 46). Texto de apoio redigido para revisão humana; não comprova que o laboratório cumpre os requisitos. Fonte: https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
-
-12.6 — Ambiente físico: observar organização e limpeza do espaço, ventilação e condições ambientais exigidas pelos ensaios e equipamentos. Conferir, quando aplicável, registos de manutenção de climatização e filtros, protecção de cabos, disponibilidade de energia de reserva e água adequada, localização segura dos equipamentos e sinalização. Um registo deve ser confrontado com as condições observadas.
-
-12.11 — Programa de segurança: verificar política, procedimentos de trabalho seguro, formação e supervisão, inspecções, gestão de materiais perigosos, primeiros socorros, investigação de incidentes, prevenção de incêndios e seguimento das acções identificadas. Confirmar responsabilidades e registos de execução do programa, não apenas a existência de um manual.
-
-12.14 — Produtos químicos perigosos: verificar inventário, identificação e rotulagem, segregação compatível, acesso às fichas de dados de segurança, uso e eliminação conforme o risco e medidas para derrames. Confirmar que o pessoal conhece os riscos e que os materiais observados correspondem aos registos e procedimentos locais.
-
-12.23 — Responsável pela segurança: verificar designação formal de uma pessoa com formação apropriada, atribuições de coordenação do programa e evidência de acompanhamento das questões de segurança. A nomeação sem actividade demonstrável deve ser investigada pelo auditor.
-
-Ao interpretar um achado ODK: uma suspeita de risco imediato requer confirmação e encaminhamento pelo responsável local. A Meta não deve declarar o espaço seguro nem recomendar manipulação de químicos específicos sem avaliação no local.
-```
-
-## Publicação e ensaio na aplicação
-
-Depois de fazer o pull da branch, na instalação Windows existente, execute **a partir de `backend`**:
+Depois do pull da branch, execute **a partir de `backend`**, com o `.env` da instalação já configurado:
 
 ```powershell
 Set-Location -LiteralPath 'D:\irzelindo\Documentos Pessoais\Candidaturas\Meta Hackathon\hackathon\LabQuality_Copilot_0.1.0\backend'
@@ -76,11 +30,11 @@ Set-Location -LiteralPath 'D:\irzelindo\Documentos Pessoais\Candidaturas\Meta Ha
 & ..\.venv\Scripts\python.exe -m app.import_slipta_sources --admin-email admin@labquality.local --apply
 ```
 
-Use o email de um administrador activo da **instituição que contém as avaliações ODK** se for diferente. O primeiro comando só pré-valida e mostra o que seria criado; o segundo grava as três fontes como **rascunhos** em toda essa instituição. Repetir `--apply` com o mesmo conteúdo não cria cópias; uma revisão diferente ou retirada bloqueia todo o lote e deve ser tratada pela interface. Não altera avaliações, achados, pontuações ou documentos anteriores. O pull do Git por si só não escreve na base SQLite local.
+Use o email de um administrador activo da instituição **onde estão as nove avaliações ODK** se for diferente. O primeiro comando pré-valida sem gravar; o segundo cria os documentos como **rascunhos de âmbito institucional**. Repeti-lo com o mesmo conteúdo é idempotente. Se um código já tiver uma revisão diferente ou retirada, a importação pára sem criar parte do lote; trate essa revisão pela interface. O pull do Git não modifica a base de dados local. Nenhuma avaliação ou pontuação é alterada.
 
-1. Confira os três rascunhos em **Documentos** com os respectivos códigos exactos e valide a aplicabilidade, o texto e o âmbito. `C05` ou outros códigos do instrumento `DEMO-QMS` não substituem os códigos SLIPTA.
-2. Em cada documento, use **Submeter à revisão**. Outra pessoa autorizada confirma correspondência com a checklist, texto, âmbito e direitos de uso; depois usa **Aprovar documento** e **Publicar versão**. Se o âmbito for um laboratório, o aprovador também precisa de acesso a ele.
-3. Abra de novo a avaliação da Beira. O aviso deve indicar fontes para os achados cobertos. Se a avaliação tiver **outros achados** além dos dez apresentados, estes podem continuar sem cobertura; a aplicação lista no máximo dez códigos no aviso. Verifique a contagem de achados e a prontidão antes de iniciar a análise.
-4. Escolha **Analisar com Meta**, com o trabalhador em execução. Confira no **Copiloto de qualidade** a proposta e as citações. O documento de referência ajuda a formular verificações e acções; os dados ODK e a evidência do laboratório continuam a exigir revisão pelo auditor.
+1. Em **Documentos**, verifique os 12 textos, os códigos dos critérios, a versão da checklist e se o âmbito institucional é adequado aos laboratórios abrangidos. Para procedimentos específicos de um laboratório, crie fontes com âmbito desse laboratório.
+2. Submeta as versões à revisão. **Outra pessoa autorizada**, diferente do autor, confirma a correspondência com a checklist, as evidências necessárias e a aplicabilidade; só depois aprova e publica. Publicar estas referências não substitui os procedimentos e registos próprios do laboratório.
+3. Em **Avaliações**, abra uma submissão ODK e consulte os achados e a prontidão da análise. A Meta recebe apenas fontes **publicadas e autorizadas** pertinentes aos achados, com limite de 12 fontes e 30 achados por análise. Revise as citações e propostas no **Copiloto de qualidade** antes de criar uma acção.
+4. Se houver achados fora do contexto enviado, seleccione outra avaliação ou complemente a revisão manual. Um documento de referência oferece perguntas de verificação; a conclusão depende da submissão, de registos locais e da observação do auditor.
 
-Esta minuta corresponde à versão pública da checklist consultada em 2 de Novembro de 2026. As páginas são as páginas do ficheiro PDF, não o número de uma eventual impressão. Se a instituição adoptar outra revisão, reveja os códigos e publique novas revisões antes de reutilizar estas fontes.
+Fontes verificadas em 2 de Novembro de 2026. Se a instituição adoptar outra versão do formulário ou da checklist, revise os mapeamentos, edite os textos por nova revisão controlada e repita a validação antes de os publicar.

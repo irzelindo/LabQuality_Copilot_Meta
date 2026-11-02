@@ -1,0 +1,22 @@
+Referência de verificação — SLIPTA V3:2023, secção 9: Gestão da informação.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Seguir um resultado desde o sistema/método analítico e a revisão por pessoa autorizada até ao relatório, comunicação e eventual correcção, preservando a identidade da amostra e do paciente (9.1–9.5).
+- Avaliar controlo de acesso, responsabilidades, conservação, cópias de segurança e recuperação dos dados no LIS electrónico ou em suporte não informatizado; demonstrar a recuperação com um caso (9.6–9.8).
+- Verificar testes após mudanças, registos de manutenção e resolução de falhas do sistema de informação, incluindo impacto nos resultados emitidos (9.9–9.10).
+
+Critérios do instrumento:
+9.1 — Procedimento e/ou Processo para Relatório e Divulgação de Resultados
+9.2 — Sistema de Relatório de Resultados de Teste
+9.3 — Pessoal de Teste
+9.4 — Requisitos para Relatórios
+9.5 — Rastreamento de Sistema/Método Analítico
+9.6 — Procedimento e/ou Processo para Sistema de Informação Laboratorial (LIS) (informatizado ou não informatizado)
+9.7 — Laboratório e armazenamento de dados arquivados
+9.8 — Autoridades e responsabilidades pela gestão da informação
+9.9 — Verificação do Sistema Eletrônico de Informações Laboratoriais
+9.10 — Registros de Manutenção do Sistema de Informações Laboratoriais
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

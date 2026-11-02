@@ -10,6 +10,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from .database import session_factory
+from .demo import PILOT
 from .models import Document, User
 from .operations import add_document
 from .schemas import DocumentIn
@@ -25,19 +26,31 @@ class Source:
     criterion_codes: tuple[str, ...]
 
 
-SOURCES = (
-    Source("SLIPTA-REF-GESTAO-2023", "Referência de verificação SLIPTA V3 — gestão e revisão", ("1.5", "2.5", "2.9")),
-    Source("SLIPTA-REF-PESSOAL-2023", "Referência de verificação SLIPTA V3 — pessoal e melhoria", ("3.6", "3.10", "11.1")),
-    Source("SLIPTA-REF-SEGURANCA-2023", "Referência de verificação SLIPTA V3 — instalações e segurança",
-           ("12.6", "12.11", "12.14", "12.23")),
+SECTION_TITLES = (
+    "Documentos e registos", "Organização e liderança", "Gestão de pessoal", "Foco no cliente",
+    "Gestão de equipamentos", "Avaliação", "Fornecedores e inventário", "Gestão dos processos",
+    "Gestão da informação", "Eventos não conformes", "Melhoria contínua", "Instalações e segurança",
+)
+
+SOURCES = tuple(
+    Source(f"SLIPTA-SEC-{number:02d}-2023", f"SLIPTA V3 — Secção {number}: {title}",
+           tuple(criterion["code"] for criterion in PILOT["criteria"]
+                 if criterion["section"] == f"{number:02d} {title}"))
+    for number, title in enumerate(SECTION_TITLES, 1)
 )
 
 
 def source_bodies() -> list[DocumentIn]:
+    instrument_codes = [criterion["code"] for criterion in PILOT["criteria"]]
+    mapped_codes = [code for source in SOURCES for code in source.criterion_codes]
+    if len(SOURCES) != 12 or len(mapped_codes) != len(set(mapped_codes)) or set(mapped_codes) != set(instrument_codes):
+        raise ValueError("As secções das fontes não correspondem aos critérios do instrumento piloto.")
     bodies = []
     for source in SOURCES:
         content = (SOURCE_DIR / f"{source.code}.txt").read_text(encoding="utf-8").strip()
-        if len(content) > 6000 or any(f"{code} —" not in content for code in source.criterion_codes):
+        expected_entries = [f"{criterion['code']} — {criterion['title'].removeprefix(criterion['code']).strip()}"
+                            for criterion in PILOT["criteria"] if criterion["code"] in source.criterion_codes]
+        if len(content) > 6000 or any(entry not in content for entry in expected_entries):
             raise ValueError(f"Fonte {source.code} incompatível com os critérios ou com o limite de contexto Meta.")
         bodies.append(DocumentIn(code=source.code, title=source.title, content=content,
                                  criterion_codes=list(source.criterion_codes)))
@@ -65,7 +78,7 @@ def plan(db: Session, actor: User) -> list[tuple[DocumentIn, str]]:
 
 
 def import_sources(db: Session, actor: User, *, apply: bool) -> list[tuple[str, str]]:
-    """Preflight all three sources, then create drafts in the caller's transaction."""
+    """Preflight all twelve sources, then create drafts in the caller's transaction."""
     pending = plan(db, actor)
     if apply:
         for body, status in pending:
@@ -75,7 +88,7 @@ def import_sources(db: Session, actor: User, *, apply: bool) -> list[tuple[str, 
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Pré-validar ou criar três fontes SLIPTA como rascunhos controlados.")
+    parser = argparse.ArgumentParser(description="Pré-validar ou criar doze fontes SLIPTA como rascunhos controlados.")
     parser.add_argument("--admin-email", default="admin@labquality.local")
     parser.add_argument("--apply", action="store_true", help="Criar rascunhos; exige revisão e aprovação na aplicação.")
     args = parser.parse_args()

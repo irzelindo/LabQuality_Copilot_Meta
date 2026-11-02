@@ -1,0 +1,23 @@
+Referência de verificação — SLIPTA V3:2023, secção 2: Organização e liderança.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Verificar código de conduta, responsabilidades e delegações efectivas, incluindo substituição em ausências; confirmar por entrevista e registos, não apenas pelo organograma (2.1–2.3).
+- Examinar planeamento de recursos e amostra de registos técnicos e de qualidade revistos por pessoas autorizadas, com seguimento de problemas detectados (2.4–2.5).
+- Seguir uma revisão pela direcção desde os dados de entrada e a reunião até às decisões, comunicação, responsáveis, prazos e conclusão documentada das acções (2.6–2.11).
+
+Critérios do instrumento:
+2.1 — Procedimento e/ou Processo para Código de Conduta Organizacional
+2.2 — Implementação do Código de Conduta Organizacional
+2.3 — Delegação de Tarefas
+2.4 — Projeções Orçamentárias
+2.5 — Revisão de rotina de registos técnicos e de qualidade
+2.6 — Procedimento e/ou Processo para Revisão na Gestão
+2.7 — Conduta de Revisões Gerenciais
+2.8 — Revisão na Gestão
+2.9 — Resultados da Revisão na Gestão
+2.10 — Comunicação das conclusões da revisão
+2.11 — Conclusão e Monitoramento dos Itens de Ação da Revisão
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

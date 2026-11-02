@@ -38,14 +38,26 @@ def published_sources(db: Session, user: User, laboratory_id: str):
 def build_context(db: Session, user: User, assessment: Assessment):
     sources = published_sources(db, user, assessment.laboratory_id)
     findings = list(db.scalars(select(Finding).where(Finding.assessment_id == assessment.id).order_by(Finding.critical.desc())))
-    codes = {f.criterion_code for f in findings}
-    relevant = [d for d in sources if not d.criterion_codes or codes.intersection(d.criterion_codes)][:6]
+    findings.sort(key=lambda f: (not f.critical, f.criterion_code))
+    findings = findings[:30]
+    uncovered = {f.criterion_code for f in findings}
+    candidates = [d for d in sources if d.criterion_codes and uncovered.intersection(d.criterion_codes)]
+    relevant = []
+    # Select sources that cover the most still-uncovered findings. Legacy cross-section
+    # documents must not crowd out later SLIPTA sections by alphabetical code order.
+    while candidates and uncovered and len(relevant) < 12:
+        best = max(candidates, key=lambda d: len(uncovered.intersection(d.criterion_codes)))
+        candidates.remove(best)
+        relevant.append(best)
+        uncovered.difference_update(best.criterion_codes)
+    if uncovered and len(relevant) < 12:
+        relevant.extend([d for d in sources if not d.criterion_codes][:12 - len(relevant)])
     findings.sort(key=lambda f: (not any(not d.criterion_codes or f.criterion_code in d.criterion_codes for d in relevant), not f.critical, f.criterion_code))
     return {"assessment_id": assessment.id, "scoring": score(assessment, db.get(Instrument, assessment.instrument_id)),
             "findings": [{"id": f.id, "criterion_code": f.criterion_code,
                           "description": f.title + " — " + assessment.answers.get(f.criterion_code, {}).get("comment", "")[:500], "critical": f.critical,
                           "allowed_source_ids": [d.id for d in relevant if not d.criterion_codes or f.criterion_code in d.criterion_codes]}
-                         for f in findings[:30]],
+                         for f in findings],
             "sources": [{"id": d.id, "code": d.code, "revision": d.revision, "title": d.title,
                          "criterion_codes": d.criterion_codes, "content": d.content[:6000]} for d in relevant]}
 

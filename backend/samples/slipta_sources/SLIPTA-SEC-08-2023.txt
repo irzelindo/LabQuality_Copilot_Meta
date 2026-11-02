@@ -1,0 +1,40 @@
+Referência de verificação — SLIPTA V3:2023, secção 8: Gestão dos processos.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Acompanhar uma amostra desde o pedido, colheita, identificação, aceitação/rejeição, transporte e conservação até à execução; comparar formulários, tempos e condições com a prática (8.3–8.10).
+- Rever contingência e preparação para interrupções de energia, transporte ou sistemas, incluindo activação, comunicação e regresso seguro à rotina (8.1–8.2).
+- Confrontar procedimentos analíticos, aceitação de reagentes, controlo interno de qualidade, comparabilidade e condições ambientais com os registos de execução e acções perante desvios (8.11–8.19).
+- Verificar participação e seguimento da avaliação externa da qualidade, verificação/validação de métodos, incerteza quando aplicável e revisão dos intervalos de referência; pedir resultados e decisões, não só procedimentos (8.20–8.27).
+
+Critérios do instrumento:
+8.1 — Procedimento e/ou Processo para Planejamento de Continuidade e Preparação para Emergências (Plano de Contingência)
+8.2 — Implementação do Planejamento de Continuidade e Preparação para Emergências
+8.3 — Procedimento e/ou Processo para Processos de Pré-exame
+8.4 — Instruções para Atividades de Coleta
+8.5 — Solicitação de Teste
+8.6 — Procedimento de Recebimento de Amostra Primária
+8.7 — Manuseio, Processamento e Armazenamento Pré-exame
+8.8 — Transporte de Amostras
+8.9 — Procedimento e/ou Processo para Laboratórios de Referência e Consultores Técnicos
+8.10 — Laboratórios de Referência e Consultores Técnicos
+8.11 — Procedimento e/ou Processo para Documentação de Procedimentos de Exame
+8.12 — Local dos Procedimentos de Exame
+8.13 — Teste de aceitação de reagentes e consumíveis
+8.14 — Procedimento e/ou Processo para Controle Interno de Qualidade (CQI)
+8.15 — Controle de Qualidade
+8.16 — Monitoramento do Desempenho do Controle de Qualidade
+8.17 — Comparabilidade dos Resultados do Exame
+8.18 — Monitorização diária das condições ambientais
+8.19 — Revisão das Condições Ambientais
+8.20 — Procedimento e/ou Processo para Avaliação Externa da Qualidade (EQA)
+8.21 — Participação na Avaliação Externa da Qualidade (EQA)
+8.22 — Procedimento e/ou Processo para Verificação e Validação de Métodos de Exames
+8.23 — Registos de Verificação de Métodos de Exame
+8.24 — Registros de Validação de Métodos de Exame
+8.25 — Procedimento para incerteza de medição
+8.26 — Incerteza de Medição de Testes Quantitativos
+8.27 — Procedimento e/ou Processo para Intervalos de Referência Biológica ou Limites de Decisão Clínica
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

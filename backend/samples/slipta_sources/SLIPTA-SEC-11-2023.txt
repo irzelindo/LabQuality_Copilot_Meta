@@ -1,0 +1,15 @@
+Referência de verificação — SLIPTA V3:2023, secção 11: Melhoria contínua.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Verificar o processo que recolhe oportunidades de melhoria de auditorias, indicadores, reclamações, riscos e não conformidades (11.1).
+- Seguir uma melhoria concreta desde o problema e a meta até à implementação, medição do resultado e revisão da eficácia; não confundir uma proposta com eficácia demonstrada (11.2).
+- Examinar a comunicação dos resultados à direcção, à equipa e aos utilizadores relevantes, respeitando a confidencialidade dos dados do laboratório (11.3).
+
+Critérios do instrumento:
+11.1 — Procedimento e/ou Processo para Melhoria Contínua
+11.2 — Implementação de Melhoria Contínua do Sistema de Gestão
+11.3 — Comunicação de Atividades de Melhoria Contínua
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

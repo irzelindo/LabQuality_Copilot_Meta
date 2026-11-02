@@ -1,0 +1,22 @@
+Referência de verificação — SLIPTA V3:2023, secção 1: Documentos e registos.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Confrontar o âmbito jurídico e as políticas/objectivos documentados com a organização que presta os serviços; verificar aprovação, revisão, divulgação e acesso às versões em vigor (1.1–1.6).
+- Amostrar o registo mestre, controlo de alterações, retirada de versões obsoletas e capacidade de recuperar documentos e registos usados no trabalho diário (1.3–1.8).
+- Pedir o prazo de conservação definido e demonstrar a recuperação atempada de um resultado arquivado, preservando confidencialidade e rastreabilidade (1.9–1.10).
+
+Critérios do instrumento:
+1.1 — Pessoa Jurídica
+1.2 — Políticas e Objetivos do Sistema de Gestão Laboratorial
+1.3 — Sistema de Controle de Documentos e Informações
+1.4 — Documento e Registos
+1.5 — Documentação do Sistema de Gestão Laboratorial
+1.6 — Acessibilidade dos documentos de qualidade
+1.7 — Registo de Controle de Documentos
+1.8 — Documentos de Qualidade Descontinuados
+1.9 — Arquivos de dados
+1.10 — Acessibilidade dos resultados arquivados do paciente
+
+Interpretação de um achado ODK: confrontar a resposta e o comentário do auditor com a evidência local e a observação; distinguir prova ausente de incumprimento confirmado; documentar NA e incertezas; propor verificação e decisão humana. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
