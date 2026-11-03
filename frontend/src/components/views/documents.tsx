@@ -42,7 +42,7 @@ function SourcePackImport({ done }: { done: () => void }) {
       <p className="source-pack-description">{t("Os documentos entram como rascunhos. Reveja e publique apenas os critérios necessários para a avaliação, com aprovação de outra pessoa autorizada.", "Documents enter as drafts. Review and publish the criteria needed for the assessment, with approval by another authorized person.")}</p>
       <div className="source-pack-upload">
         <Field label={t("Pacote de referências SLIPTA (.json)", "SLIPTA reference pack (.json)")} hint={t("Ficheiro JSON até 3 MB. A pré-validação mostra as alterações antes de gravar.", "JSON file up to 3 MB. Preview changes before saving.")}>
-          <input type="file" accept=".json,application/json" onChange={e => read(e.target.files?.[0])} />
+          <input type="file" aria-label={t("Pacote de referências SLIPTA (.json)", "SLIPTA reference pack (.json)")} accept=".json,application/json" onChange={e => read(e.target.files?.[0])} />
         </Field>
       </div>
       <ErrorBox message={error || mutation.error} />
