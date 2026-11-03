@@ -4,7 +4,21 @@ Hackathon candidate: see [the jury rehearsal](docs/JURY_REHEARSAL.md) for an iso
 
 Plataforma de gestão da qualidade laboratorial: avaliações → achados → planos de melhoria → evidências → verificação. Backend FastAPI, interface Next.js/TypeScript e PostgreSQL em Docker. O desenvolvimento local também funciona com SQLite.
 
-Versão de desenvolvimento **0.1.0**, iniciada em 23/10/2026. A definição completa da V1 continua a orientar o produto. Consulte [o estado das funcionalidades](docs/IMPLEMENTATION_STATUS.md) antes de apresentar a solução como pronta para utilização institucional.
+Versão de desenvolvimento **0.2.0**, iniciada em 23/10/2026. A definição completa da V1 continua a orientar o produto. Consulte [o estado das funcionalidades](docs/IMPLEMENTATION_STATUS.md) antes de apresentar a solução como pronta para utilização institucional.
+
+## Integração em validação — 03/11/2026
+
+O percurso de análise inclui agora preparação por avaliação, indicação dos requisitos em falta, selecção de até cinco achados, fontes por critério, propostas em português ou inglês e relatório para impressão. O menu **Como utilizar** explica o percurso completo.
+
+- [Guia em português](docs/USER_GUIDE_PT.md) e [actualização Windows preservando dados](docs/UPDATE_WINDOWS.md).
+- [Roteiro de apresentação em inglês](docs/DEMO_SCRIPT_EN.md) e [validação do piloto](docs/PILOT_VALIDATION.md).
+- [Revisão das fontes SLIPTA](docs/SLIPTA_SOURCE_REVIEW.md): 151 questões, com divergências de pesos que exigem homologação. Nenhuma classificação oficial é atribuída.
+
+O pacote privado de referências pode ser criado localmente a partir dos ficheiros autorizados com `python -m app.slipta_sources --pdf CAMINHO.pdf --xlsform CAMINHO.xlsx --output ../private/slipta_sources_v3.json`. A importação na interface cria rascunhos, com pré-validação e repetição sem duplicação. A aprovação continua a exigir outra pessoa.
+
+A chave Meta é configurada localmente pelo autor. Uma captura de 02/11 mostrou uma execução concluída na sua instalação; este merge não repetiu a chamada nem avaliou a qualidade semântica. `python -m app.verify_meta --probe --output ../private/meta_probe.json` testa acesso com um pequeno pedido sem dados laboratoriais. O teste não substitui a validação de recomendações reais. Nunca são simuladas inferências na aplicação.
+
+**Instalação existente:** preserve `.env`, base de dados, anexos e correcções locais. Não execute a criação da demonstração como actualização. A base local com as nove avaliações não foi acedida nesta entrega.
 
 ## Instalação no directório Windows solicitado
 

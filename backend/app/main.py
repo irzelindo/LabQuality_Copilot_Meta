@@ -5,12 +5,12 @@ from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import StaleDataError
 from .api import router
-from . import operations, ai
+from . import operations, ai, reference_packs, ai_report
 from .config import settings
 from .database import session_factory
 
 logger = logging.getLogger("labquality")
-app = FastAPI(title="LabQuality Copilot", version="0.1.0", docs_url="/api/docs", openapi_url="/api/openapi.json")
+app = FastAPI(title="LabQuality Copilot", version="0.2.0", docs_url="/api/docs", openapi_url="/api/openapi.json")
 
 
 @app.middleware("http")
@@ -50,7 +50,7 @@ def health():
         with session_factory()() as db:
             db.execute(text("SELECT 1"))
             db.execute(text("SELECT version_num FROM alembic_version"))
-        return {"status": "ok", "version": "0.1.0"}
+        return {"status": "ok", "version": "0.2.0"}
     except Exception:
         return JSONResponse({"status": "unavailable", "detail": "Base de dados ou migrations indisponíveis."}, status_code=503)
 

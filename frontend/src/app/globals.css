@@ -12,3 +12,24 @@
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 .system-service>.connection-check{flex:none}.connection-check{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;max-width:250px}.connection-check p{font-size:10px;line-height:1.45;margin:0;width:100%;text-align:right}.connection-ok{color:#276b4b}.connection-warning{color:#9a5b1f}@media(max-width:760px){.system-service{flex-wrap:wrap}.system-service>.connection-check{width:100%;max-width:none;justify-content:flex-start}.connection-check p{text-align:left}}
 .guide-layout .panel{padding:24px}.guide-heading{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px;color:var(--teal)}.guide-heading h2{font-size:18px;color:var(--ink)}.guide-heading p{margin-top:6px;color:var(--muted);font-size:12px}.guide-steps{margin:0;padding-left:28px}.guide-steps li,.guide-step{padding:15px 0;border-top:1px solid var(--line)}.guide-steps li::marker{color:var(--teal);font-weight:700}.guide-steps b,.guide-step b{font-size:13px}.guide-steps p,.guide-step p{font-size:12px;color:var(--muted);line-height:1.65;margin:5px 0 10px}.guide-directory{display:grid;grid-template-columns:minmax(150px,1fr) 3fr;margin:0}.guide-directory dt,.guide-directory dd{padding:11px 0;border-top:1px solid var(--line);font-size:12px}.guide-directory dt{font-weight:600}.guide-directory dd{color:var(--muted);margin:0}@media(max-width:760px){.guide-layout .panel{padding:18px}.guide-directory{grid-template-columns:1fr}.guide-directory dt{padding-bottom:2px}.guide-directory dd{padding-top:0;border:0}}
+
+/* Guided assessment and evidence preparation */
+.journey-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.journey-card { padding: 24px; border: 1px solid var(--border, #dce6e5); border-radius: 14px; }
+.journey-card h3 { margin: 12px 0; }
+.journey-card p { color: #52666c; line-height: 1.7; margin-bottom: 20px; }
+.journey-number { color: #0c766b; font-weight: 750; font-size: 24px; }
+.readiness-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.readiness-grid > div { border-radius: 10px; padding: 16px; border: 1px solid #dce6e5; display: flex; flex-direction: column; gap: 8px; }
+.readiness-grid .ready { background: #f0f9f6; border-color: #b7dace; }
+.readiness-grid .missing { background: #fff8e9; border-color: #ecd8a7; }
+.readiness-grid span { font-size: 13px; line-height: 1.5; }
+.finding-picker { border: 1px solid #dce6e5; border-radius: 12px; padding: 20px; max-height: 420px; overflow-y: auto; }
+.finding-picker legend { font-weight: 650; padding: 0 7px; }
+.finding-picker label { display: flex; align-items: flex-start; gap: 12px; padding: 13px 0; border-bottom: 1px solid #e6eeec; line-height: 1.6; font-size: 14px; }
+.finding-picker input { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; }
+.source-missing { display: block; color: #946004; font-weight: 600; }
+.source-pack { margin-bottom: 20px; }
+.source-pack p { line-height: 1.6; }
+@media (max-width: 700px) { .journey-grid { grid-template-columns: 1fr; } .readiness-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media print { .sidebar, .topbar, .button, .modal-heading button, .page-footer { display:none !important; } .modal-backdrop { position:static; background:white; } .modal { max-height:none; width:100%; box-shadow:none; } .modal-body { overflow:visible; } }
