@@ -27,3 +27,7 @@ As capturas usadas na revisão visual são resultados internos dos testes e não
 ## Branch de pontuação com NA, 26/10/2026
 
 Após a análise do PDF recebido, a suite do backend passou de 18 para 21 testes, todos aprovados; os testes novos cobrem subtracção do denominador por secção e total, justificação NA, rejeição em instrumento de máximo fixo, importação CSV, idempotência, revisões imutáveis e denominador zero. A compilação de produção do Next.js (incluindo TypeScript) passou. Dois percursos no navegador passaram: o fluxo original da demonstração e a publicação de um instrumento com NA seguida de uma avaliação pelo formulário. Estas verificações foram executadas no ambiente Linux de desenvolvimento; a instalação Windows do utilizador e as integrações externas reais continuam por validar.
+
+## Merge de integração — 03/11/2026
+
+Na branch `feature/integrate-slipta-copilot-20261031` baseada em `main`, 62 testes do backend passaram, incluindo importação ODK, cálculo NA, fontes das 12 secções, isolamento por laboratório, gestão da equipa, preparação Meta e relatório HTML. `npm run typecheck` e `npm run build` passaram. Numa base SQLite temporária, `alembic upgrade head` e `alembic check` passaram sem alterações de esquema. O teste de navegador foi preparado, mas a transferência do Chromium pelo Playwright ficou bloqueada neste ambiente; este percurso precisa de execução no Windows do autor ou em CI antes de promover a branch. Estes resultados não medem a precisão das recomendações nem inspecionam as nove avaliações reais.

@@ -3,6 +3,7 @@ import pytest
 from sqlalchemy import func, select
 
 from app.ai import assessment_readiness, build_context
+from app.config import settings
 from app.database import session_factory
 from app.demo import PILOT
 from app.import_slipta_sources import SOURCES, import_sources, source_bodies
@@ -133,13 +134,19 @@ def test_meta_can_select_applicable_sources_across_all_twelve_sections(client):
                         content="Verificar esta secção.", criterion_codes=["1.1", "2.1", "3.1"], status="published",
                         author_id=admin.id, created_at=datetime(2020, 1, 1)))
         db.flush()
+        settings().model_api_key = "test-only"
         context = build_context(db, admin, assessment)
         readiness = assessment_readiness(db, admin, assessment)
         assert readiness["findings_count"] == readiness["applicable_findings_count"] == 12
         assert readiness["uncovered_criteria"] == [] and readiness["ready"]
+        assert len(context["findings"]) == 5
         assert all(finding["allowed_source_ids"] for finding in context["findings"])
-        first = next(f for f in context["findings"] if f["criterion_code"] == "1.1")
-        source_by_id = {source["id"]: source["code"] for source in context["sources"]}
+        first_id = next(f["id"] for f in readiness["findings"] if f["criterion_code"] == "1.1")
+        first_context = build_context(db, admin, assessment, [first_id])
+        first = first_context["findings"][0]
+        source_by_id = {source["id"]: source["code"] for source in first_context["sources"]}
         assert {source_by_id[source_id] for source_id in first["allowed_source_ids"]} == {SOURCES[0].code}
-        assert "SLIPTA-SEC-12-2023" in {source["code"] for source in context["sources"]}
-        assert len(context["sources"]) <= 12
+        last_id = next(f["id"] for f in readiness["findings"] if f["criterion_code"] == codes[-1])
+        last_context = build_context(db, admin, assessment, [last_id])
+        assert "SLIPTA-SEC-12-2023" in {source["code"] for source in last_context["sources"]}
+        assert len(context["sources"]) <= 10

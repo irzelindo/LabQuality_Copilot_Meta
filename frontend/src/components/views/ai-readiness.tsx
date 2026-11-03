@@ -8,7 +8,7 @@ export default function AIReadinessPanel({ assessmentId }: { assessmentId: strin
   const readiness = state.data;
   if (state.error) return <ErrorBox message={state.error} retry={state.reload} />;
   if (!readiness) return null;
-  if (readiness.ready) return <div className="notice"><Sparkles size={17} /><span>{t(`${readiness.applicable_findings_count} achados com fontes publicadas aplicáveis. Reveja os comentários antes de enviar à Meta.`, `${readiness.applicable_findings_count} findings with applicable published sources. Review comments before sending them to Meta.`)}{readiness.uncovered_criteria.length > 0 && ` ${t("Alguns achados continuam sem fonte (até 10 códigos apresentados)", "Some findings still have no source (up to 10 codes shown)")}: ${readiness.uncovered_criteria.join(", ")}.`}</span></div>;
+  if (readiness.applicable_findings_count > 0) return <div className="notice"><Sparkles size={17} /><span>{t(`${readiness.applicable_findings_count} achados com fontes publicadas aplicáveis. Reveja os comentários antes de enviar à Meta.`, `${readiness.applicable_findings_count} findings with applicable published sources. Review comments before sending them to Meta.`)}{readiness.uncovered_criteria.length > 0 && ` ${t("Alguns achados continuam sem fonte (até 10 códigos apresentados)", "Some findings still have no source (up to 10 codes shown)")}: ${readiness.uncovered_criteria.join(", ")}.`}</span></div>;
   const message = readiness.findings_count === 0
     ? t("Esta avaliação não tem achados. Escolha uma avaliação com pontuações abaixo do máximo.", "This assessment has no findings. Choose one with scores below the maximum.")
     : readiness.published_sources_count === 0
