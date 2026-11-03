@@ -59,7 +59,9 @@ test('copilot can choose more than five findings or the entire assessment', asyn
   await expect(scope).toContainText(`${total} / ${total} seleccionados`);
   await expect(page.locator('.finding-list')).toHaveCount(0);
   await scope.getByRole('button',{name:'Escolher achados'}).click();
+  await expect(scope).toContainText(`5 / ${total} seleccionados`);
   await page.locator('.finding-list input[type=checkbox]:not(:checked)').first().check();
+  await expect(scope).toContainText(`6 / ${total} seleccionados`);
   await page.locator('.finding-list input[type=checkbox]:not(:checked)').first().check();
   await expect(scope).toContainText(`7 / ${total} seleccionados`);
   await expect(page.locator('.finding-list input[type=checkbox]:checked')).toHaveCount(7);
