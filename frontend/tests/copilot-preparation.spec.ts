@@ -63,7 +63,8 @@ test('copilot can choose more than five findings or the entire assessment', asyn
   await resetReadiness;
   await expect(scope).toContainText(`5 / ${total} seleccionados`);
   const selectedReadiness=page.waitForResponse(r=>r.url().includes('/ai/readiness/') && new URL(r.url()).searchParams.getAll('finding_ids').length===6);
-  await page.locator('.finding-list input[type=checkbox]:not(:checked)').first().check();
+  const uncheckedIndex=await options.evaluateAll(elements=>elements.findIndex(element=>!(element as HTMLInputElement).checked));
+  await options.nth(uncheckedIndex).check();
   await selectedReadiness;
   await expect(scope).toContainText(`6 / ${total} seleccionados`);
   await expect(page.locator('.finding-list input[type=checkbox]:checked')).toHaveCount(6);
