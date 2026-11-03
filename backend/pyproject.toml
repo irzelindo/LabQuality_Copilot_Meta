@@ -1,6 +1,7 @@
 [project]
 name = "labquality-copilot-api"
 version = "0.1.0"
+license = "MIT"
 requires-python = ">=3.12"
 dependencies = [
   "fastapi==0.162.0", "uvicorn==0.54.0", "sqlalchemy==2.1.6",
