@@ -58,8 +58,9 @@ test('copilot can choose more than five findings or the entire assessment', asyn
       url.searchParams.getAll('finding_ids').length ? url.searchParams.getAll('finding_ids') : check.selected_ids;
     await route.fulfill({response,json:{...check,findings,finding_count:findings.length,selected_count:ids.length,selected_ids:ids}});
   });
-  await page.getByRole('link',{name:'Copiloto de qualidade',exact:true}).click();
-  await page.getByLabel('Avaliação de origem').selectOption({index:1});
+  await page.getByRole('link',{name:'Avaliações',exact:true}).click();
+  await page.getByRole('button',{name:'Abrir',exact:true}).first().click();
+  await page.getByRole('button',{name:'Analisar com Meta',exact:true}).click();
   await expect(page.locator('.finding-list input[type=checkbox]')).toHaveCount(7);
   const scope=page.getByRole('group',{name:'Âmbito da análise'});
   await scope.getByRole('button',{name:'Todos os achados'}).click();
