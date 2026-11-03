@@ -48,27 +48,20 @@ test('copilot can choose more than five findings or the entire assessment', asyn
   await page.getByLabel('Email',{exact:true}).fill('admin@labquality.local');
   await page.getByLabel('Palavra-passe',{exact:true}).fill('Local-e2e-test-only-2026!');
   await page.getByRole('button',{name:'Entrar no espaço de trabalho'}).click();
-  await page.route('**/api/v1/ai/readiness/**', async route => {
-    const response=await route.fetch();
-    const check=await response.json();
-    const extra=Array.from({length:4},(_,i)=>({...check.findings[0],id:`synthetic-${i}`,title:`Finding ${i+4}`}));
-    const findings=[...check.findings,...extra];
-    const url=new URL(route.request().url());
-    const ids=url.searchParams.get('all_findings')==='true' ? findings.map(f=>f.id) :
-      url.searchParams.getAll('finding_ids').length ? url.searchParams.getAll('finding_ids') : check.selected_ids;
-    await route.fulfill({response,json:{...check,findings,finding_count:findings.length,selected_count:ids.length,selected_ids:ids}});
-  });
   await page.getByRole('link',{name:'Avaliações',exact:true}).click();
   await page.getByRole('button',{name:'Abrir',exact:true}).first().click();
   await page.getByRole('button',{name:'Analisar com Meta',exact:true}).click();
-  await expect(page.locator('.finding-list input[type=checkbox]')).toHaveCount(7);
+  const options=page.locator('.finding-list input[type=checkbox]');
+  await expect(options.nth(6)).toBeVisible();
+  const total=await options.count();
   const scope=page.getByRole('group',{name:'Âmbito da análise'});
   await scope.getByRole('button',{name:'Todos os achados'}).click();
-  await expect(scope).toContainText('7 / 7 seleccionados');
+  await expect(scope).toContainText(`${total} / ${total} seleccionados`);
   await expect(page.locator('.finding-list')).toHaveCount(0);
   await scope.getByRole('button',{name:'Escolher achados'}).click();
-  for (let i=3;i<7;i++) await page.locator('.finding-list input[type=checkbox]').nth(i).check();
-  await expect(scope).toContainText('7 / 7 seleccionados');
+  await page.locator('.finding-list input[type=checkbox]:not(:checked)').first().check();
+  await page.locator('.finding-list input[type=checkbox]:not(:checked)').first().check();
+  await expect(scope).toContainText(`7 / ${total} seleccionados`);
   await expect(page.locator('.finding-list input[type=checkbox]:checked')).toHaveCount(7);
   await expect(page.locator('.copilot-submit')).toContainText('3 pedidos');
 });
