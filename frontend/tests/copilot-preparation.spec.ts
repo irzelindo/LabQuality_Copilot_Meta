@@ -43,12 +43,26 @@ test('guide, readiness, missing Meta key and selected-assessment navigation', as
   expect(errors).toEqual([]);
 });
 
-test('reference import previews without saving and keeps imported sources in draft', async ({page}) => {
+test('reference import keeps readable spacing and previews without saving', async ({page}, testInfo) => {
   await page.goto('/');
   await page.getByLabel('Email',{exact:true}).fill('admin@labquality.local');
   await page.getByLabel('Palavra-passe',{exact:true}).fill('Local-e2e-test-only-2026!');
   await page.getByRole('button',{name:'Entrar no espaço de trabalho'}).click();
   await page.getByRole('link',{name:'Documentos',exact:true}).click();
+  const packPanel=page.locator('.source-pack');
+  const description=await packPanel.locator('.source-pack-description').boundingBox();
+  const upload=await packPanel.locator('.source-pack-upload').boundingBox();
+  const actions=await packPanel.locator('.source-pack-actions').boundingBox();
+  const panel=await packPanel.boundingBox();
+  expect(description && upload && actions && panel).toBeTruthy();
+  expect(upload!.y-description!.y-description!.height).toBeGreaterThanOrEqual(12);
+  expect(actions!.y-upload!.y-upload!.height).toBeGreaterThanOrEqual(12);
+  expect(upload!.x-panel!.x).toBeGreaterThanOrEqual(16);
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await expect(packPanel.getByLabel('Pacote de referências SLIPTA (.json)',{exact:true})).toBeVisible();
+  await page.screenshot({path:testInfo.outputPath('documents-mobile.png'),fullPage:true});
+  await page.setViewportSize({width:1440,height:1000});
   const pack={pack_version:'slipta-sources-v1',provenance:{pdf_sha256:'synthetic-test-source'},documents:[{code:'SLIPTA-TEST-1.1',title:'Synthetic reference for UI validation',content:'This synthetic reference supports only an automated application workflow test.',criterion_codes:['1.1']}]};
   await page.getByLabel('Pacote de referências SLIPTA (.json)',{exact:true}).setInputFiles({name:'sources.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(pack))});
   await page.getByRole('button',{name:'Pré-validar referências',exact:true}).click();
