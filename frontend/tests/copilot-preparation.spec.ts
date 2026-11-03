@@ -58,7 +58,7 @@ test('copilot can choose more than five findings or the entire assessment', asyn
   await scope.getByRole('button',{name:'Todos os achados'}).click();
   await expect(scope).toContainText(`${total} / ${total} seleccionados`);
   await expect(page.locator('.finding-list')).toHaveCount(0);
-  const resetReadiness=page.waitForResponse(r=>r.url().includes('/ai/readiness/') && !new URL(r.url()).searchParams.has('all_findings') && !new URL(r.url()).searchParams.has('finding_ids'));
+  const resetReadiness=page.waitForResponse(r=>r.url().includes('/ai/readiness/') && !new URL(r.url()).searchParams.has('all_findings') && new URL(r.url()).searchParams.getAll('finding_ids').length===5);
   await scope.getByRole('button',{name:'Escolher achados'}).click();
   await resetReadiness;
   await expect(scope).toContainText(`5 / ${total} seleccionados`);
