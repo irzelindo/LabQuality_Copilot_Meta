@@ -23,3 +23,4 @@ frontend/playwright-report/
 private/
 slipta_sources*.json
 submission*.json
+.jury-demo/

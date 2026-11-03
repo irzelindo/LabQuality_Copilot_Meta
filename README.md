@@ -1,5 +1,7 @@
 # LabQuality Copilot
 
+Hackathon candidate: see [the jury rehearsal](docs/JURY_REHEARSAL.md) for an isolated fictional case and a genuine Meta run. Original software is licensed under [MIT](LICENSE); [third-party materials retain their own terms](THIRD_PARTY_NOTICES.md).
+
 Plataforma de gestão da qualidade laboratorial: avaliações → achados → planos de melhoria → evidências → verificação. Backend FastAPI, interface Next.js/TypeScript e PostgreSQL em Docker. O desenvolvimento local também funciona com SQLite.
 
 Versão de desenvolvimento **0.2.0**, iniciada em 23/10/2026. A definição completa da V1 continua a orientar o produto. Consulte [o estado das funcionalidades](docs/IMPLEMENTATION_STATUS.md) antes de apresentar a solução como pronta para utilização institucional.
