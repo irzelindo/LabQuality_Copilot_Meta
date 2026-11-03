@@ -172,7 +172,8 @@ class RegisterIn(Schema):
 
 class AIRunIn(Schema):
     assessment_id: str
-    finding_ids: list[str] = Field(default_factory=list, max_length=5)
+    finding_ids: list[str] = Field(default_factory=list, max_length=200)
+    all_findings: bool = False
     language: Literal["pt", "en"] = "pt"
 
 
@@ -198,7 +199,7 @@ class RecommendationResult(Schema):
 
 
 class AcceptRecommendation(Schema):
-    index: int = Field(ge=0, le=9)
+    index: int = Field(ge=0, le=199)
     owner_id: str
     due_date: date
     title: str = Field(min_length=3, max_length=300)

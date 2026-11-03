@@ -58,7 +58,9 @@ Este teste envia um pequeno pedido para responder READY. Um resultado positivo c
 
 Na avaliação, carrega em **Analisar com Meta**. A aplicação abre **Copiloto de qualidade** com essa avaliação seleccionada. Também podes escolher a avaliação directamente nesse menu.
 
-A preparação mostra revisão actual, número de achados, fontes aplicáveis e configuração da chave. Selecciona até cinco achados e o idioma das propostas. O sistema começa pelos primeiros cinco, dando prioridade aos marcados como críticos. Os restantes podem ser analisados em novos grupos.
+A preparação mostra revisão actual, número de achados, fontes aplicáveis e configuração da chave. Escolhe **Escolher achados** para marcar os critérios pretendidos (até 200) ou **Todos os achados** para incluir a avaliação inteira. Na selecção manual, o sistema começa por cinco achados com fontes, dando prioridade aos marcados como críticos. Podes acrescentar ou retirar qualquer achado antes de executar.
+
+Os achados escolhidos são processados em grupos de três, cada um com um pedido real à Meta. A interface indica antecipadamente a quantidade de pedidos, que pode aumentar o tempo e o consumo de tokens. Uma proposta não é garantida para cada achado: o resultado mostra quantos ficaram sem proposta e assinala a necessidade de informação adicional. Se faltarem fontes publicadas para algum achado seleccionado, a execução fica bloqueada; podes publicar a fonte adequada ou escolher um subconjunto com cobertura.
 
 Abre **Fontes que a Meta irá receber**. Confirma a autorização de utilização dos comentários e trechos. Se aparecer falta de fonte, volta a Documentos e conclui a publicação de uma referência associada ao código do critério. Usa **Verificar novamente** depois de resolver o requisito.
 

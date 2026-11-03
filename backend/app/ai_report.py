@@ -40,7 +40,9 @@ def report(run_id: str, db=DB, user: User = ACTOR):
     <h1>LabQuality Copilot</h1><p>Improvement proposals for human review</p>
     <p class="meta">Laboratory: {e(lab.name)}<br>Assessment: {e(assessment.assessment_date)} / revision {assessment.revision}
     <br>Model: {e(run.model)} / prompt: {e(run.prompt_version)}<br>Run: {e(run.id)} / {e(run.created_at)}
-    <br>Duration: {run.latency_ms / 1000:.1f}s / input tokens: {e(run.usage.get('input_tokens'))} / output tokens: {e(run.usage.get('output_tokens'))}</p>
+    <br>Duration: {run.latency_ms / 1000:.1f}s / input tokens: {e(run.usage.get('input_tokens'))} / output tokens: {e(run.usage.get('output_tokens'))}
+    <br>Findings sent: {e(run.result.get('selected_count', '—'))} / Meta requests: {e(run.usage.get('requests', '—'))}
+    / proposals: {len(run.result.get('recommendations', []))} / without proposal: {len(run.result.get('unaddressed_finding_ids', []))}</p>
     <p>{e(run.result.get('summary'))}</p>
     {"<p>Additional evidence is required. Review limitations before acting.</p>" if run.result.get("insufficient_evidence") else ""}
     {''.join(body)}

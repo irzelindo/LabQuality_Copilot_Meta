@@ -6,7 +6,8 @@ from .models import AssessmentRoot, Document, Finding, Instrument
 from .operations import documents_for
 from .services import score
 
-MAX_FINDINGS = 5
+MAX_FINDINGS = 200  # Includes the full 151-item SLIPTA pilot, with a bounded worker workload.
+MODEL_BATCH_SIZE = 3
 
 
 def criterion_key(value: str) -> str:
@@ -28,21 +29,22 @@ def published_sources(db, user, laboratory_id):
     ).order_by(Document.code, Document.revision.desc())))
 
 
-def prepare_context(db, user, assessment, finding_ids=None):
+def prepare_context(db, user, assessment, finding_ids=None, all_findings=False):
     findings = list(db.scalars(select(Finding).where(
         Finding.organization_id == user.organization_id,
         Finding.assessment_id == assessment.id,
         Finding.laboratory_id == assessment.laboratory_id
     ).order_by(Finding.critical.desc(), Finding.criterion_code, Finding.id)))
     ids = finding_ids or []
-    if len(ids) > MAX_FINDINGS or len(ids) != len(set(ids)):
-        raise HTTPException(422, "Seleccione até cinco achados distintos por análise.")
+    if (len(ids) > MAX_FINDINGS or len(ids) != len(set(ids)) or
+            (all_findings and ids) or (all_findings and len(findings) > MAX_FINDINGS)):
+        raise HTTPException(422, "Seleccione até 200 achados distintos ou use a opção Todos os achados (máximo 200).")
     if set(ids) - {f.id for f in findings}:
         raise HTTPException(422, "Os achados seleccionados não pertencem a esta avaliação.")
     sources = [s for s in published_sources(db, user, assessment.laboratory_id) if s.content.strip()]
     # Start with findings that have an applicable source; keep the rest available for manual selection.
     defaults = sorted(findings, key=lambda f: not any(source_applies(s, f.criterion_code) for s in sources))
-    chosen = [f for f in findings if f.id in ids] if ids else defaults[:MAX_FINDINGS]
+    chosen = findings if all_findings else ([f for f in findings if f.id in ids] if ids else defaults[:5])
     selected_sources = {}
     coverage = {}
     for finding in chosen:
@@ -78,9 +80,9 @@ def prepare_context(db, user, assessment, finding_ids=None):
     return context, findings, coverage, root.head_revision == assessment.revision
 
 
-def readiness(db, user, assessment, finding_ids=None):
+def readiness(db, user, assessment, finding_ids=None, all_findings=False):
     from .config import settings
-    context, findings, coverage, current = prepare_context(db, user, assessment, finding_ids)
+    context, findings, coverage, current = prepare_context(db, user, assessment, finding_ids, all_findings)
     blockers = []
     if not current:
         blockers.append("latest_revision")

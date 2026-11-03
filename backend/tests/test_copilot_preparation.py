@@ -75,11 +75,57 @@ def test_foreign_finding_and_partner_cannot_read_or_run(client):
     assert client.get("/api/v1/ai/readiness/" + a["id"]).status_code == 403
 
 
-def test_more_than_five_findings_is_not_silently_truncated(client):
+def test_multiple_batches_cover_all_or_selected_findings(client, monkeypatch):
     login(client)
     a = south(client)
+    with session_factory()() as db:
+        for i in range(4):
+            db.add(Finding(organization_id=a["organization_id"], laboratory_id=a["laboratory_id"],
+                           assessment_id=a["id"], criterion_code="C04", title=f"Additional finding {i}"))
+        db.commit()
     settings().model_api_key = "test-only"
-    assert client.post("/api/v1/ai/runs", json={"assessment_id": a["id"], "finding_ids": ["x"] * 6}).status_code == 422
+    all_check = client.get("/api/v1/ai/readiness/" + a["id"], params={"all_findings": True}).json()
+    assert all_check["finding_count"] == all_check["selected_count"] == 7
+    assert all_check["ready"] and len(all_check["selected_ids"]) == 7
+    selected = all_check["selected_ids"][:6]
+    check = client.get("/api/v1/ai/readiness/" + a["id"], params=[("finding_ids", fid) for fid in selected]).json()
+    assert check["selected_count"] == 6
+    assert client.post("/api/v1/ai/runs", json={"assessment_id": a["id"], "finding_ids": selected + selected[:1]}).status_code == 422
+    assert client.post("/api/v1/ai/runs", json={"assessment_id": a["id"], "all_findings": True, "finding_ids": selected}).status_code == 422
+
+    calls = []
+    def transport(url, **kwargs):
+        context = json.loads(kwargs["json"]["input"][1]["content"])
+        calls.append(context)
+        assert len(context["findings"]) <= 3
+        recommendations = []
+        for finding in context["findings"]:
+            source = next(s for s in context["sources"] if s["id"] in finding["allowed_source_ids"])
+            recommendations.append({"title": "Review this finding", "justification": "The finding requires a local review.",
+                "priority": "medium", "steps": ["Review the local record"],
+                "completion_criterion": "The laboratory record is checked independently.",
+                "finding_ids": [finding["id"]], "citations": [{"source_id": source["id"], "quote": source["content"][:50]}]})
+        return httpx.Response(200, request=httpx.Request("POST", url), json={"status": "completed",
+            "output": [{"type": "message", "content": [{"type": "output_text", "text": json.dumps({
+                "summary": "Human review required.", "insufficient_evidence": False,
+                "recommendations": recommendations})}]}], "usage": {"input_tokens": 10, "output_tokens": 20}})
+    monkeypatch.setattr("app.ai.httpx.post", transport)
+    queued = client.post("/api/v1/ai/runs", json={"assessment_id": a["id"], "finding_ids": selected})
+    assert queued.status_code == 202, queued.text
+    assert process_one()
+    run = client.get("/api/v1/ai/runs/" + queued.json()["id"]).json()
+    assert run["status"] == "completed" and run["result"]["selected_count"] == 6
+    assert len(run["result"]["recommendations"]) == 6 and run["usage"]["requests"] == 2
+    assert run["result"]["unaddressed_finding_ids"] == []
+    assert {f["id"] for batch in calls for f in batch["findings"]} == set(selected)
+    calls.clear()
+    queued = client.post("/api/v1/ai/runs", json={"assessment_id": a["id"], "all_findings": True})
+    assert queued.status_code == 202, queued.text
+    assert process_one()
+    run = client.get("/api/v1/ai/runs/" + queued.json()["id"]).json()
+    assert run["status"] == "completed" and run["result"]["selected_count"] == 7
+    assert len(run["result"]["recommendations"]) == 7 and run["usage"]["requests"] == 3
+    assert {f["id"] for batch in calls for f in batch["findings"]} == set(all_check["selected_ids"])
 
 
 def pack():
@@ -120,7 +166,7 @@ def test_completed_report_is_scoped_and_escapes_model_text(client, monkeypatch):
     assert client.get(f"/api/v1/ai/runs/{queued['id']}/report.html").status_code == 409
     process_one()
     response = client.get(f"/api/v1/ai/runs/{queued['id']}/report.html")
-    assert response.status_code == 200 and "quality-actions-v2" in response.text
+    assert response.status_code == 200 and "quality-actions-v3" in response.text
     assert "<script>" not in response.text and "&lt;script&gt;" in response.text
     assert "default-src 'none'" in response.headers["content-security-policy"]
     login(client, "parceiro@labquality.local")

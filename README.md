@@ -8,7 +8,7 @@ Versão de desenvolvimento **0.2.0**, iniciada em 23/10/2026. A definição comp
 
 ## Integração em validação — 03/11/2026
 
-O percurso de análise inclui agora preparação por avaliação, indicação dos requisitos em falta, selecção de até cinco achados, fontes por critério, propostas em português ou inglês e relatório para impressão. O menu **Como utilizar** explica o percurso completo.
+O percurso de análise inclui agora preparação por avaliação, indicação dos requisitos em falta, selecção de achados ou análise de todos (até 200 por execução), fontes por critério, propostas em português ou inglês e relatório para impressão. Cada grupo de três achados gera um pedido real à Meta; o histórico mostra o total processado, as propostas e os achados sem proposta. O menu **Como utilizar** explica o percurso completo.
 
 - [Guia em português](docs/USER_GUIDE_PT.md) e [actualização Windows preservando dados](docs/UPDATE_WINDOWS.md).
 - [Roteiro de apresentação em inglês](docs/DEMO_SCRIPT_EN.md) e [validação do piloto](docs/PILOT_VALIDATION.md).

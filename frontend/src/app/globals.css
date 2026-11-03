@@ -24,10 +24,15 @@
 .readiness-grid .ready { background: #f0f9f6; border-color: #b7dace; }
 .readiness-grid .missing { background: #fff8e9; border-color: #ecd8a7; }
 .readiness-grid span { font-size: 13px; line-height: 1.5; }
-.finding-picker { border: 1px solid #dce6e5; border-radius: 12px; padding: 20px; max-height: 420px; overflow-y: auto; }
+.finding-picker { border: 1px solid #dce6e5; border-radius: 12px; padding: 20px; }
 .finding-picker legend { font-weight: 650; padding: 0 7px; }
-.finding-picker label { display: flex; align-items: flex-start; gap: 12px; padding: 13px 0; border-bottom: 1px solid #e6eeec; line-height: 1.6; font-size: 14px; }
+.finding-list { max-height: 360px; overflow-y: auto; }
+.finding-list label { display: flex; align-items: flex-start; gap: 12px; padding: 13px 0; border-bottom: 1px solid #e6eeec; line-height: 1.6; font-size: 14px; }
 .finding-picker input { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; }
+.finding-scope { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 2px 0 14px; }
+.finding-scope .button[aria-pressed="true"] { background: #e9f5ec; border-color: #51996a; color: #175b38; }
+.finding-scope strong { margin-left: auto; font-size: 12px; color: #3b5d49; }
+.ai-summary { white-space: pre-line; }
 .source-missing { display: block; color: #946004; font-weight: 600; }
 .source-pack { margin-bottom: 20px; }
 .source-pack p { line-height: 1.6; }
