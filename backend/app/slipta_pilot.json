@@ -1,0 +1,3353 @@
+{
+  "source_sha256": "279e5340ef544ce7af465f4afae48282c578433026a3539f2053204a196dd511",
+  "instrument_code": "SLIPTA-ODK-PILOT",
+  "instrument_version": "2026.10",
+  "form_id": "slipta_v3_2023_mozambique",
+  "criteria": [
+    {
+      "code": "1.1",
+      "section": "01 Documentos e registos",
+      "title": "1.1 Pessoa Jurídica",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_1"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_1_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.2",
+      "section": "01 Documentos e registos",
+      "title": "1.2 Políticas e Objetivos do Sistema de Gestão Laboratorial",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_a",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_b",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_c",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_d",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_e",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_f",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_g"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_a_comentarios",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_b_comentarios",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_c_comentarios",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_d_comentarios",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_e_comentarios",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_f_comentarios",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2.p2_s1_1_2_g_comentarios",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_2_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.3",
+      "section": "01 Documentos e registos",
+      "title": "1.3 Sistema de Controle de Documentos e Informações",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.4",
+      "section": "01 Documentos e registos",
+      "title": "1.4 Documento e Registos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_4"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_4_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.5",
+      "section": "01 Documentos e registos",
+      "title": "1.5 Documentação do Sistema de Gestão Laboratorial",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_5.p2_s1_1_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_5.p2_s1_1_5_a",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_5.p2_s1_1_5_b"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_5.p2_s1_1_5_a_comentarios",
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_5.p2_s1_1_5_b_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.6",
+      "section": "01 Documentos e registos",
+      "title": "1.6 Acessibilidade dos documentos de qualidade",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_6"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_6_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.7",
+      "section": "01 Documentos e registos",
+      "title": "1.7 Registo de Controle de Documentos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_7"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_7_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.8",
+      "section": "01 Documentos e registos",
+      "title": "1.8 Documentos de Qualidade Descontinuados",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_8"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_8_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.9",
+      "section": "01 Documentos e registos",
+      "title": "1.9 Arquivos de dados",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_9"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_9_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "1.10",
+      "section": "01 Documentos e registos",
+      "title": "1.10 Acessibilidade dos resultados arquivados do paciente",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s1.p2_s1_1_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_10"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s1.p2_s1_1_10_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.1",
+      "section": "02 Organização e liderança",
+      "title": "2.1 Procedimento e/ou Processo para Código de Conduta Organizacional",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_a",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_b",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_c",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_1.p2_s2_2_1_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.2",
+      "section": "02 Organização e liderança",
+      "title": "2.2 Implementação do Código de Conduta Organizacional",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_a",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_b",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_c",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_a_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_b_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_c_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_2.p2_s2_2_2_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.3",
+      "section": "02 Organização e liderança",
+      "title": "2.3 Delegação de Tarefas",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.4",
+      "section": "02 Organização e liderança",
+      "title": "2.4 Projeções Orçamentárias",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_4"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_4_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.5",
+      "section": "02 Organização e liderança",
+      "title": "2.5 Revisão de rotina de registos técnicos e de qualidade",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_a",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_b",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_c",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_d",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_e",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_f",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_g",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_h",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_i",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_j",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_k",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_l"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_a_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_b_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_c_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_d_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_e_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_f_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_g_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_h_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_i_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_j_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_k_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_5.p2_s2_2_5_l_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.6",
+      "section": "02 Organização e liderança",
+      "title": "2.6 Procedimento e/ou Processo para Revisão na Gestão",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_a",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_b",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_c",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_d",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_e",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_f",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_g"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_d_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_e_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_f_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_6.p2_s2_2_6_g_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.7",
+      "section": "02 Organização e liderança",
+      "title": "2.7 Conduta de Revisões Gerenciais",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_7"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_7_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.8",
+      "section": "02 Organização e liderança",
+      "title": "2.8 Revisão na Gestão",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_a",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_b",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_c",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_d",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_e",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_f",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_g",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_h",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_i",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_j"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_a_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_b_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_c_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_d_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_e_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_f_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_g_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_h_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_i_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_8.p2_s2_2_8_j_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.9",
+      "section": "02 Organização e liderança",
+      "title": "2.9 Resultados da Revisão na Gestão",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_a",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_b",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_c",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_d",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_a_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_b_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_c_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_d_comentarios",
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_9.p2_s2_2_9_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.10",
+      "section": "02 Organização e liderança",
+      "title": "2.10 Comunicação das conclusões da revisão",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_10"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_10_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "2.11",
+      "section": "02 Organização e liderança",
+      "title": "2.11 Conclusão e Monitoramento dos Itens de Ação da Revisão",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s2.p2_s2_2_11_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_11"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s2.p2_s2_2_11_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.1",
+      "section": "03 Gestão de pessoal",
+      "title": "3.1 Procedimento e/ou Processo para Gestão de Pessoas",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_c",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_d",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_1.p2_s3_3_1_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.2",
+      "section": "03 Gestão de pessoal",
+      "title": "3.2 Escala de Serviço e Rotina Diária",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_2"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_2_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.3",
+      "section": "03 Gestão de pessoal",
+      "title": "3.3 Organograma e Sistemas de Relatórios Externos/Internos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_p2_s3_3_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.4",
+      "section": "03 Gestão de pessoal",
+      "title": "3.4 Gestão Laboratorial",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_c",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_d",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_e",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_f",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_g",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_h",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_i",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_j",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_k",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_l",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_m"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_c_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_d_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_e_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_f_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_g_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_h_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_i_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_j_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_k_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_l_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_4.p2_s3_3_4_m_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.5",
+      "section": "03 Gestão de pessoal",
+      "title": "3.5 Conformidade com o Sistema de Gestão Laboratorial",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_5.p2_s3_3_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_5.p2_s3_3_5_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_5.p2_s3_3_5_b"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_5.p2_s3_3_5_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_5.p2_s3_3_5_b_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.6",
+      "section": "03 Gestão de pessoal",
+      "title": "3.6 Procedimento e/ou Processo para Autorização",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_c",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_6.p2_s3_3_6_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.7",
+      "section": "03 Gestão de pessoal",
+      "title": "3.7 Autorização",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_7.p2_s3_3_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_7.p2_s3_3_7_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_7.p2_s3_3_7_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_7.p2_s3_3_7_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_7.p2_s3_3_7_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_7.p2_s3_3_7_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_7.p2_s3_3_7_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.8",
+      "section": "03 Gestão de pessoal",
+      "title": "3.8 Procedimento e/ou Processo para Treinamento de Pessoal",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_c",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_d",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_c_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_d_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_8.p2_s3_3_8_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.9",
+      "section": "03 Gestão de pessoal",
+      "title": "3.9 Treinamento de Pessoal de Laboratório, Educação Continuada e Desenvolvimento Profissional",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_c",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_d",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_e",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_f",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_g",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_h",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_i"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_c_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_d_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_e_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_f_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_g_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_h_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_9.p2_s3_3_9_i_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.10",
+      "section": "03 Gestão de pessoal",
+      "title": "3.10 Procedimento e/ou Processo para Avaliação de Competências",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_c",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_d",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_e",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_c_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_d_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_e_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_10.p2_s3_3_10_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.11",
+      "section": "03 Gestão de pessoal",
+      "title": "3.11 Implementação de Procedimento e/ou Processo de Competência Pessoal",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_11.p2_s3_3_11_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_11.p2_s3_3_11_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_11.p2_s3_3_11_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_11.p2_s3_3_11_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_11.p2_s3_3_11_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_11.p2_s3_3_11_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_11.p2_s3_3_11_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.12",
+      "section": "03 Gestão de pessoal",
+      "title": "3.12 Procedimento e/ou Processo para Revisão do Desempenho do Pessoal",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_12.p2_s3_3_12_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_12.p2_s3_3_12_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_12.p2_s3_3_12_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_12.p2_s3_3_12_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_12.p2_s3_3_12_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_12.p2_s3_3_12_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_12.p2_s3_3_12_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.13",
+      "section": "03 Gestão de pessoal",
+      "title": "3.13 Reuniões de Pessoal",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_c",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_d",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_e",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_f",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_g",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_h",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_i",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_j"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_c_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_d_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_e_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_f_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_g_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_h_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_i_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_13.p2_s3_3_13_j_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "3.14",
+      "section": "03 Gestão de pessoal",
+      "title": "3.14 Registos de Pessoal",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_a",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_b",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_c",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_d",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_e",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_a_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_b_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_c_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_d_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_e_comentarios",
+          "tt_pp_02.tt_pp_02_s3.p2_s3_3_14.p2_s3_3_14_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.1",
+      "section": "04 Foco no cliente",
+      "title": "4.1 Procedimento e/ou Processo para Serviços de Consultoria",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_a",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_b",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_c",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_d",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_e",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_f",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_g",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_h",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_i"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_e_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_f_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_g_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_h_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_1.p2_s4_4_1_i_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.2",
+      "section": "04 Foco no cliente",
+      "title": "4.2 Aconselhamento e instrução por pessoal qualificado",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_2"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_2_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.3",
+      "section": "04 Foco no cliente",
+      "title": "4.3 Procedimento e/ou Processo para Tratamento de Reclamações e Retorno",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_a",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_b",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_c",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_d",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_a_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_b_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_c_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_d_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_3.p2_s4_4_3_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.4",
+      "section": "04 Foco no cliente",
+      "title": "4.4 Recebimento e Resolução de Reclamações",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_4"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_4_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.5",
+      "section": "04 Foco no cliente",
+      "title": "4.5 Requisitos Relativos aos Pacientes",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_5"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_5_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.6",
+      "section": "04 Foco no cliente",
+      "title": "4.6 Procedimento e/ou Processo para Contratos de Serviço (incluindo POCT)",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_a",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_b",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_c",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_d",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_e",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_d_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_e_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_6.p2_s4_4_6_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.7",
+      "section": "04 Foco no cliente",
+      "title": "4.7 Implementação do Procedimento e/ou Processo para Contratos de Serviço (incluindo POCT)",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_a",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_b",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_c",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_d",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_e",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_a_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_b_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_c_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_d_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_e_comentarios",
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_7.p2_s4_4_7_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.8",
+      "section": "04 Foco no cliente",
+      "title": "4.8 Informações Laboratoriais para Pacientes e Usuários",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_8"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_8_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.9",
+      "section": "04 Foco no cliente",
+      "title": "4.9 Política de Comunicação sobre Atrasos no Serviço",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_9"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_9_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "4.10",
+      "section": "04 Foco no cliente",
+      "title": "4.10 Uso do Retorno do Cliente",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s4.p2_s4_4_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_10"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s4.p2_s4_4_10_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.1",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.1 Procedimento e/ou Processo para Gestão de Equipamentos Laboratoriais",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_a",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_b",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_c",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_d",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_e",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_f",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_g",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_h",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_i",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_j",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_k",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_l"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_e_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_f_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_g_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_h_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_i_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_j_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_k_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_1.p2_s5_5_1_l_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.2",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.2 Acesso ao Equipamento Necessário",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_2"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_2_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.3",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.3 Adesão ao Protocolo de Equipamento Adequado",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.4",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.4 Treinamento, Competência e Autorização dos Usuários dos Equipamentos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_4"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_4_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.5",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.5 Procedimento e/ou Processo para Validação e Verificação de Equipamentos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_5.p2_s5_5_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_5.p2_s5_5_5_a",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_5.p2_s5_5_5_b",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_5.p2_s5_5_5_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_5.p2_s5_5_5_a_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_5.p2_s5_5_5_b_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_5.p2_s5_5_5_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.6",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.6 Verificação e Documentação de Equipamentos",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_a",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_b",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_c",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_d",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_e",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_d_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_e_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_6.p2_s5_5_6_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.7",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.7 Registros de Equipamentos",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_a",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_b",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_c",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_d",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_e",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_f",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_g",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_h",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_i",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_j",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_k",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_l"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_a_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_b_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_c_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_d_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_e_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_f_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_g_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_h_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_i_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_j_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_k_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_7.p2_s5_5_7_l_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.8",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.8 Equipamento defeituoso aguardando reparo",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_8"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_8_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.9",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.9 Equipamento obsoleto",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_9"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_9_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.10",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.10 Procedimento e/ou Processo para Calibração de Equipamentos",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_a",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_b",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_c",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_d",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_e",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_a_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_b_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_c_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_d_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_e_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_10.p2_s5_5_10_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.11",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.11 Calibração de Equipamentos e Rastreabilidade Metrológica",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_a",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_b",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_c",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_d",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_a_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_b_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_c_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_d_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_11.p2_s5_5_11_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.12",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.12 Manutenção Preventiva de Equipamentos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_12_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_12"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_12_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.13",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.13 Manutenção de Equipamentos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_13_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_13"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_13_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.14",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.14 Relatório de Incidentes Adversos de Equipamentos.",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_14.p2_s5_5_14_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_14.p2_s5_5_14_a",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_14.p2_s5_5_14_b"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_14.p2_s5_5_14_a_comentarios",
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_14.p2_s5_5_14_b_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.15",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.15 Manual do Operador do Fabricante",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_15_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_15"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_15_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "5.16",
+      "section": "05 Gestão de equipamentos",
+      "title": "5.16 Uso de Equipamentos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s5.p2_s5_5_16_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_16"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s5.p2_s5_5_16_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.1",
+      "section": "06 Avaliação",
+      "title": "6.1 Procedimento e/ou Processo para Auditorias Internas",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_a",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_b",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_c",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_d",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_e",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_f",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_g",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_h",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_i",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_j"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_e_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_f_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_g_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_h_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_i_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_1.p2_s6_6_1_j_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.2",
+      "section": "06 Avaliação",
+      "title": "6.2 Auditorias Internas",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_1",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_a",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_b",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_a_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_b_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_2.p2_s6_6_2_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.3",
+      "section": "06 Avaliação",
+      "title": "6.3 Recomendações de Auditoria e Plano de Ação e Acompanhamento",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_3.p2_s6_6_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_3.p2_s6_6_3_a",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_3.p2_s6_6_3_b",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_3.p2_s6_6_3_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_3.p2_s6_6_3_a_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_3.p2_s6_6_3_b_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_3.p2_s6_6_3_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.4",
+      "section": "06 Avaliação",
+      "title": "6.4 Procedimento e/ou Processo para Gestão de Riscos",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_a",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_b",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_c",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_d",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_a_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_b_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_c_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_d_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_4.p2_s6_6_4_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.5",
+      "section": "06 Avaliação",
+      "title": "6.5 Gestão de Riscos",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_a",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_b",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_c",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_d",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_e",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_f",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_g",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_h",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_i",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_j",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_k",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_l",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_m",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_n",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_o",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_p",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_q",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_r",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_s",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_t",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_u"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_a_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_b_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_c_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_d_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_e_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_f_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_g_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_h_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_i_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_j_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_k_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_l_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_m_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_n_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_o_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_p_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_q_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_r_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_s_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_t_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_5.p2_s6_6_5_u_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.6",
+      "section": "06 Avaliação",
+      "title": "6.6 Avaliação de Gestão de Riscos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_a",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_b",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_c",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_d",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_d_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_6.p2_s6_6_6_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.7",
+      "section": "06 Avaliação",
+      "title": "6.7 Plano de Ação de Riscos e Oportunidades",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_7.p2_s6_6_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_7.p2_s6_6_7_a",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_7.p2_s6_6_7_b",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_7.p2_s6_6_7_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_7.p2_s6_6_7_a_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_7.p2_s6_6_7_b_comentarios",
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_7.p2_s6_6_7_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.8",
+      "section": "06 Avaliação",
+      "title": "6.8 Indicadores de Qualidade",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_8"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_8_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "6.9",
+      "section": "06 Avaliação",
+      "title": "6.9 Acompanhamento dos Indicadores de Qualidade",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s6.p2_s6_6_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_9"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s6.p2_s6_6_9_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.1",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.1 Procedimento e/ou Processo para Produtos e Serviços Fornecidos Externamente",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_a",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_b",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_c",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_d",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_e",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_f",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_g"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_e_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_f_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_1.p2_s7_7_1_g_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.2",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.2 Procedimento e/ou Processo para Compra e Controle de Estoque de Equipamentos, Reagentes e Consumíveis",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_a",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_b",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_c",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_d",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_e",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_f",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_g"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_a_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_b_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_c_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_d_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_e_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_f_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_2.p2_s7_7_2_g_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.3",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.3 Sistema de inventário e orçamentação",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.4",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.4 Especificações de Compra",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_4"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_4_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.5",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.5 Avaliação de Desempenho do Fornecedor de Serviços",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_5"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_5_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.6",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.6 Controle de Inventário",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_a",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_b",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_c",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_d",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_e",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_f",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_g"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_d_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_e_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_f_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_6.p2_s7_7_6_g_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.7",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.7 Análise das Solicitações de Fornecimento",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_7"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_7_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.8",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.8 Sistema de Inventário Laboratorial",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_8.p2_s7_7_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_8.p2_s7_7_8_a",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_8.p2_s7_7_8_b",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_8.p2_s7_7_8_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_8.p2_s7_7_8_a_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_8.p2_s7_7_8_b_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_8.p2_s7_7_8_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.9",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.9 Área de Armazenamento",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_a",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_b",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_c",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_d",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_e",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_f",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_g",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_h",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_i"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_a_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_b_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_c_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_d_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_e_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_f_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_g_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_h_comentarios",
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_9.p2_s7_7_9_i_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.10",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.10 Organização de Stock e Minimização de Desperdícios",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_10"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_10_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.11",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.11 Validade do Produto",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_11_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_11"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_11_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "7.12",
+      "section": "07 Fornecedores e inventário",
+      "title": "7.12 Descarte de Produtos Vencidos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s7.p2_s7_7_12_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_12"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s7.p2_s7_7_12_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.1",
+      "section": "08 Gestão dos processos",
+      "title": "8.1 Procedimento e/ou Processo para Planejamento de Continuidade e Preparação para Emergências (Plano de Contingência)",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_1.p2_s8_8_1_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.2",
+      "section": "08 Gestão dos processos",
+      "title": "8.2 Implementação do Planejamento de Continuidade e Preparação para Emergências",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_2.p2_s8_8_2_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.3",
+      "section": "08 Gestão dos processos",
+      "title": "8.3 Procedimento e/ou Processo para Processos de Pré-exame",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_e",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_f",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_g",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_h",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_i",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_j",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_k",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_l",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_m"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_e_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_f_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_g_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_h_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_i_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_j_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_k_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_l_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_3.p2_s8_8_3_m_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.4",
+      "section": "08 Gestão dos processos",
+      "title": "8.4 Instruções para Atividades de Coleta",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_e",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_f",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_g",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_h"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_e_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_f_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_g_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_4.p2_s8_8_4_h_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.5",
+      "section": "08 Gestão dos processos",
+      "title": "8.5 Solicitação de Teste",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_e",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_f",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_g",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_h"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_e_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_f_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_g_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_5.p2_s8_8_5_h_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.6",
+      "section": "08 Gestão dos processos",
+      "title": "8.6 Procedimento de Recebimento de Amostra Primária",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_e",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_f",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_g"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_e_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_f_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_6.p2_s8_8_6_g_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.7",
+      "section": "08 Gestão dos processos",
+      "title": "8.7 Manuseio, Processamento e Armazenamento Pré-exame",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_7"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_7_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.8",
+      "section": "08 Gestão dos processos",
+      "title": "8.8 Transporte de Amostras",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_8.p2_s8_8_8_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.9",
+      "section": "08 Gestão dos processos",
+      "title": "8.9 Procedimento e/ou Processo para Laboratórios de Referência e Consultores Técnicos",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_e",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_f",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_g",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_h",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_i",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_j",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_k"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_e_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_f_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_g_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_h_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_i_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_j_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_9.p2_s8_8_9_k_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.10",
+      "section": "08 Gestão dos processos",
+      "title": "8.10 Laboratórios de Referência e Consultores Técnicos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_10.p2_s8_8_10_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.11",
+      "section": "08 Gestão dos processos",
+      "title": "8.11 Procedimento e/ou Processo para Documentação de Procedimentos de Exame",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_11.p2_s8_8_11_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_11.p2_s8_8_11_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_11.p2_s8_8_11_b"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_11.p2_s8_8_11_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_11.p2_s8_8_11_b_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.12",
+      "section": "08 Gestão dos processos",
+      "title": "8.12 Local dos Procedimentos de Exame",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_12_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_12"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_12_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.13",
+      "section": "08 Gestão dos processos",
+      "title": "8.13 Teste de aceitação de reagentes e consumíveis",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_13_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_13"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_13_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.14",
+      "section": "08 Gestão dos processos",
+      "title": "8.14 Procedimento e/ou Processo para Controle Interno de Qualidade (CQI)",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_e",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_e_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_14.p2_s8_8_14_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.15",
+      "section": "08 Gestão dos processos",
+      "title": "8.15 Controle de Qualidade",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_15.p2_s8_8_15_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_15.p2_s8_8_15_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_15.p2_s8_8_15_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_15.p2_s8_8_15_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_15.p2_s8_8_15_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_15.p2_s8_8_15_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_15.p2_s8_8_15_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.16",
+      "section": "08 Gestão dos processos",
+      "title": "8.16 Monitoramento do Desempenho do Controle de Qualidade",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_16.p2_s8_8_16_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_16.p2_s8_8_16_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_16.p2_s8_8_16_b"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_16.p2_s8_8_16_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_16.p2_s8_8_16_b_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.17",
+      "section": "08 Gestão dos processos",
+      "title": "8.17 Comparabilidade dos Resultados do Exame",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_17.p2_s8_8_17_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.18",
+      "section": "08 Gestão dos processos",
+      "title": "8.18 Monitorização diária das condições ambientais",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_18.p2_s8_8_18_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.19",
+      "section": "08 Gestão dos processos",
+      "title": "8.19 Revisão das Condições Ambientais",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_19.p2_s8_8_19_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_19.p2_s8_8_19_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_19.p2_s8_8_19_b"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_19.p2_s8_8_19_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_19.p2_s8_8_19_b_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.20",
+      "section": "08 Gestão dos processos",
+      "title": "8.20 Procedimento e/ou Processo para Avaliação Externa da Qualidade (EQA)",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_e",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_f",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_g"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_e_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_f_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_20.p2_s8_8_20_g_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.21",
+      "section": "08 Gestão dos processos",
+      "title": "8.21 Participação na Avaliação Externa da Qualidade (EQA)",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_21.p2_s8_8_21_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.22",
+      "section": "08 Gestão dos processos",
+      "title": "8.22 Procedimento e/ou Processo para Verificação e Validação de Métodos de Exames",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_22.p2_s8_8_22_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_22.p2_s8_8_22_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_22.p2_s8_8_22_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_22.p2_s8_8_22_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_22.p2_s8_8_22_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_22.p2_s8_8_22_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_22.p2_s8_8_22_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.23",
+      "section": "08 Gestão dos processos",
+      "title": "8.23 Registos de Verificação de Métodos de Exame",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_d",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_d_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_23.p2_s8_8_23_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.24",
+      "section": "08 Gestão dos processos",
+      "title": "8.24 Registros de Validação de Métodos de Exame",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_24.p2_s8_8_24_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_24.p2_s8_8_24_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_24.p2_s8_8_24_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_24.p2_s8_8_24_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_24.p2_s8_8_24_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_24.p2_s8_8_24_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_24.p2_s8_8_24_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.25",
+      "section": "08 Gestão dos processos",
+      "title": "8.25 Procedimento para incerteza de medição",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_25.p2_s8_8_25_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_25.p2_s8_8_25_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_25.p2_s8_8_25_b"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_25.p2_s8_8_25_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_25.p2_s8_8_25_b_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.26",
+      "section": "08 Gestão dos processos",
+      "title": "8.26 Incerteza de Medição de Testes Quantitativos",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_26.p2_s8_8_26_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "8.27",
+      "section": "08 Gestão dos processos",
+      "title": "8.27 Procedimento e/ou Processo para Intervalos de Referência Biológica ou Limites de Decisão Clínica",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_a",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_b",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_c",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_a_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_b_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_c_comentarios",
+          "tt_pp_02.tt_pp_02_s8.p2_s8_8_27.p2_s8_8_27_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.1",
+      "section": "09 Gestão da informação",
+      "title": "9.1 Procedimento e/ou Processo para Relatório e Divulgação de Resultados",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_a",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_b",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_c",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_d",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_e",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_f",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_g",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_h",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_i",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_j"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_e_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_f_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_g_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_h_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_i_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_1.p2_s9_9_1_j_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.2",
+      "section": "09 Gestão da informação",
+      "title": "9.2 Sistema de Relatório de Resultados de Teste",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_2"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_2_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.3",
+      "section": "09 Gestão da informação",
+      "title": "9.3 Pessoal de Teste",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.4",
+      "section": "09 Gestão da informação",
+      "title": "9.4 Requisitos para Relatórios",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_a",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_b",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_c",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_d",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_e",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_f",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_g",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_h",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_i",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_j",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_k",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_l",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_m",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_n",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_o",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_p",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_q",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_r"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_a_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_b_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_c_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_d_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_e_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_f_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_g_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_h_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_i_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_j_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_k_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_l_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_m_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_n_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_o_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_p_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_q_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_4.p2_s9_9_4_r_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.5",
+      "section": "09 Gestão da informação",
+      "title": "9.5 Rastreamento de Sistema/Método Analítico",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_5"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_5_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.6",
+      "section": "09 Gestão da informação",
+      "title": "9.6 Procedimento e/ou Processo para Sistema de Informação Laboratorial (LIS) (informatizado ou não informatizado)",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_a",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_b",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_c",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_d",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_e",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_f",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_g",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_h"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_d_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_e_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_f_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_g_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_6.p2_s9_9_6_h_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.7",
+      "section": "09 Gestão da informação",
+      "title": "9.7 Laboratório e armazenamento de dados arquivados",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_7"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_7_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.8",
+      "section": "09 Gestão da informação",
+      "title": "9.8 Autoridades e responsabilidades pela gestão da informação",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_a",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_b",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_c",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_a_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_b_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_c_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_8.p2_s9_9_8_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.9",
+      "section": "09 Gestão da informação",
+      "title": "9.9 Verificação do Sistema Eletrônico de Informações Laboratoriais",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_9.p2_s9_9_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_9.p2_s9_9_9_a",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_9.p2_s9_9_9_b",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_9.p2_s9_9_9_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_9.p2_s9_9_9_a_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_9.p2_s9_9_9_b_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_9.p2_s9_9_9_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "9.10",
+      "section": "09 Gestão da informação",
+      "title": "9.10 Registros de Manutenção do Sistema de Informações Laboratoriais",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_a",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_b",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_c",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_a_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_b_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_c_comentarios",
+          "tt_pp_02.tt_pp_02_s9.p2_s9_9_10.p2_s9_9_10_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "10.1",
+      "section": "10 Eventos não conformes",
+      "title": "10.1 Procedimento e/ou Processo para Tratamento de Trabalhos Não Conformes, Não Conformidades e Ações Corretivas",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_a",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_b",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_c",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_d",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_e",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_f",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_g",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_h",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_i",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_j"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_e_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_f_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_g_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_h_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_i_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_1.p2_s10_10_1_j_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "10.2",
+      "section": "10 Eventos não conformes",
+      "title": "10.2 Identificação e Gestão de Trabalhos Não Conformes e Não Conformidades",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s10.p2_s10_10_2.p2_s10_10_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_2.p2_s10_10_2_a",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_2.p2_s10_10_2_b",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_2.p2_s10_10_2_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_2.p2_s10_10_2_a_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_2.p2_s10_10_2_b_comentarios",
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_2.p2_s10_10_2_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "10.3",
+      "section": "10 Eventos não conformes",
+      "title": "10.3 Records of Identification and Management of Nonconforming Work and Nonconformities",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s10.p2_s10_10_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "10.4",
+      "section": "10 Eventos não conformes",
+      "title": "10.4 Resumption of Testing",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s10.p2_s10_10_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_4"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_4_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "10.5",
+      "section": "10 Eventos não conformes",
+      "title": "10.5 Corrective Action",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s10.p2_s10_10_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_5"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s10.p2_s10_10_5_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "11.1",
+      "section": "11 Melhoria contínua",
+      "title": "11.1 Procedimento e/ou Processo para Melhoria Contínua",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_a",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_b",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_c",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_d",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_e",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_a_comentarios",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_b_comentarios",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_c_comentarios",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_d_comentarios",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_e_comentarios",
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_1.p2_s11_11_1_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "11.2",
+      "section": "11 Melhoria contínua",
+      "title": "11.2 Implementação de Melhoria Contínua do Sistema de Gestão",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s11.p2_s11_11_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_2"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_2_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "11.3",
+      "section": "11 Melhoria contínua",
+      "title": "11.3 Comunicação de Atividades de Melhoria Contínua",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s11.p2_s11_11_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s11.p2_s11_11_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.1",
+      "section": "12 Instalações e segurança",
+      "title": "12.1 Procedimento e/ou Processo para Segurança Laboratorial",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_1.p2_s12_12_1_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_1.p2_s12_12_1"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_1.p2_s12_12_1_a_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.2",
+      "section": "12 Instalações e segurança",
+      "title": "12.2 Instalações e condições ambientais",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_e",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_e_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_2.p2_s12_12_2_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.3",
+      "section": "12 Instalações e segurança",
+      "title": "12.3 Adequação de Tamanho e Layout do Laboratório",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_3_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.4",
+      "section": "12 Instalações e segurança",
+      "title": "12.4 Áreas de Atendimento ao Paciente",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_4_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_4"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_4_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.5",
+      "section": "12 Instalações e segurança",
+      "title": "12.5 Limpeza",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_5.p2_s12_12_5_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_5.p2_s12_12_5_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_5.p2_s12_12_5_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_5.p2_s12_12_5_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_5.p2_s12_12_5_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_5.p2_s12_12_5_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_5.p2_s12_12_5_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.6",
+      "section": "12 Instalações e segurança",
+      "title": "12.6 Ambiente Físico de Trabalho",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_e",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_f",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_g",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_h",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_i",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_j",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_k"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_e_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_f_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_g_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_h_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_i_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_j_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_6.p2_s12_12_6_k_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.7",
+      "section": "12 Instalações e segurança",
+      "title": "12.7 Acesso ao Laboratório",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_7_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_7"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_7_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.8",
+      "section": "12 Instalações e segurança",
+      "title": "12.8 Áreas de Armazenamento de Laboratório",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_e",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_f",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_g"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_e_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_f_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_8.p2_s12_12_8_g_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.9",
+      "section": "12 Instalações e segurança",
+      "title": "12.9 Instalações laboratoriais",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_9.p2_s12_12_9_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_9.p2_s12_12_9_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_9.p2_s12_12_9_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_9.p2_s12_12_9_c"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_9.p2_s12_12_9_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_9.p2_s12_12_9_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_9.p2_s12_12_9_c_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.10",
+      "section": "12 Instalações e segurança",
+      "title": "12.10 Gabinete de segurança (gabinete de biossegurança, capela de laboratório, etc.)",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_10.p2_s12_12_10_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.11",
+      "section": "12 Instalações e segurança",
+      "title": "12.11 Programa de Segurança",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_e",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_f",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_g",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_h",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_i",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_j",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_k",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_l",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_m"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_e_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_f_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_g_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_h_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_i_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_j_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_k_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_l_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_11.p2_s12_12_11_m_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.12",
+      "section": "12 Instalações e segurança",
+      "title": "12.12 Manual de Segurança de Laboratório",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_e",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_f",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_g",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_h",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_i",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_j",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_k",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_l"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_e_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_f_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_g_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_h_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_i_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_j_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_k_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_12.p2_s12_12_12_l_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.13",
+      "section": "12 Instalações e segurança",
+      "title": "12.13 Eliminação de Resíduos",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_13.p2_s12_12_13_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.14",
+      "section": "12 Instalações e segurança",
+      "title": "12.14 Produtos Químicos Perigosos",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_e_group.p2_s12_12_14_e",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_e_group.p2_s12_12_14_e_1",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_e_group.p2_s12_12_14_e_2",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_e_group.p2_s12_12_14_e_3"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_e_group.p2_s12_12_14_e_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_e_group.p2_s12_12_14_e_1_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_e_group.p2_s12_12_14_e_2_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_14.p2_s12_12_14_e_group.p2_s12_12_14_e_3_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.15",
+      "section": "12 Instalações e segurança",
+      "title": "12.15 Segurança contra Incêndios",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_d"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_15.p2_s12_12_15_d_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.16",
+      "section": "12 Instalações e segurança",
+      "title": "12.16 Auditorias de Segurança",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_e"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_16.p2_s12_12_16_e_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.17",
+      "section": "12 Instalações e segurança",
+      "title": "12.17 Equipamentos de Segurança",
+      "maximum": 3,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_a",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_b",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_c",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_d",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_e",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_f"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_a_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_b_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_c_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_d_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_e_comentarios",
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_17.p2_s12_12_17_f_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.18",
+      "section": "12 Instalações e segurança",
+      "title": "12.18 Equipamento de proteção individual",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_18_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_18"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_18_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.19",
+      "section": "12 Instalações e segurança",
+      "title": "12.19 Vacinação do Pessoal",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_19_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_19"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_19_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.20",
+      "section": "12 Instalações e segurança",
+      "title": "12.20 Profilaxia Pós-Exposição",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_20_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_20"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_20_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.21",
+      "section": "12 Instalações e segurança",
+      "title": "12.21 Gestão de Incidentes Adversos ou Lesões",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_21_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_21"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_21_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.22",
+      "section": "12 Instalações e segurança",
+      "title": "12.22 Treinamento de Segurança",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_22_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_22"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_22_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.23",
+      "section": "12 Instalações e segurança",
+      "title": "12.23 Oficial de Segurança do Laboratório",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_23_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_23"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_23_comentarios"
+        ]
+      }
+    },
+    {
+      "code": "12.24",
+      "section": "12 Instalações e segurança",
+      "title": "12.24 Bio-segurança",
+      "maximum": 2,
+      "critical": false,
+      "odk": {
+        "score": "tt_pp_02.tt_pp_02_s12.p2_s12_12_24_calculate",
+        "na": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_24"
+        ],
+        "comment": [
+          "tt_pp_02.tt_pp_02_s12.p2_s12_12_24_comentarios"
+        ]
+      }
+    }
+  ],
+  "identity_field": "__id",
+  "revision_field": "__system.updatedAt",
+  "laboratory_code_field": "tt_pp_01.tf_numero_laboratorio",
+  "assessment_date_field": "tt_pp_01.data_group.df_data_auditoria_actual"
+}

@@ -1,0 +1,22 @@
+Referência de verificação — SLIPTA V3:2023, secção 4: Foco no cliente.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Confirmar a disponibilidade e a adequação dos serviços de consultoria e das orientações prestadas por profissionais qualificados; amostrar pedidos de esclarecimento (4.1–4.2).
+- Seguir uma reclamação ou sugestão desde a recepção até à resposta e à melhoria, verificando responsabilidades e retorno ao utilizador (4.3–4.4, 4.10).
+- Rever requisitos do paciente, contratos de serviço e POCT quando aplicáveis, informação disponibilizada aos utilizadores e comunicação de atrasos; confrontar os documentos com casos reais (4.5–4.9).
+
+Critérios do instrumento:
+4.1 — Procedimento e/ou Processo para Serviços de Consultoria | Evidência a verificar: Processo de consultoria que define serviços, limites, responsáveis e acesso dos utilizadores.
+4.2 — Aconselhamento e instrução por pessoal qualificado | Evidência a verificar: Exemplo de orientação técnica dada por pessoa qualificada e comunicada ao utilizador.
+4.3 — Procedimento e/ou Processo para Tratamento de Reclamações e Retorno | Evidência a verificar: Fluxo de recepção, investigação, resposta, prazo e avaliação da eficácia de reclamações.
+4.4 — Recebimento e Resolução de Reclamações | Evidência a verificar: Registo de reclamação desde recepção até resolução e resposta documentada ao reclamante.
+4.5 — Requisitos Relativos aos Pacientes | Evidência a verificar: Práticas de privacidade, dignidade e cuidado no atendimento e manuseamento de amostras.
+4.6 — Procedimento e/ou Processo para Contratos de Serviço (incluindo POCT) | Evidência a verificar: Modelos de acordos, revisão de capacidade, responsabilidades e regras de POCT se aplicável.
+4.7 — Implementação do Procedimento e/ou Processo para Contratos de Serviço (incluindo POCT) | Evidência a verificar: Contrato vigente e alterações comunicadas; comparar serviço prometido com execução real.
+4.8 — Informações Laboratoriais para Pacientes e Usuários | Evidência a verificar: Informação acessível sobre exames, amostras, prazos, limitações e contacto para utilizadores.
+4.9 — Política de Comunicação sobre Atrasos no Serviço | Evidência a verificar: Procedimento e registo de aviso a utentes/requisitantes quando há atraso relevante.
+4.10 — Uso do Retorno do Cliente | Evidência a verificar: Análise de retorno dos clientes e exemplo de decisão ou melhoria com seguimento.
+
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

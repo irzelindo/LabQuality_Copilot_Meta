@@ -56,6 +56,7 @@ if (-not (Test-Path -LiteralPath (Join-Path $Venv 'Scripts\python.exe'))) {
 $LocalPython = Join-Path $Venv 'Scripts\python.exe'
 $Backend = Join-Path $TargetPath 'backend'
 Invoke-Checked -Program $LocalPython -Arguments @('-m','pip','install','-r',(Join-Path $Backend 'requirements.lock'))
+& (Join-Path $TargetPath 'scripts\repair-sqlalchemy-windows.ps1')
 Push-Location -LiteralPath $Backend
 try {
     Invoke-Checked -Program $LocalPython -Arguments @('-m','app.bootstrap','--demo')

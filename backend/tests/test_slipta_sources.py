@@ -1,43 +1,145 @@
-import openpyxl
+from datetime import datetime
 import pytest
-from pypdf import PdfWriter
-from app.slipta_sources import catalog, prepare_pack
-from app.reference_packs import ReferencePack
+from sqlalchemy import func, select
+
+from app.ai import assessment_readiness, build_context
+from app.database import session_factory
+from app.demo import PILOT
+from app.import_slipta_sources import SOURCES, import_sources, source_bodies
+from app.models import Assessment, Document, Instrument, Organization, User
+from app.schemas import AssessmentIn
+from app.services import import_assessments
+from conftest import login
 
 
-def form(path, missing=False):
-    wb=openpyxl.Workbook(); s=wb.active; s.title='survey'
-    s.append(['type','name','label','calculation'])
-    s.append(['begin_group','tt_pp_02_s1','SECÇÃO 1',None])
-    s.append(['note','p2_s1_1_2_note','**1.2 Políticas**\nPontuação total: 3 Pontos',None])
-    s.append(['select_one answers','p2_s1_1_2_a','a. Política documentada',None])
-    s.append(['select_one answers','p2_s1_1_2_b','b. Revisão independente',None])
-    s.append(['calculate','p2_s1_1_2_calculate',None,'expression'])
-    s.append(['select_one answers','p2_s12_12_24','**12.24 Biossegurança**',None])
-    s.append(['calculate','p2_s12_12_24_calculate',None,'unknown' if missing else "if(selected(${p2_s12_12_24}, 'sim'), 2, 0)"])
-    settings=wb.create_sheet('settings'); settings.append(['form_title','form_id','version']); settings.append(['SLIPTA','slipta-test','v1'])
-    wb.save(path)
+def test_source_files_cover_exact_criteria_and_import_once_as_drafts(client):
+    bodies = source_bodies()
+    assert {code for body in bodies for code in body.criterion_codes} == {
+        criterion["code"] for criterion in PILOT["criteria"]
+    }
+    assert sum(len(body.criterion_codes) for body in bodies) == 151
+    assert len({body.code for body in bodies}) == len(SOURCES) == 12
+    assert all("https://aslm.org/" in body.content and body.laboratory_id is None
+               and "Evidência a verificar:" in body.content and "a pontuação e o título não demonstram a causa"
+               in body.content for body in bodies)
+
+    with session_factory()() as db:
+        admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
+        assert all(status == "new" for _, status in import_sources(db, admin, apply=False))
+        assert db.scalar(select(func.count()).select_from(Document).where(
+            Document.organization_id == admin.organization_id,
+            Document.code.in_([source.code for source in SOURCES]))) == 0
+        assert all(status == "new" for _, status in import_sources(db, admin, apply=True))
+        db.commit()
+
+    with session_factory()() as db:
+        admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
+        assert all(status == "unchanged" for _, status in import_sources(db, admin, apply=True))
+        rows = list(db.scalars(select(Document).where(Document.organization_id == admin.organization_id,
+                                                   Document.code.in_([source.code for source in SOURCES]))))
+        assert len(rows) == 12
+        assert all(row.status == "draft" and row.revision == 1 and row.scope_key == "organization"
+                   and row.author_id == admin.id for row in rows)
+
+    login(client)
+    doc = next(row for row in client.get("/api/v1/documents").json() if row["code"] == SOURCES[0].code)
+    doc = client.post(f"/api/v1/documents/{doc['id']}/transition",
+                      json={"status": "review", "version": doc["version"]}).json()
+    assert client.post(f"/api/v1/documents/{doc['id']}/transition",
+                       json={"status": "approved", "version": doc["version"]}).status_code == 403
+    login(client, "verificador@labquality.local")
+    doc = client.post(f"/api/v1/documents/{doc['id']}/transition",
+                      json={"status": "approved", "version": doc["version"]}).json()
+    assert client.post(f"/api/v1/documents/{doc['id']}/transition",
+                       json={"status": "published", "version": doc["version"]}).status_code == 200
 
 
-def test_grouped_aliases_and_calculated_weight(tmp_path):
-    x=tmp_path/'form.xlsx'; form(x); data=catalog(x)
-    assert len(data['items'])==2 and data['maximum']==5
-    assert len(data['items'][0]['answer_fields'])==2
-    assert 'Revisão independente' in data['items'][0]['content']
-    assert data['items'][1]['weight_origin']=='explicit_yes_calculation'
+def test_conflicting_revision_blocks_whole_batch_and_other_org_is_independent(client):
+    with session_factory()() as db:
+        admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
+        db.add(Document(organization_id=admin.organization_id, scope_key="organization",
+                        code=SOURCES[1].code, revision=1, title="Outro texto", content="A rever",
+                        criterion_codes=["3.6"], status="published", author_id=admin.id))
+        db.commit()
+        with pytest.raises(ValueError, match="revisão diferente"):
+            import_sources(db, admin, apply=True)
+        assert db.scalar(select(func.count()).select_from(Document).where(
+            Document.organization_id == admin.organization_id, Document.code == SOURCES[0].code)) == 0
+
+        other = Organization(name="Outra instituição")
+        db.add(other)
+        db.flush()
+        other_admin = User(organization_id=other.id, email="other@example.org", name="Outra admin",
+                           role="admin", active=True, laboratory_ids=[], password_hash="unused")
+        db.add(other_admin)
+        db.flush()
+        assert all(status == "new" for _, status in import_sources(db, other_admin, apply=True))
+        db.commit()
+        assert db.scalar(select(func.count()).select_from(Document).where(
+            Document.organization_id == other.id, Document.code.in_([source.code for source in SOURCES]))) == 12
 
 
-def test_unknown_weight_stops_without_guessing(tmp_path):
-    x=tmp_path/'form.xlsx'; form(x,True)
-    with pytest.raises(ValueError,match='Pontuação máxima'): catalog(x)
+def test_explicit_upgrade_creates_drafts_without_replacing_published_sources(client):
+    with session_factory()() as db:
+        admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
+        import_sources(db, admin, apply=True)
+        old = db.scalar(select(Document).where(Document.organization_id == admin.organization_id,
+                                               Document.code == SOURCES[0].code))
+        old.content = "Primeira versão a rever pelo auditor."
+        old.status = "published"
+        db.commit()
+        with pytest.raises(ValueError, match="revisão diferente"):
+            import_sources(db, admin, apply=True)
+        preview = dict(import_sources(db, admin, apply=False, new_revisions=True))
+        assert preview[SOURCES[0].code] == "revised"
+        assert sum(status == "unchanged" for status in preview.values()) == 11
+        assert dict(import_sources(db, admin, apply=True, new_revisions=True)) == preview
+        db.commit()
+        latest = list(db.scalars(select(Document).where(Document.organization_id == admin.organization_id,
+                                                      Document.code == SOURCES[0].code).order_by(Document.revision)))
+        assert [(doc.revision, doc.status) for doc in latest] == [(1, "published"), (2, "draft")]
+        assert all(status == "unchanged" for _, status in import_sources(db, admin, apply=True))
+        latest[-1].status = "withdrawn"
+        db.commit()
+        with pytest.raises(ValueError, match="retirada"):
+            import_sources(db, admin, apply=True, new_revisions=True)
 
 
-def test_reference_pack_provenance_and_draft_only_payload(tmp_path):
-    x=tmp_path/'form.xlsx'; form(x)
-    pdf=tmp_path/'source.pdf'; w=PdfWriter(); w.add_blank_page(width=500,height=700)
-    with pdf.open('wb') as f: w.write(f)
-    pack=ReferencePack.model_validate(prepare_pack(pdf,x))
-    assert len(pack.documents)==2 and len(pack.provenance['pdf_sha256'])==64
-    assert 'p2_s1_1_2_b' in pack.documents[0].criterion_codes
-    assert 'não é um procedimento local' in pack.documents[0].content
-    assert 'status' not in pack.documents[0].model_dump()
+def test_meta_can_select_applicable_sources_across_all_twelve_sections(client):
+    with session_factory()() as db:
+        admin = db.scalar(select(User).where(User.email == "admin@labquality.local"))
+        import_sources(db, admin, apply=True)
+        docs = list(db.scalars(select(Document).where(Document.organization_id == admin.organization_id,
+                                                  Document.code.in_([source.code for source in SOURCES]))))
+        for doc in docs:
+            doc.status = "published"  # Selection test; transition rules are exercised above.
+        db.add(Instrument(organization_id=admin.organization_id, code=PILOT["instrument_code"],
+                          version=PILOT["instrument_version"], name="Piloto SLIPTA",
+                          scoring_rule="sum_applicable_v1",
+                          criteria=[{key: c[key] for key in ("code", "section", "title", "maximum", "critical")}
+                                    for c in PILOT["criteria"]]))
+        db.flush()
+        codes = ["11.2" if source.code == "SLIPTA-SEC-11-2023" else source.criterion_codes[0]
+                 for source in SOURCES]
+        imported = import_assessments(db, admin, [AssessmentIn(
+            source="odk:1:slipta_v3_2023_mozambique", external_id="uuid:all-sections",
+            laboratory_code="SUL", instrument_code=PILOT["instrument_code"],
+            instrument_version=PILOT["instrument_version"], assessment_date="2026-09-19",
+            answers={code: {"value": 0, "comment": "Verificação por concluir."} for code in codes})])
+        db.flush()
+        assessment = db.get(Assessment, imported["assessment_ids"][0])
+        db.add(Document(organization_id=admin.organization_id, scope_key="organization",
+                        code="SLIPTA-REF-LEGADO", revision=1, title="Fonte antiga genérica",
+                        content="Verificar esta secção.", criterion_codes=["1.1", "2.1", "3.1"], status="published",
+                        author_id=admin.id, created_at=datetime(2020, 1, 1)))
+        db.flush()
+        context = build_context(db, admin, assessment)
+        readiness = assessment_readiness(db, admin, assessment)
+        assert readiness["findings_count"] == readiness["applicable_findings_count"] == 12
+        assert readiness["uncovered_criteria"] == [] and readiness["ready"]
+        assert all(finding["allowed_source_ids"] for finding in context["findings"])
+        first = next(f for f in context["findings"] if f["criterion_code"] == "1.1")
+        source_by_id = {source["id"]: source["code"] for source in context["sources"]}
+        assert {source_by_id[source_id] for source_id in first["allowed_source_ids"]} == {SOURCES[0].code}
+        assert "SLIPTA-SEC-12-2023" in {source["code"] for source in context["sources"]}
+        assert len(context["sources"]) <= 12

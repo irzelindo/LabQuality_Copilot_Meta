@@ -1,0 +1,22 @@
+Referência de verificação — SLIPTA V3:2023, secção 9: Gestão da informação.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Seguir um resultado desde o sistema/método analítico e a revisão por pessoa autorizada até ao relatório, comunicação e eventual correcção, preservando a identidade da amostra e do paciente (9.1–9.5).
+- Avaliar controlo de acesso, responsabilidades, conservação, cópias de segurança e recuperação dos dados no LIS electrónico ou em suporte não informatizado; demonstrar a recuperação com um caso (9.6–9.8).
+- Verificar testes após mudanças, registos de manutenção e resolução de falhas do sistema de informação, incluindo impacto nos resultados emitidos (9.9–9.10).
+
+Critérios do instrumento:
+9.1 — Procedimento e/ou Processo para Relatório e Divulgação de Resultados | Evidência a verificar: Procedimento para validar, autorizar, corrigir e divulgar resultados em papel/electrónico.
+9.2 — Sistema de Relatório de Resultados de Teste | Evidência a verificar: Relatório emitido confrontado com registo analítico, identificação e destinatário.
+9.3 — Pessoal de Teste | Evidência a verificar: Autorização e competência de quem valida e emite o resultado amostrado.
+9.4 — Requisitos para Relatórios | Evidência a verificar: Modelo de relatório e amostra real com unidades, método e informações exigidas.
+9.5 — Rastreamento de Sistema/Método Analítico | Evidência a verificar: Rastreio do resultado ao método, equipamento, lote e registos de controlo relevantes.
+9.6 — Procedimento e/ou Processo para Sistema de Informação Laboratorial (LIS) (informatizado ou não informatizado) | Evidência a verificar: Processo de gestão do LIS ou sistema manual, acesso, mudanças, cópias e recuperação.
+9.7 — Laboratório e armazenamento de dados arquivados | Evidência a verificar: Política de conservação e recuperação de registos arquivados com controlo de acesso.
+9.8 — Autoridades e responsabilidades pela gestão da informação | Evidência a verificar: Matriz de permissões, responsáveis por entrada, validação, manutenção e segurança.
+9.9 — Verificação do Sistema Eletrônico de Informações Laboratoriais | Evidência a verificar: Testes de aceitação após instalação ou mudança do LIS e decisão de entrada em uso.
+9.10 — Registros de Manutenção do Sistema de Informações Laboratoriais | Evidência a verificar: Registos de manutenção/falha, impacto em resultados e validação do retorno ao serviço.
+
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

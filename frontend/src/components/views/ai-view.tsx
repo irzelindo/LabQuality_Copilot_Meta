@@ -2,8 +2,10 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { ArrowRight, BookOpenCheck, Clock3, FileSearch, Plus, Sparkles } from "lucide-react";
 import { post } from "@/lib/api";
-import type { AIReadiness, AIRun, Assessment, Recommendation } from "@/lib/types";
+import { assessmentOrigin } from "@/lib/assessment-origin";
+import type { AIRun, Assessment, Recommendation } from "@/lib/types";
 import { Empty, ErrorBox, Field, Loading, Modal, OwnerOptions, Panel, PanelTitle, Status, Submit, can, editors, fmtDate, useApp, useData, useMutation, useT } from "../ui";
+import AIReadinessPanel from "./ai-readiness";
 
 export default function AIView() {
   const app = useApp(), t = useT(), mutation = useMutation(), runs = useData<AIRun[]>("/ai/runs"), assessments = useData<{ items: Assessment[] }>("/assessments");

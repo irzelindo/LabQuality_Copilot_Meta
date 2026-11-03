@@ -1,0 +1,17 @@
+Referência de verificação — SLIPTA V3:2023, secção 10: Eventos não conformes.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Seleccionar um trabalho não conforme e seguir a detecção, contenção, avaliação do impacto no paciente/resultados, comunicação e decisão sobre a actividade afectada (10.1–10.3).
+- Quando o ensaio foi interrompido, pedir autorização documentada para a retoma e evidência de que as condições necessárias foram restabelecidas (10.4).
+- Confirmar investigação de causa, acção correctiva, responsável, prazo e verificação posterior da eficácia; distinguir uma tarefa aberta de uma melhoria concluída (10.5).
+
+Critérios do instrumento:
+10.1 — Procedimento e/ou Processo para Tratamento de Trabalhos Não Conformes, Não Conformidades e Ações Corretivas | Evidência a verificar: Procedimento para detectar, conter, investigar e escalar trabalho não conforme.
+10.2 — Identificação e Gestão de Trabalhos Não Conformes e Não Conformidades | Evidência a verificar: Caso real com decisão sobre actividade e resultados potencialmente afectados.
+10.3 — Records of Identification and Management of Nonconforming Work and Nonconformities | Evidência a verificar: Registo de comunicação ao requisitante quando a não conformidade afecta o paciente.
+10.4 — Resumption of Testing | Evidência a verificar: Autorização documentada para retomar ensaios após interrupção e verificação de condições.
+10.5 — Corrective Action | Evidência a verificar: Investigação de causa, acção correctiva executada e verificação posterior da eficácia.
+
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

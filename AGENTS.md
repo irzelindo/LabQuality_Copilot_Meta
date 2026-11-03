@@ -10,7 +10,7 @@ Read README.md and docs/IMPLEMENTATION_STATUS.md before making changes.
 - Keep model, ODK, SMTP and database secrets out of frontend code, logs and version control.
 - Any schema change needs a new Alembic migration and relevant regression tests.
 - Run backend tests, frontend typecheck and build. Use browser tests for modified user flows.
-- Do not commit, push or deploy automatically. Do not create worktrees or pull requests without a user request.
+- The owner authorized committing and pushing validated feature branches to `irzelindo/LabQuality_Copilot_Meta` on 26/10/2026. Keep `main` stable and sync through feature branches; a pull request is not required. Do not deploy or create worktrees without a request.
 - Public presentation must identify implemented, unverified and planned capabilities accurately.
 
 Local commands (from the relevant directory):

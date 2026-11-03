@@ -1,0 +1,11 @@
+Referência externa: WHO/ASLM, SLIPTA Checklist V3:2023, critérios 12.6 (p. 42), 12.11 (p. 43), 12.14 (p. 44) e 12.23 (p. 46). Texto de apoio redigido para revisão humana; não comprova que o laboratório cumpre os requisitos. Fonte: https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+
+12.6 — Ambiente físico: observar organização e limpeza do espaço, ventilação e condições ambientais exigidas pelos ensaios e equipamentos. Conferir, quando aplicável, registos de manutenção de climatização e filtros, protecção de cabos, disponibilidade de energia de reserva e água adequada, localização segura dos equipamentos e sinalização. Um registo deve ser confrontado com as condições observadas.
+
+12.11 — Programa de segurança: verificar política, procedimentos de trabalho seguro, formação e supervisão, inspecções, gestão de materiais perigosos, primeiros socorros, investigação de incidentes, prevenção de incêndios e seguimento das acções identificadas. Confirmar responsabilidades e registos de execução do programa, não apenas a existência de um manual.
+
+12.14 — Produtos químicos perigosos: verificar inventário, identificação e rotulagem, segregação compatível, acesso às fichas de dados de segurança, uso e eliminação conforme o risco e medidas para derrames. Confirmar que o pessoal conhece os riscos e que os materiais observados correspondem aos registos e procedimentos locais.
+
+12.23 — Responsável pela segurança: verificar designação formal de uma pessoa com formação apropriada, atribuições de coordenação do programa e evidência de acompanhamento das questões de segurança. A nomeação sem actividade demonstrável deve ser investigada pelo auditor.
+
+Ao interpretar um achado ODK: uma suspeita de risco imediato requer confirmação e encaminhamento pelo responsável local. A Meta não deve declarar o espaço seguro nem recomendar manipulação de químicos específicos sem avaliação no local.

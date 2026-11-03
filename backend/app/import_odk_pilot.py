@@ -1,159 +1,159 @@
-"""Preview or import SLIPTA OData without modifying ODK or existing assessment history."""
+"""One-time, locally executed SLIPTA ODK import with count and lab safeguards.
+
+Run from backend/ so Settings reads the root .env and the local database URL.
+No credentials or raw answers are printed or persisted outside the assessment store.
+"""
 import argparse
-import json
+import asyncio
+import re
 from pathlib import Path
-from urllib.parse import quote, urljoin, urlparse
+
 import httpx
+from fastapi import HTTPException, UploadFile
 from sqlalchemy import select
+
+from .backup import create_backup
 from .config import settings
 from .database import session_factory
+from .demo import PILOT
+from .integrations import fetch_odk_with_metadata
 from .models import Instrument, Laboratory, User
-from .schemas import AssessmentIn
+from .schemas import ODKIn
 from .services import import_assessments
-from .slipta_sources import catalog
 
 
-def leaf(row, field):
-    """Resolve an exact field name through nested OData groups. Ambiguity is an error."""
-    matches = []
-    def visit(value):
-        if isinstance(value, dict):
-            for key, item in value.items():
-                if key == field or key.rsplit("/", 1)[-1] == field:
-                    matches.append(item)
-                elif isinstance(item, dict):
-                    visit(item)
-    visit(row)
-    if len(matches) > 1:
-        raise ValueError(f"Campo ambíguo na submissão: {field}")
-    return matches[0] if matches else None
+def request(project_id: int) -> ODKIn:
+    return ODKIn(project_id=project_id, form_id=PILOT["form_id"],
+        stable_id_field=PILOT["identity_field"], laboratory_code_field=PILOT["laboratory_code_field"],
+        assessment_date_field=PILOT["assessment_date_field"], instrument_code=PILOT["instrument_code"],
+        instrument_version=PILOT["instrument_version"])
 
 
-def to_assessment(row, instrument, project_id):
-    stable_id = row.get("__id") or leaf(row, "instanceID")
-    lab = leaf(row, "tf_numero_laboratorio")
-    day = leaf(row, "df_data_auditoria_actual")
-    if not stable_id or lab is None or not day:
-        raise ValueError("Falta instanceID/__id, número de laboratório ou data da auditoria.")
-    answers = {}
-    for item in instrument["items"]:
-        raw = [leaf(row, f) for f in item["answer_fields"]]
-        comments = [str(leaf(row, f + "_comentarios") or "") for f in item["answer_fields"]]
-        comments.append(str(leaf(row, item["field"] + "_comentarios") or ""))
-        value = leaf(row, item["score_field"])
-        explanation = ""
-        if any(not isinstance(v, str) or v not in {"sim", "parcial", "nao", "na"} for v in raw):
-            value = None
-            explanation = "Respostas de origem em falta ou desconhecidas. Conferir no ODK."
-        elif all(v == "na" for v in raw):
-            value = None
-            explanation = "Não aplicável na origem. Percentagem final suspensa para revisão do denominador."
-        elif value is None:
-            # Never evaluate arbitrary XLSForm expressions or guess a grouped score.
-            explanation = "Campo calculado ausente. Confirmar pontuação na origem."
-        elif isinstance(value, bool) or not str(value).replace(".0", "").isdigit():
-            raise ValueError(f"Pontuação inválida para {item['code']}.")
+def laboratory_names(records, metadata) -> dict[str, str]:
+    names: dict[str, set[str]] = {}
+    for record, detail in zip(records, metadata, strict=True):
+        names.setdefault(record.laboratory_code, set()).add(detail["laboratory_name"].strip())
+    if any(len(variants) != 1 or not next(iter(variants)) or not re.fullmatch(r"[A-Za-z0-9_-]{1,60}", code)
+           or len(next(iter(variants))) > 200 for code, variants in names.items()):
+        raise ValueError("Código ou nome de laboratório ODK ausente, inconsistente ou inválido. Reveja as submissões.")
+    return {code: next(iter(variants)) for code, variants in sorted(names.items())}
+
+
+def check_scope(db, actor, names: dict[str, str], xlsform_path: Path | None = None):
+    instrument = db.scalar(select(Instrument).where(Instrument.organization_id == actor.organization_id,
+        Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"]))
+    if instrument is None:
+        if xlsform_path is None:
+            raise ValueError("Instrumento SLIPTA-ODK-PILOT 2026.10 ausente nesta instituição. "
+                "Carregue o XLSForm validado em Instrumentos ou indique --xlsform com o caminho do ficheiro. "
+                "Nenhum dado foi gravado.")
+        if not xlsform_path.is_file():
+            raise ValueError("O XLSForm indicado não foi encontrado. Nenhum dado foi gravado.")
+        # Use the same SHA-256, form ID, sheet and size checks as the UI uploader.
+        from .api import import_pilot_xlsform
+        with xlsform_path.open("rb") as source:
+            uploaded = UploadFile(file=source, filename=xlsform_path.name)
+            asyncio.run(import_pilot_xlsform(file=uploaded, dry_run=False, db=db, user=actor))
+        instrument = db.scalar(select(Instrument).where(Instrument.organization_id == actor.organization_id,
+            Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"]))
+    expected = [{key: criterion[key] for key in ("code", "section", "title", "maximum", "critical")}
+                for criterion in PILOT["criteria"]]
+    if not instrument.published:
+        raise ValueError("O instrumento piloto existe mas não está publicado. Nenhum dado foi gravado.")
+    if instrument.scoring_rule != "sum_applicable_v1":
+        raise ValueError(f"Regra de pontuação do instrumento piloto incompatível: {instrument.scoring_rule}. "
+                         "A versão existente não foi alterada.")
+    if instrument.criteria != expected:
+        actual = instrument.criteria
+        if len(actual) != len(expected):
+            difference = f"{len(actual)} critérios existentes; esperados {len(expected)}"
         else:
-            numeric = float(value)
-            if not numeric.is_integer() or not 0 <= numeric <= item["maximum"]:
-                raise ValueError(f"Pontuação fora do intervalo para {item['code']}.")
-            value = int(numeric)
-        comment = "\n".join(dict.fromkeys(c for c in [*comments, explanation] if c))
-        if len(comment) > 5000:
-            raise ValueError(f"Comentários excedem 5000 caracteres em {item['code']}.")
-        answers[item["code"]] = {"value": value, "comment": comment}
-    return AssessmentIn(
-        source=f"odk:{project_id}:{instrument['form_id']}", external_id=str(stable_id),
-        source_revision=str(row.get("__system", {}).get("updatedAt") or row.get("__system", {}).get("submissionDate") or ""),
-        laboratory_code=str(lab).strip(), instrument_code="SLIPTA-V3-PILOT",
-        instrument_version=instrument["version"], assessment_date=str(day)[:10], answers=answers,
-        reason="Importação do XLSForm SLIPTA piloto. Pontuações calculadas recebidas da origem; sem classificação oficial.")
+            index = next(i for i, (left, right) in enumerate(zip(actual, expected, strict=True)) if left != right)
+            difference = f"diferença no critério {expected[index]['code']} (posição {index + 1})"
+        raise ValueError(f"O instrumento piloto existente tem pontuação/mapeamento diferente: {difference}. "
+                         "A versão existente não foi alterada.")
+    known = {lab.code: lab for lab in db.scalars(select(Laboratory).where(
+        Laboratory.organization_id == actor.organization_id))}
+    mismatches = [code for code, name in names.items() if code in known and known[code].name != name]
+    if mismatches:
+        raise ValueError("Os nomes dos laboratórios existentes não correspondem ao ODK para os códigos: "
+                         + ", ".join(mismatches) + ". Confirme a correspondência antes de importar.")
+    return {code: name for code, name in names.items() if code not in known}
 
 
-def fetch_rows(project, form_id):
+def run(project_id: int, expected: int, admin_email: str, apply: bool, register_missing: bool,
+        xlsform_path: Path | None = None):
+    if project_id < 1 or expected < 1:
+        raise ValueError("O projecto e a contagem esperada devem ser positivos.")
     cfg = settings()
-    base = cfg.odk_url.rstrip("/")
-    parsed = urlparse(base)
-    if parsed.scheme != "https" or not parsed.hostname or not cfg.odk_email or not cfg.odk_password:
-        raise ValueError("Configure LQ_ODK_URL (HTTPS), LQ_ODK_EMAIL e LQ_ODK_PASSWORD.")
-    path = parsed.path + f"/v1/projects/{project}/forms/{quote(form_id, safe='')}.svc/Submissions"
-    url = base + f"/v1/projects/{project}/forms/{quote(form_id, safe='')}.svc/Submissions?$top=100"
-    rows = []
-    with httpx.Client(auth=(cfg.odk_email, cfg.odk_password), timeout=45, follow_redirects=False) as client:
-        for _ in range(100):
-            response = client.get(url)
-            response.raise_for_status()
-            data = response.json()
-            rows.extend(data.get("value", []))
-            if len(rows) > 500:
-                raise ValueError("Máximo de 500 avaliações. Divida a importação em lotes.")
-            if not data.get("@odata.nextLink"):
-                return rows
-            url = urljoin(url, data["@odata.nextLink"])
-            target = urlparse(url)
-            if (target.scheme, target.netloc, target.path) != (parsed.scheme, parsed.netloc, path):
-                raise ValueError("Destino de paginação ODK não autorizado.")
-    raise ValueError("Limite de páginas ODK excedido.")
+    if not (cfg.odk_url and cfg.odk_email and cfg.odk_password):
+        raise ValueError("Defina LQ_ODK_URL, LQ_ODK_EMAIL e LQ_ODK_PASSWORD no .env da raiz.")
+    records, metadata = fetch_odk_with_metadata(request(project_id))
+    if len(records) != expected:
+        raise ValueError(f"Esperadas {expected} submissões; ODK devolveu {len(records)}. Nada foi gravado.")
+    if len({(record.source, record.external_id) for record in records}) != expected:
+        raise ValueError("O ODK devolveu identidades repetidas. Nada foi gravado.")
+    names = laboratory_names(records, metadata)
+    print(f"Formulário: {PILOT['form_id']} | projecto: {project_id} | submissões: {len(records)}")
+    with session_factory()() as db:
+        actor = db.scalar(select(User).where(User.email == admin_email.lower(), User.active.is_(True), User.role == "admin"))
+        if not actor:
+            raise ValueError("Administrador activo não encontrado. Indique --admin-email.")
+        missing = check_scope(db, actor, names, xlsform_path)
+        for code, name in names.items():
+            print(f"Laboratório {code}: {name} ({'por cadastrar' if code in missing else 'cadastrado'})")
+        if missing and not register_missing:
+            print("Para importar, cadastre os laboratórios em falta ou use --register-missing após conferir os nomes.")
+            if apply:
+                raise ValueError("Laboratórios em falta. Nada foi gravado.")
+        else:
+            transaction = db.begin_nested()
+            try:
+                for code, name in missing.items():
+                    db.add(Laboratory(organization_id=actor.organization_id, code=code, name=name, region=""))
+                db.flush()
+                result = import_assessments(db, actor, records)
+                print(f"Pré-validação: {result['created']} novas, {result['revised']} revisões, {result['unchanged']} inalteradas.")
+            finally:
+                transaction.rollback()
+        if not apply:
+            print("Só consulta: nenhuma avaliação ou laboratório foi gravado.")
+            return
+    backup = create_backup(Path("../backups"))
+    print(f"Cópia de segurança criada: {backup}")
+    with session_factory()() as db:
+        actor = db.scalar(select(User).where(User.email == admin_email.lower(), User.active.is_(True), User.role == "admin"))
+        if not actor:
+            raise ValueError("Administrador activo não encontrado após o backup.")
+        missing = check_scope(db, actor, names, xlsform_path)
+        if missing and not register_missing:
+            raise ValueError("Há laboratórios por cadastrar. Nada foi gravado.")
+        for code, name in missing.items():
+            db.add(Laboratory(organization_id=actor.organization_id, code=code, name=name, region=""))
+        db.flush()
+        result = import_assessments(db, actor, records)
+        db.commit()
+    print(f"Importação concluída: {result['created']} novas, {result['revised']} revisões, {result['unchanged']} inalteradas.")
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description="Pré-validar e importar submissões ODK do piloto SLIPTA.")
     parser.add_argument("--project-id", type=int, default=1)
-    parser.add_argument("--expected", type=int, required=True)
-    parser.add_argument("--xlsform", type=Path, required=True)
-    parser.add_argument("--input", type=Path, help="Exportação JSON OData local, em vez de acesso remoto.")
-    parser.add_argument("--admin-email")
-    parser.add_argument("--register-missing", action="store_true")
-    parser.add_argument("--apply", action="store_true", help="Gravar. Sem esta opção, faz apenas pré-validação.")
+    parser.add_argument("--expected", type=int, default=9)
+    parser.add_argument("--admin-email", default="admin@labquality.local")
+    parser.add_argument("--apply", action="store_true", help="Criar backup e aplicar o lote validado.")
+    parser.add_argument("--register-missing", action="store_true", help="Cadastrar os códigos/nome ODK ainda ausentes.")
+    parser.add_argument("--xlsform", type=Path, help="XLSForm original validado, necessário se o instrumento ainda não existir.")
     args = parser.parse_args()
-    instrument = catalog(args.xlsform)
-    raw = json.loads(args.input.read_text(encoding="utf-8")) if args.input else fetch_rows(args.project_id, instrument["form_id"])
-    rows = raw.get("value", []) if isinstance(raw, dict) else raw
-    if not 1 <= args.expected <= 500 or len(rows) != args.expected:
-        parser.error("A contagem recebida não coincide com --expected (1 a 500). Nenhum dado foi gravado.")
-    records = [to_assessment(row, instrument, args.project_id) for row in rows]
-    with session_factory()() as db:
-        query = select(User).where(User.active.is_(True), User.role == "admin")
-        if args.admin_email:
-            query = query.where(User.email == args.admin_email.lower())
-        admins = list(db.scalars(query))
-        if len(admins) != 1:
-            parser.error("Indique --admin-email de um administrador activo.")
-        user = admins[0]
-        existing = db.scalar(select(Instrument).where(Instrument.organization_id == user.organization_id,
-            Instrument.code == "SLIPTA-V3-PILOT", Instrument.version == instrument["version"]))
-        criteria = [{k: item[k] for k in ("code", "section", "title", "maximum")} | {"critical": False}
-                    for item in instrument["items"]]
-        if not existing:
-            if not args.register_missing:
-                parser.error("Falta instrumento. Use --register-missing após conferir o XLSForm.")
-            db.add(Instrument(organization_id=user.organization_id, code="SLIPTA-V3-PILOT",
-                version=instrument["version"], name="SLIPTA V3 / piloto técnico",
-                description="Pesos do XLSForm fornecido. Sem atribuição oficial de estrelas. N/A exige revisão.",
-                criteria=criteria))
-        elif existing.criteria != criteria:
-            parser.error("O instrumento existente tem critérios diferentes. Preserve a versão e registe uma nova.")
-        for code in sorted({r.laboratory_code for r in records}):
-            if not db.scalar(select(Laboratory).where(Laboratory.organization_id == user.organization_id, Laboratory.code == code)):
-                if not args.register_missing:
-                    parser.error("Falta laboratório. Registe-o ou use --register-missing após conferência.")
-                db.add(Laboratory(organization_id=user.organization_id, code=code, name="Laboratório " + code))
-        db.flush()
-        result = import_assessments(db, user, records)
-        result.pop("assessment_ids", None)
-        result.pop("import_run_id", None)
-        if args.apply:
-            db.commit()
-        else:
-            db.rollback()
-        print(json.dumps({"applied": args.apply, **result, "count": len(records),
-                          "notice": "Conferir identidades antes de gravar se já existem avaliações importadas por outra ferramenta."}, ensure_ascii=False))
+    try:
+        run(args.project_id, args.expected, args.admin_email, args.apply, args.register_missing, args.xlsform)
+    except httpx.HTTPStatusError as error:
+        parser.exit(2, f"Importação interrompida: ODK devolveu HTTP {error.response.status_code}. Nada foi gravado.\n")
+    except httpx.RequestError:
+        parser.exit(2, "Importação interrompida: não foi possível contactar o servidor ODK. Nada foi gravado.\n")
+    except (ValueError, HTTPException) as error:
+        parser.exit(2, f"Importação interrompida: {error}\n")
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except httpx.HTTPStatusError as error:
-        raise SystemExit(f"ODK respondeu HTTP {error.response.status_code}. Nenhuma alteração aplicada.")
-    except (ValueError, OSError) as error:
-        raise SystemExit(str(error))
+    main()

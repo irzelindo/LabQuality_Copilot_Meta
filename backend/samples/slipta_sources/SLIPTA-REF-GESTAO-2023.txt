@@ -1,0 +1,9 @@
+Referência externa: WHO/ASLM, SLIPTA Checklist V3:2023, critérios 1.5 (p. 7), 2.5 (p. 8) e 2.9 (p. 9). Texto de apoio redigido para revisão humana; não comprova que o laboratório cumpre os requisitos. Fonte: https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+
+1.5 — Documentação do sistema de gestão: verificar se os objectivos e as políticas do laboratório estão documentados, mantidos e ligados aos demais documentos do sistema. Procurar a versão aprovada, evidência de divulgação aos níveis relevantes e sinais de aplicação na rotina. Um manual isolado não demonstra, por si, que a equipa conhece ou aplica as políticas.
+
+2.5 — Revisão rotineira dos registos: verificar se existe frequência definida e registos de revisão por pessoas autorizadas. Amostrar, conforme a actividade local, registos de controlo interno, avaliação externa, amostras rejeitadas, manutenção e calibração, indicadores, reclamações e seguimento de acções anteriores. Procurar decisões, responsáveis e acompanhamento de problemas recorrentes, sem concluir conformidade apenas pela existência de uma acta.
+
+2.9 — Saídas da revisão pela direcção: verificar actas e decisões sobre eficácia do sistema de gestão, melhorias dos serviços, necessidades de recursos e alterações necessárias. Confirmar responsáveis, prazos e comunicação aos intervenientes. Comparar a decisão registada com o seguimento posterior.
+
+Ao interpretar um achado ODK: identificar a resposta e o comentário do auditor, pedir a evidência específica do laboratório, distinguir ausência de prova de incumprimento confirmado e propor verificação humana antes de recomendar uma acção.

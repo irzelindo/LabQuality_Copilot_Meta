@@ -1,0 +1,23 @@
+Referência de verificação — SLIPTA V3:2023, secção 2: Organização e liderança.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Verificar código de conduta, responsabilidades e delegações efectivas, incluindo substituição em ausências; confirmar por entrevista e registos, não apenas pelo organograma (2.1–2.3).
+- Examinar planeamento de recursos e amostra de registos técnicos e de qualidade revistos por pessoas autorizadas, com seguimento de problemas detectados (2.4–2.5).
+- Seguir uma revisão pela direcção desde os dados de entrada e a reunião até às decisões, comunicação, responsáveis, prazos e conclusão documentada das acções (2.6–2.11).
+
+Critérios do instrumento:
+2.1 — Procedimento e/ou Processo para Código de Conduta Organizacional | Evidência a verificar: Procedimento de ética, imparcialidade, confidencialidade e conduta conhecido pela equipa.
+2.2 — Implementação do Código de Conduta Organizacional | Evidência a verificar: Registos e entrevistas que demonstrem aplicação do código de conduta e tratamento de violações.
+2.3 — Delegação de Tarefas | Evidência a verificar: Delegações por escrito, âmbito das funções e substituição quando o titular está ausente.
+2.4 — Projeções Orçamentárias | Evidência a verificar: Previsão orçamental associada a necessidades de pessoal, equipamento, reagentes e serviços.
+2.5 — Revisão de rotina de registos técnicos e de qualidade | Evidência a verificar: Amostra datada de registos técnicos e de qualidade revistos, decisões e problemas seguidos.
+2.6 — Procedimento e/ou Processo para Revisão na Gestão | Evidência a verificar: Procedimento que define frequência, entradas, participantes e saídas da revisão pela direcção.
+2.7 — Conduta de Revisões Gerenciais | Evidência a verificar: Actas de revisões efectivamente realizadas, com participantes, dados examinados e decisões.
+2.8 — Revisão na Gestão | Evidência a verificar: Evidência de análise de auditorias, indicadores, reclamações, riscos e acções anteriores.
+2.9 — Resultados da Revisão na Gestão | Evidência a verificar: Decisões sobre eficácia, recursos e melhorias, com responsáveis e prazos documentados.
+2.10 — Comunicação das conclusões da revisão | Evidência a verificar: Registo de comunicação das conclusões aos profissionais e partes interessadas pertinentes.
+2.11 — Conclusão e Monitoramento dos Itens de Ação da Revisão | Evidência a verificar: Plano e evidência de conclusão/verificação dos itens decididos na revisão anterior.
+
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

@@ -1,5 +1,6 @@
 import csv
 import io
+import httpx
 from datetime import date
 from fastapi import HTTPException, Response
 from sqlalchemy import func, select
@@ -9,12 +10,21 @@ from .models import *
 from .schemas import *
 from .security import *
 from .services import *
+from .connection_checks import check_connection
+from .demo import PILOT
+from typing import Literal
 
 
 def documents_for(db, user):
     ids = laboratory_ids(db, user)
     return select(Document).where(Document.organization_id == user.organization_id,
             (Document.laboratory_id.is_(None)) | (Document.laboratory_id.in_(ids)))
+
+
+@router.post("/system/connections/{service}/check")
+def check_service_connection(service: Literal["model", "odk", "email"], user: User = ACTOR):
+    role(user, {"admin"})
+    return check_connection(service)
 
 
 @router.get("/documents")
@@ -151,8 +161,9 @@ def audit_events(offset: int = 0, db: Session = DB, user: User = ACTOR):
 
 @router.get("/dashboard")
 def dashboard(laboratory_id: str | None = None, start: date | None = None, end: date | None = None,
-              db: Session = DB, user: User = ACTOR):
-    assessments = current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None)
+              origin: Literal["all", "odk", "demo"] = "all", db: Session = DB, user: User = ACTOR):
+    assessments = filter_assessments_by_origin(db,
+        current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None), origin)
     labs = [laboratory_id] if laboratory_id else laboratory_ids(db, user)
     by_lab = {}
     by_date = {}
@@ -182,6 +193,9 @@ def dashboard(laboratory_id: str | None = None, start: date | None = None, end: 
         difference = round(percentage - same_instrument[0]["percentage"], 2) if percentage is not None and same_instrument else None
         lab_rows.append({"id": lab.id, "code": lab.code, "name": lab.name, "region": lab.region, "assessments": len(items),
                          "latest_date": latest[0].assessment_date if latest else None, "percentage": percentage,
+                         "maximum": latest[1]["maximum"] if latest else None,
+                         "full_maximum": latest[1]["full_maximum"] if latest else None,
+                         "not_applicable": latest[1]["not_applicable"] if latest else 0,
                          "change": difference, "trend": "improving" if difference is not None and difference > 0 else
                          "declining" if difference is not None and difference < 0 else "stable" if difference == 0 else "unavailable",
                          "coverage": latest[1]["coverage"] if latest else 0,
@@ -190,6 +204,9 @@ def dashboard(laboratory_id: str | None = None, start: date | None = None, end: 
     latest_instruments = {db.get(Assessment, assessment_id).instrument_id for assessment_id in latest_ids}
     comparable = len(latest_instruments) <= 1
     actions = list(db.scalars(select(Action).where(Action.organization_id == user.organization_id, Action.laboratory_id.in_(labs))))
+    if origin != "all":
+        actions = [action for action in actions if filter_assessments_by_origin(db,
+            [db.get(Assessment, db.get(Finding, action.finding_id).assessment_id)], origin)]
     open_actions = [a for a in actions if a.status != "closed"]
     closed = [a for a in actions if a.status == "closed" and a.closed_at]
     critical = list(db.scalars(select(Finding).where(Finding.assessment_id.in_(latest_ids), Finding.critical.is_(True))))
@@ -225,7 +242,7 @@ def dashboard(laboratory_id: str | None = None, start: date | None = None, end: 
               "critical_count": len(unresolved), "laboratories": lab_rows, "series": series,
               "sections": sorted([{"section": k, "percentage": round(sum(v) / len(v), 2) if v else None, "coverage": len(v)} for k, v in section_stats.items()],
                                   key=lambda x: x["percentage"] if x["percentage"] is not None else -1),
-              "filters": {"laboratory_id": laboratory_id, "start": start, "end": end}, "as_of": today()}
+              "filters": {"laboratory_id": laboratory_id, "start": start, "end": end, "origin": origin}, "as_of": today()}
     if user.role != "partner":
         result["critical_findings"] = [record(f) for f in unresolved]
         result["prolonged_actions"] = [{"id": a.id, "title": a.title, "days_open": (now() - a.created_at).days, "due_date": a.due_date} for a in sorted(open_actions, key=lambda a: a.created_at)[:10]]
@@ -234,13 +251,14 @@ def dashboard(laboratory_id: str | None = None, start: date | None = None, end: 
 
 @router.get("/reports/assessments.csv")
 def export_assessments(laboratory_id: str | None = None, start: date | None = None, end: date | None = None,
-                       db: Session = DB, user: User = ACTOR):
+                       origin: Literal["all", "odk", "demo"] = "all", db: Session = DB, user: User = ACTOR):
     require_details(user)
-    rows = current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None)
+    rows = filter_assessments_by_origin(db,
+        current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None), origin)
     out = io.StringIO()
     out.write("\ufeff")
     writer = csv.writer(out)
-    writer.writerow(["assessment_id", "laboratory", "date", "instrument", "instrument_version", "revision", "status", "obtained", "maximum", "percentage", "coverage"])
+    writer.writerow(["assessment_id", "laboratory", "date", "instrument", "instrument_version", "revision", "status", "obtained", "maximum", "percentage", "coverage", "full_maximum", "not_applicable"])
     def safe(value):
         s = str(value)
         return "'" + s if s.startswith(("=", "+", "-", "@", "\t", "\r")) else s
@@ -248,7 +266,7 @@ def export_assessments(laboratory_id: str | None = None, start: date | None = No
         instrument = db.get(Instrument, a.instrument_id)
         s = score(a, instrument)
         writer.writerow([safe(v) for v in [a.id, db.get(Laboratory, a.laboratory_id).name, a.assessment_date, instrument.code,
-                         instrument.version, a.revision, a.status, s["obtained"], s["maximum"], s["percentage"] if s["percentage"] is not None else "", s["coverage"]]])
+                         instrument.version, a.revision, a.status, s["obtained"], s["maximum"], s["percentage"] if s["percentage"] is not None else "", s["coverage"], s["full_maximum"], s["not_applicable"]]])
     if rows:
         audit(db, user, "report.exported", rows[0], {"rows": len(rows), "laboratory_id": laboratory_id, "start": str(start), "end": str(end)})
     return Response(out.getvalue(), media_type="text/csv; charset=utf-8", headers={"Content-Disposition": 'attachment; filename="labquality-assessments.csv"'})
@@ -258,9 +276,9 @@ def export_assessments(laboratory_id: str | None = None, start: date | None = No
 def system_status(db: Session = DB, user: User = ACTOR):
     from .config import settings
     cfg = settings()
-    return {"version": "0.2.0", "ai_configured": bool(cfg.model_api_key), "model": cfg.model_id,
-            "email_configured": bool(cfg.smtp_host), "odk_configured": bool(cfg.odk_url and cfg.odk_email and cfg.odk_password),
-            "storage": "private_local_volume", "demo_instrument": "DEMO-QMS 1.0 — fictitious, not SLIPTA scoring"}
+    return {"version": "0.1.0", "ai_configured": bool(cfg.model_api_key), "model": cfg.model_id,
+            "email_configured": cfg.smtp_configured, "odk_configured": bool(cfg.odk_url and cfg.odk_email and cfg.odk_password),
+            "storage": "private_local_volume", "demo_instrument": "SLIPTA-ODK-PILOT 2026.10 — 151 items, provisional 365-point rubric; no official stars"}
 
 
 @router.post("/integrations/odk/sync", status_code=202)
@@ -275,6 +293,100 @@ def queue_odk(body: ODKIn, db: Session = DB, user: User = ACTOR):
     db.flush()
     audit(db, user, "odk.sync_requested", job)
     return {"job_id": job.id, "status": job.status}
+
+
+@router.post("/integrations/odk/preview")
+def preview_odk(body: ODKIn, db: Session = DB, user: User = ACTOR):
+    """Read ODK submissions without writing them or exposing the full questionnaire."""
+    from .config import settings
+    from .integrations import fetch_odk_with_metadata
+    role(user, {"admin"})
+    cfg = settings()
+    if not (cfg.odk_url and cfg.odk_email and cfg.odk_password):
+        raise HTTPException(503, "Configure a ligação ODK no servidor.")
+    if body.instrument_code != PILOT["instrument_code"] or body.instrument_version != PILOT["instrument_version"]:
+        raise HTTPException(422, "A pré-validação está disponível para o instrumento piloto SLIPTA.")
+    instrument = db.scalar(select(Instrument).where(Instrument.organization_id == user.organization_id,
+        Instrument.code == body.instrument_code, Instrument.version == body.instrument_version,
+        Instrument.published.is_(True)))
+    if not instrument:
+        raise HTTPException(422, "Publique primeiro o instrumento piloto SLIPTA desta versão.")
+    try:
+        records, metadata = fetch_odk_with_metadata(body)
+    except httpx.HTTPStatusError as error:
+        code = error.response.status_code
+        if code in (401, 403):
+            raise HTTPException(422, "O ODK recusou o acesso ao projecto ou formulário. Confirme as permissões da conta.") from error
+        if code == 404:
+            raise HTTPException(422, "O projecto ou formulário ODK não foi encontrado. Confirme o ID do projecto e o XML ID.") from error
+        raise HTTPException(502, "O servidor ODK não conseguiu responder à pré-validação.") from error
+    except httpx.RequestError as error:
+        raise HTTPException(502, "Não foi possível estabelecer ligação ao ODK. Confirme a rede e o endereço.") from error
+    except ValueError as error:
+        raise HTTPException(422, str(error)) from error
+    known = {lab.code for lab in db.scalars(select(Laboratory).where(Laboratory.organization_id == user.organization_id))}
+    groups: dict[str, dict] = {}
+    for row, details in zip(records, metadata):
+        group = groups.setdefault(row.laboratory_code, {"code": row.laboratory_code,
+            "names": set(), "submissions": 0, "first_date": row.assessment_date.isoformat(),
+            "last_date": row.assessment_date.isoformat(), "missing_scores": 0, "registered": row.laboratory_code in known})
+        if details["laboratory_name"]:
+            group["names"].add(details["laboratory_name"])
+        group["submissions"] += 1
+        group["first_date"] = min(group["first_date"], row.assessment_date.isoformat())
+        group["last_date"] = max(group["last_date"], row.assessment_date.isoformat())
+        group["missing_scores"] += sum(answer.value is None and not answer.not_applicable for answer in row.answers.values())
+    laboratories = [{**group, "names": sorted(group["names"])[:5]} for group in sorted(groups.values(), key=lambda item: item["code"])]
+    mapped = any(answer.value is not None or answer.not_applicable
+        for row in records for answer in row.answers.values())
+    ready = bool(records) and mapped and all(group["registered"] for group in laboratories)
+    changes = None
+    if ready:
+        transaction = db.begin_nested()
+        try:
+            result = import_assessments(db, user, records)
+            changes = {key: result[key] for key in ("created", "revised", "unchanged")}
+        finally:
+            transaction.rollback()
+    return {"submissions": len(records), "laboratories": laboratories,
+        "ready": ready, "changes": changes,
+        "source": f"odk:{body.project_id}:{body.form_id}",
+        "message": ("Nenhum dos 151 campos de pontuação/NA foi reconhecido. Confirme a versão do formulário ODK."
+            if records and not mapped else "Pré-validação sem importação. Confirme os laboratórios e as respostas antes da análise Meta.")}
+
+
+@router.get("/integrations/odk/subscription")
+def odk_subscription(db: Session = DB, user: User = ACTOR):
+    role(user, {"admin"})
+    row = db.scalar(select(ODKSyncConfig).where(ODKSyncConfig.organization_id == user.organization_id))
+    return {"project_id": row.project_id, "form_id": row.form_id, "active": row.active,
+            "next_run_at": row.next_run_at} if row else None
+
+
+@router.post("/integrations/odk/subscription")
+def configure_odk_subscription(body: ODKSubscriptionIn, db: Session = DB, user: User = ACTOR):
+    from .config import settings
+    role(user, {"admin"})
+    cfg = settings()
+    if not (cfg.odk_url and cfg.odk_email and cfg.odk_password):
+        raise HTTPException(503, "Configure a ligação ODK no servidor.")
+    instrument = db.scalar(select(Instrument).where(Instrument.organization_id == user.organization_id,
+        Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"],
+        Instrument.published.is_(True)))
+    if not instrument:
+        raise HTTPException(422, "Publique primeiro o instrumento piloto SLIPTA desta versão.")
+    row = db.scalar(select(ODKSyncConfig).where(ODKSyncConfig.organization_id == user.organization_id))
+    if not row:
+        row = ODKSyncConfig(organization_id=user.organization_id, project_id=body.project_id,
+            form_id=PILOT["form_id"], actor_id=user.id, active=body.active, next_run_at=now())
+        db.add(row)
+    else:
+        row.project_id, row.actor_id, row.active = body.project_id, user.id, body.active
+        row.next_run_at = now()
+    db.flush()
+    audit(db, user, "odk.subscription_updated", row, {"project_id": body.project_id, "active": body.active})
+    return {"project_id": row.project_id, "form_id": row.form_id, "active": row.active,
+            "next_run_at": row.next_run_at}
 
 
 @router.get("/jobs")

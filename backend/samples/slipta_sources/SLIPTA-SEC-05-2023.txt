@@ -1,0 +1,28 @@
+Referência de verificação — SLIPTA V3:2023, secção 5: Gestão de equipamentos.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Seleccionar equipamentos críticos e conferir disponibilidade, identificação, utilização prevista, instruções do fabricante e autorização/competência dos utilizadores (5.1–5.4, 5.15–5.16).
+- Rastrear aceitação, verificação/validação, registos, calibração e rastreabilidade metrológica segundo o tipo de equipamento; comparar datas, resultados e decisões de libertação para uso (5.5–5.7, 5.10–5.11).
+- Examinar manutenção preventiva e correctiva, avarias, retirada de serviço e comunicação de incidentes; confirmar tratamento dos resultados que possam ter sido afectados (5.8–5.9, 5.12–5.14).
+
+Critérios do instrumento:
+5.1 — Procedimento e/ou Processo para Gestão de Equipamentos Laboratoriais | Evidência a verificar: Processo que cobre selecção, instalação, aceitação, uso, manutenção e retirada de equipamentos.
+5.2 — Acesso ao Equipamento Necessário | Evidência a verificar: Inventário e observação que confirmem equipamento adequado disponível para o escopo.
+5.3 — Adesão ao Protocolo de Equipamento Adequado | Evidência a verificar: Procedimento de uso e observação de uma operação, com parâmetros e limites aplicáveis.
+5.4 — Treinamento, Competência e Autorização dos Usuários dos Equipamentos | Evidência a verificar: Formação, competência e autorização nominal dos operadores do equipamento amostrado.
+5.5 — Procedimento e/ou Processo para Validação e Verificação de Equipamentos | Evidência a verificar: Plano de verificação/validação antes de uso e após mudança, com critérios de aceitação.
+5.6 — Verificação e Documentação de Equipamentos | Evidência a verificar: Resultados e decisão documentada de aceitação/verificação de um equipamento específico.
+5.7 — Registros de Equipamentos | Evidência a verificar: Ficha histórica com identificação, localização, fabricante, intervenções e estado actual.
+5.8 — Equipamento defeituoso aguardando reparo | Evidência a verificar: Etiqueta de fora de serviço, segregação e avaliação do impacto nos resultados anteriores.
+5.9 — Equipamento obsoleto | Evidência a verificar: Identificação e retirada segura de equipamento obsoleto com histórico e destino registados.
+5.10 — Procedimento e/ou Processo para Calibração de Equipamentos | Evidência a verificar: Plano de calibração, periodicidade, critérios e acção perante falha ou vencimento.
+5.11 — Calibração de Equipamentos e Rastreabilidade Metrológica | Evidência a verificar: Certificados, rastreabilidade e avaliação do impacto de calibração fora dos limites.
+5.12 — Manutenção Preventiva de Equipamentos | Evidência a verificar: Calendário e ordens concluídas de manutenção preventiva, sem depender só do plano.
+5.13 — Manutenção de Equipamentos | Evidência a verificar: Registo de reparações, ensaios de retorno ao serviço e decisão sobre resultados afectados.
+5.14 — Relatório de Incidentes Adversos de Equipamentos. | Evidência a verificar: Registo e encaminhamento de incidente adverso de equipamento conforme procedimento local.
+5.15 — Manual do Operador do Fabricante | Evidência a verificar: Manual do fabricante acessível e versão compatível com o modelo instalado.
+5.16 — Uso de Equipamentos | Evidência a verificar: Observação de operação segura e conforme, incluindo condições e limitações do fabricante.
+
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

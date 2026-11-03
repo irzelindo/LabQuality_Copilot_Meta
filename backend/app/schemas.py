@@ -18,6 +18,20 @@ class LabIn(Schema):
     region: str = Field(default="", max_length=100)
 
 
+class LabEdit(Schema):
+    name: str = Field(min_length=2, max_length=200)
+    region: str = Field(default="", max_length=100)
+
+
+class LabStatus(Schema):
+    active: bool
+    reason: str = Field(min_length=5, max_length=500)
+
+
+class DeleteReason(Schema):
+    reason: str = Field(min_length=5, max_length=500)
+
+
 class UserIn(Schema):
     name: str = Field(min_length=2, max_length=200)
     email: str = Field(min_length=5, max_length=254)
@@ -37,6 +51,15 @@ class AccessUpdate(Schema):
     role: Literal["admin", "coordinator", "manager", "quality", "assessor", "verifier", "partner"]
     active: bool
     laboratory_ids: list[str] = Field(max_length=1000)
+    name: str | None = Field(default=None, min_length=2, max_length=200)
+    email: str | None = Field(default=None, min_length=5, max_length=254)
+
+    @field_validator("email")
+    @classmethod
+    def email_shape(cls, value):
+        if value is not None and ("@" not in value or "." not in value.split("@")[-1]):
+            raise ValueError("Email inválido")
+        return value.lower() if value is not None else None
 
 
 class PasswordChange(Schema):
@@ -57,6 +80,7 @@ class InstrumentIn(Schema):
     version: str = Field(min_length=1, max_length=40)
     name: str = Field(min_length=2, max_length=200)
     description: str = Field(default="", max_length=5000)
+    scoring_rule: Literal["sum_fixed_v1", "sum_applicable_v1"] = "sum_fixed_v1"
     criteria: list[Criterion] = Field(min_length=1, max_length=1000)
 
     @model_validator(mode="after")
@@ -69,6 +93,13 @@ class InstrumentIn(Schema):
 class Answer(Schema):
     value: int | None = Field(default=None, ge=0, le=100)
     comment: str = Field(default="", max_length=5000)
+    not_applicable: bool = False
+
+    @model_validator(mode="after")
+    def justify_not_applicable(self):
+        if self.not_applicable and (self.value is not None or not self.comment):
+            raise ValueError("NA exige pontuação vazia e uma justificação no comentário.")
+        return self
 
 
 class AssessmentIn(Schema):
@@ -183,4 +214,11 @@ class ODKIn(Schema):
     revision_field: str = Field(default="__system.updatedAt", max_length=200)
     instrument_code: str
     instrument_version: str
-    criterion_fields: dict[str, str] = Field(min_length=1, max_length=1000)
+    criterion_fields: dict[str, str] = Field(default_factory=dict, max_length=1000)
+    na_fields: dict[str, list[str]] = Field(default_factory=dict, max_length=1000)
+    comment_fields: dict[str, list[str]] = Field(default_factory=dict, max_length=1000)
+
+
+class ODKSubscriptionIn(Schema):
+    project_id: int = Field(ge=1)
+    active: bool = True

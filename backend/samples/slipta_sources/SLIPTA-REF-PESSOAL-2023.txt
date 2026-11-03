@@ -1,0 +1,9 @@
+Referência externa: WHO/ASLM, SLIPTA Checklist V3:2023, critérios 3.6 (p. 12), 3.10 (p. 13) e 11.1 (p. 40). Texto de apoio redigido para revisão humana; não comprova que o laboratório cumpre os requisitos. Fonte: https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+
+3.6 — Processo de autorização: verificar quais actividades exigem autorização, os critérios para concedê-la, o registo nominal das pessoas autorizadas e a designação de substitutos quando aplicável. Confrontar a matriz de autorização ou descrição de funções com tarefas efectivamente executadas, inclusive validação e emissão de resultados. A autorização documentada deve corresponder à função e ao âmbito real.
+
+3.10 — Avaliação de competência: verificar um processo que defina métodos, critérios e periodicidade por actividade. Amostrar observações directas, revisão de registos de trabalho, resultados de controlo interno e avaliação externa, devolutiva à pessoa avaliada, reciclagem quando necessária e reavaliação. Confirmar que os registos identificam a actividade, o avaliador, o resultado e o seguimento.
+
+11.1 — Melhoria contínua: verificar como o laboratório identifica oportunidades nas fases pré-analítica, analítica e pós-analítica, documenta planos, comunica metas, executa acções e mede a sua eficácia. Procurar um exemplo rastreável do problema até à verificação do resultado. Um plano sem execução ou sem verificação da eficácia ainda não demonstra melhoria concluída.
+
+Ao interpretar um achado ODK: não deduzir competência, autorização ou eficácia da pontuação isolada; comparar o comentário do auditor com os registos e solicitar confirmação humana de qualquer proposta.

@@ -1,0 +1,24 @@
+Referência de verificação — SLIPTA V3:2023, secção 7: Fornecedores e inventário.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Seguir uma compra desde a especificação e aprovação até ao fornecedor, recepção, avaliação de desempenho e resolução de problemas com bens ou serviços externos (7.1–7.5, 7.7).
+- Conferir saldos, lotes, validade e condições de armazenamento de reagentes/consumíveis numa amostra física comparada com o sistema de inventário (7.2–7.3, 7.6, 7.8–7.11).
+- Investigar rupturas, desperdício e produtos vencidos: verificar segregação, eliminação e registos, sem deduzir conformidade apenas do saldo digital (7.10–7.12).
+
+Critérios do instrumento:
+7.1 — Procedimento e/ou Processo para Produtos e Serviços Fornecidos Externamente | Evidência a verificar: Critérios de selecção, aprovação e reavaliação de fornecedores e serviços externos.
+7.2 — Procedimento e/ou Processo para Compra e Controle de Estoque de Equipamentos, Reagentes e Consumíveis | Evidência a verificar: Processo de requisição, recepção, aceitação, armazenamento e controlo de consumíveis.
+7.3 — Sistema de inventário e orçamentação | Evidência a verificar: Previsões de consumo e orçamento confrontadas com rupturas e encomendas reais.
+7.4 — Especificações de Compra | Evidência a verificar: Especificações aprovadas de compras comparadas com o item recebido e o uso previsto.
+7.5 — Avaliação de Desempenho do Fornecedor de Serviços | Evidência a verificar: Avaliação periódica do fornecedor e seguimento de entregas ou serviços não conformes.
+7.6 — Controle de Inventário | Evidência a verificar: Reconciliação de saldos e lotes entre registo e contagem física numa amostra.
+7.7 — Análise das Solicitações de Fornecimento | Evidência a verificar: Requisições analisadas e aprovadas conforme necessidade e capacidade do laboratório.
+7.8 — Sistema de Inventário Laboratorial | Evidência a verificar: Movimentos de entrada/saída, lote, localização e responsável rastreáveis no inventário.
+7.9 — Área de Armazenamento | Evidência a verificar: Condições e registos de temperatura/segregação da área de armazenamento, se exigidos.
+7.10 — Organização de Stock e Minimização de Desperdícios | Evidência a verificar: Organização física, rotação por validade e análise de perdas e desperdícios.
+7.11 — Validade do Produto | Evidência a verificar: Verificação de validade por lote antes da utilização e tratamento de produtos vencidos.
+7.12 — Descarte de Produtos Vencidos | Evidência a verificar: Segregação, eliminação e registo do descarte de produtos expirados conforme regras locais.
+
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

@@ -6,6 +6,7 @@ import time
 import zipfile
 from datetime import date, datetime
 from pathlib import Path
+from typing import Literal
 from zoneinfo import ZoneInfo
 from fastapi import APIRouter, Depends, File, Header, HTTPException, Query, Request, Response, UploadFile
 from fastapi.responses import FileResponse, StreamingResponse
@@ -89,18 +90,71 @@ def change_password(body: PasswordChange, response: Response, db: Session = DB, 
 
 
 @router.get("/laboratories")
-def labs(db: Session = DB, user: User = ACTOR):
-    return [record(l) for l in db.scalars(select(Laboratory).where(Laboratory.id.in_(laboratory_ids(db, user))).order_by(Laboratory.name))]
+def labs(include_inactive: bool = False, db: Session = DB, user: User = ACTOR):
+    if include_inactive:
+        role(user, {"admin"})
+        query = select(Laboratory).where(Laboratory.organization_id == user.organization_id)
+    else:
+        query = select(Laboratory).where(Laboratory.id.in_(laboratory_ids(db, user)))
+    return [record(l) for l in db.scalars(query.order_by(Laboratory.name))]
 
 
 @router.post("/laboratories", status_code=201)
 def add_lab(body: LabIn, db: Session = DB, user: User = ACTOR):
     role(user, {"admin"})
+    if db.scalar(select(Laboratory.id).where(Laboratory.organization_id == user.organization_id,
+                                              Laboratory.code == body.code)):
+        raise HTTPException(409, "Já existe um laboratório com este código, mesmo que esteja desactivado.")
     lab = Laboratory(organization_id=user.organization_id, **body.model_dump())
     db.add(lab)
     db.flush()
     audit(db, user, "laboratory.created", lab)
     return record(lab)
+
+
+def managed_lab(db: Session, user: User, lab_id: str) -> Laboratory:
+    role(user, {"admin"})
+    lab = db.get(Laboratory, lab_id)
+    if not lab or lab.organization_id != user.organization_id:
+        raise HTTPException(404, "Laboratório não encontrado.")
+    return lab
+
+
+@router.patch("/laboratories/{lab_id}")
+def edit_lab(lab_id: str, body: LabEdit, db: Session = DB, user: User = ACTOR):
+    lab = managed_lab(db, user, lab_id)
+    before = {"name": lab.name, "region": lab.region}
+    lab.name, lab.region = body.name, body.region
+    audit(db, user, "laboratory.updated", lab, {"before": before, "after": body.model_dump()})
+    return record(lab)
+
+
+@router.post("/laboratories/{lab_id}/status")
+def lab_status(lab_id: str, body: LabStatus, db: Session = DB, user: User = ACTOR):
+    lab = managed_lab(db, user, lab_id)
+    if lab.active == body.active:
+        raise HTTPException(409, "O laboratório já está neste estado.")
+    lab.active = body.active
+    audit(db, user, "laboratory.reactivated" if body.active else "laboratory.deactivated", lab,
+          {"reason": body.reason})
+    return record(lab)
+
+
+@router.delete("/laboratories/{lab_id}")
+def delete_lab(lab_id: str, body: DeleteReason, db: Session = DB, user: User = ACTOR):
+    lab = managed_lab(db, user, lab_id)
+    if any(lab.id in member.laboratory_ids for member in db.scalars(select(User).where(
+            User.organization_id == user.organization_id))):
+        raise HTTPException(409, "Retire primeiro as atribuições da equipa a este laboratório.")
+    # Reject every persisted reference, including audit history with a laboratory FK.
+    for table in Base.metadata.tables.values():
+        for column in table.columns:
+            if any(fk.column.table is Laboratory.__table__ for fk in column.foreign_keys):
+                if db.execute(select(column).where(column == lab.id).limit(1)).first():
+                    raise HTTPException(409, "Este laboratório tem registos associados. Desactive-o para preservar o histórico.")
+    db.delete(lab)
+    audit(db, user, "laboratory.deleted", lab, {"code": lab.code, "name": lab.name, "reason": body.reason})
+    return {"ok": True}
 
 
 @router.get("/users")
@@ -114,6 +168,8 @@ def users(db: Session = DB, user: User = ACTOR):
 @router.post("/users", status_code=201)
 def add_user(body: UserIn, db: Session = DB, user: User = ACTOR):
     role(user, {"admin"})
+    if db.scalar(select(User.id).where(User.email == body.email)):
+        raise HTTPException(409, "Este email já pertence a outra conta.")
     for lab_id in body.laboratory_ids:
         require_lab(db, user, lab_id)
     values = body.model_dump(exclude={"password"})
@@ -131,12 +187,18 @@ def update_access(user_id: str, body: AccessUpdate, db: Session = DB, user: User
     if row.id == user.id and (not body.active or body.role != "admin"):
         raise HTTPException(409, "Não pode remover o seu próprio acesso de administrador.")
     for lab_id in body.laboratory_ids:
+        if lab_id in row.laboratory_ids and db.scalar(select(Laboratory.id).where(
+                Laboratory.id == lab_id, Laboratory.organization_id == user.organization_id)):
+            continue  # An existing inactive assignment may be kept, but grants no access.
         require_lab(db, user, lab_id)
-    for k, v in body.model_dump().items():
+    values = body.model_dump(exclude_none=True)
+    if "email" in values and values["email"] != row.email and db.scalar(select(User.id).where(User.email == values["email"])):
+        raise HTTPException(409, "Este email já pertence a outra conta.")
+    for k, v in values.items():
         setattr(row, k, v)
     if not body.active:
         db.execute(delete(LoginSession).where(LoginSession.user_id == row.id))
-    audit(db, user, "user.access_changed", row, body.model_dump())
+    audit(db, user, "user.access_changed", row, values)
     return user_out(row)
 
 
@@ -154,6 +216,59 @@ def add_instrument(body: InstrumentIn, db: Session = DB, user: User = ACTOR):
     db.flush()
     audit(db, user, "instrument.published", row, {"scoring_rule": row.scoring_rule})
     return record(row)
+
+
+@router.post("/instruments/xlsform")
+async def import_pilot_xlsform(file: UploadFile = File(...), dry_run: bool = True,
+                               db: Session = DB, user: User = ACTOR):
+    """Recognize the audited SLIPTA XLSForm, without guessing scoring for other forms."""
+    from .demo import PILOT
+    role(user, {"admin", "manager"})
+    if not (file.filename or "").lower().endswith(".xlsx"):
+        raise HTTPException(415, "Seleccione o XLSForm em formato XLSX.")
+    content = await file.read(2_000_001)
+    if len(content) > 2_000_000:
+        raise HTTPException(413, "Limite do XLSForm: 2 MB.")
+    try:
+        with zipfile.ZipFile(io.BytesIO(content)) as archive:
+            if sum(item.file_size for item in archive.infolist()) > 30_000_000:
+                raise HTTPException(413, "O XLSForm expandido excede o limite.")
+        import openpyxl
+        workbook = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+        try:
+            if not {"survey", "choices", "settings"}.issubset(workbook.sheetnames):
+                raise HTTPException(422, "Faltam as folhas survey, choices ou settings do XLSForm.")
+            rows = workbook["settings"].iter_rows(min_row=1, max_row=2, values_only=True)
+            headers, values = next(rows), next(rows)
+            metadata = dict(zip(headers, values))
+        finally:
+            workbook.close()
+    except (zipfile.BadZipFile, ValueError, KeyError, StopIteration, OSError) as error:
+        raise HTTPException(422, "Não foi possível ler o XLSForm.") from error
+    form_id = str(metadata.get("form_id") or "")
+    if form_id != PILOT["form_id"] or hashlib.sha256(content).hexdigest() != PILOT["source_sha256"]:
+        raise HTTPException(422, "Este XLSForm ou esta revisão ainda não tem mapeamento de pontuação validado. Não foi criado um instrumento.")
+    criteria = [{key: item[key] for key in ("code", "section", "title", "maximum", "critical")}
+                for item in PILOT["criteria"]]
+    existing = db.scalar(select(Instrument).where(Instrument.organization_id == user.organization_id,
+        Instrument.code == PILOT["instrument_code"], Instrument.version == PILOT["instrument_version"]))
+    if existing and (existing.criteria != criteria or existing.scoring_rule != "sum_applicable_v1"):
+        raise HTTPException(409, "A versão do instrumento já existe com critérios diferentes. Reveja-a antes de importar.")
+    summary = {"form_id": form_id, "form_version": str(metadata.get("version") or ""),
+        "instrument_code": PILOT["instrument_code"], "instrument_version": PILOT["instrument_version"],
+        "criteria_count": len(criteria), "maximum": sum(c["maximum"] for c in criteria),
+        "existing": bool(existing), "dry_run": dry_run}
+    if dry_run or existing:
+        return {**summary, "instrument_id": existing.id if existing else None,
+                "message": "O instrumento já existe nesta instituição." if existing else "XLSForm reconhecido; pode criar o instrumento piloto."}
+    row = Instrument(organization_id=user.organization_id, code=PILOT["instrument_code"],
+        version=PILOT["instrument_version"], name="Checklist SLIPTA ODK · piloto",
+        description="151 itens/365 pontos do XLSForm validado. Pontuação provisória; sem classificação oficial SLIPTA.",
+        scoring_rule="sum_applicable_v1", criteria=criteria)
+    db.add(row)
+    db.flush()
+    audit(db, user, "instrument.published", row, {"source": "xlsform", "form_id": form_id})
+    return {**summary, "instrument_id": row.id, "message": "Instrumento piloto criado a partir do XLSForm validado."}
 
 
 def assessment_out(db: Session, row: Assessment, detail=False):
@@ -176,9 +291,11 @@ def assessment_out(db: Session, row: Assessment, detail=False):
 
 @router.get("/assessments")
 def assessments(laboratory_id: str | None = None, start: date | None = None, end: date | None = None,
-                offset: int = Query(0, ge=0), limit: int = Query(100, ge=1, le=500), db: Session = DB, user: User = ACTOR):
+                origin: Literal["all", "odk", "demo"] = "all", offset: int = Query(0, ge=0),
+                limit: int = Query(100, ge=1, le=500), db: Session = DB, user: User = ACTOR):
     require_details(user)
-    rows = current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None)
+    rows = filter_assessments_by_origin(db,
+        current_assessments(db, user, laboratory_id, start.isoformat() if start else None, end.isoformat() if end else None), origin)
     return {"items": [assessment_out(db, a) for a in rows[offset:offset + limit]], "total": len(rows)}
 
 
@@ -217,8 +334,10 @@ def parse_table(rows: list[dict]) -> list[AssessmentIn]:
         if code in groups[key]["answers"]:
             raise HTTPException(422, f"Critério repetido, linha {i + 2}.")
         raw = row["value"]
-        value = None if raw is None or str(raw).strip() == "" else raw
-        groups[key]["answers"][code] = {"value": value, "comment": str(row.get("comment") or "")}
+        is_na = isinstance(raw, str) and raw.strip().upper() in {"NA", "N/A"}
+        value = None if is_na or raw is None or str(raw).strip() == "" else raw
+        groups[key]["answers"][code] = {"value": value, "comment": str(row.get("comment") or ""),
+                                         "not_applicable": is_na}
     try:
         return [AssessmentIn.model_validate(v) for v in groups.values()]
     except ValueError as error:
@@ -247,6 +366,8 @@ async def import_file(file: UploadFile = File(...), dry_run: bool = False, db: S
                     raise HTTPException(413, "O Excel expandido excede o limite.")
             workbook = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
             try:
+                if {"survey", "choices", "settings"}.issubset(workbook.sheetnames):
+                    raise HTTPException(422, "Este ficheiro é um XLSForm, não uma tabela de avaliações. Abra Instrumentos → Carregar XLSForm; para ler respostas use a ligação ODK Central.")
                 sheet = workbook.active
                 iterator = sheet.iter_rows(values_only=True)
                 headers = [str(v) for v in next(iterator)]

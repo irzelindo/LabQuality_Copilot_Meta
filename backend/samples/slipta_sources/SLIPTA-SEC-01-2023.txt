@@ -1,0 +1,22 @@
+Referência de verificação — SLIPTA V3:2023, secção 1: Documentos e registos.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Confrontar o âmbito jurídico e as políticas/objectivos documentados com a organização que presta os serviços; verificar aprovação, revisão, divulgação e acesso às versões em vigor (1.1–1.6).
+- Amostrar o registo mestre, controlo de alterações, retirada de versões obsoletas e capacidade de recuperar documentos e registos usados no trabalho diário (1.3–1.8).
+- Pedir o prazo de conservação definido e demonstrar a recuperação atempada de um resultado arquivado, preservando confidencialidade e rastreabilidade (1.9–1.10).
+
+Critérios do instrumento:
+1.1 — Pessoa Jurídica | Evidência a verificar: Documento que identifica a entidade legal e a autoridade para prestar serviços laboratoriais.
+1.2 — Políticas e Objetivos do Sistema de Gestão Laboratorial | Evidência a verificar: Política e objectivos aprovados, responsáveis, metas e resultados medidos, divulgação e revisão documentada.
+1.3 — Sistema de Controle de Documentos e Informações | Evidência a verificar: Lista mestra e circuito de aprovação, distribuição, alterações e acesso aos documentos em uso.
+1.4 — Documento e Registos | Evidência a verificar: Registo de versões vigentes, distribuição e identificação de cada documento controlado.
+1.5 — Documentação do Sistema de Gestão Laboratorial | Evidência a verificar: Estrutura do sistema de gestão, políticas/objectivos ligados aos procedimentos e evidência de aplicação.
+1.6 — Acessibilidade dos documentos de qualidade | Evidência a verificar: Demonstração de que a equipa encontra a versão vigente no posto de trabalho quando precisa.
+1.7 — Registo de Controle de Documentos | Evidência a verificar: Amostra do registo mestre com código, revisão, data de aprovação e localização das cópias.
+1.8 — Documentos de Qualidade Descontinuados | Evidência a verificar: Exemplo de versão obsoleta retirada do uso, identificada e conservada pelo período definido.
+1.9 — Arquivos de dados | Evidência a verificar: Política de retenção e amostra de registos técnicos, de qualidade e resultados recuperáveis.
+1.10 — Acessibilidade dos resultados arquivados do paciente | Evidência a verificar: Recuperação de um resultado arquivado com identificação correcta, prazo e controlo de acesso.
+
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.

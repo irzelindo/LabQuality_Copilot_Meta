@@ -234,3 +234,13 @@ class Job(Scoped, Base):
     started_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     finished_at: Mapped[datetime | None] = mapped_column(DateTime, nullable=True)
     error: Mapped[str] = mapped_column(Text, default="")
+
+
+class ODKSyncConfig(Scoped, Base):
+    __tablename__ = "odk_sync_configs"
+    __table_args__ = (UniqueConstraint("organization_id"),)
+    project_id: Mapped[int] = mapped_column(Integer)
+    form_id: Mapped[str] = mapped_column(String(200))
+    actor_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    active: Mapped[bool] = mapped_column(Boolean, default=True)
+    next_run_at: Mapped[datetime] = mapped_column(DateTime, default=now)

@@ -1,0 +1,21 @@
+Referência de verificação — SLIPTA V3:2023, secção 6: Avaliação.
+Fonte externa: WHO/ASLM, Stepwise Laboratory Quality Improvement Process Towards Accreditation, Checklist V3:2023. https://aslm.org/wp-content/uploads/2019/12/SLIPTA-Checklist-V3-22-Dec-2023.pdf
+Este roteiro original orienta a revisão humana; não é um procedimento do laboratório nem demonstra conformidade. Os códigos/títulos abaixo correspondem ao instrumento ODK piloto SLIPTA-ODK-PILOT 2026.10; a pontuação desse instrumento é provisória.
+
+Roteiro de verificação:
+- Amostrar o programa e o relatório de auditoria interna, independência do auditor quando aplicável, achados, acções, prazos e evidência do seguimento (6.1–6.3).
+- Verificar identificação e revisão de riscos e oportunidades, decisões de tratamento, responsáveis e avaliação da eficácia com casos rastreáveis (6.4–6.7).
+- Seleccionar indicadores de qualidade e conferir definição, dados de origem, tendência, limites/metas e decisões documentadas decorrentes da monitorização (6.8–6.9).
+
+Critérios do instrumento:
+6.1 — Procedimento e/ou Processo para Auditorias Internas | Evidência a verificar: Programa de auditoria interna com escopo, periodicidade, critérios e designação de auditores.
+6.2 — Auditorias Internas | Evidência a verificar: Relatórios, amostras e evidências recolhidas numa auditoria, com independência adequada.
+6.3 — Recomendações de Auditoria e Plano de Ação e Acompanhamento | Evidência a verificar: Plano de achados com causa, responsável, prazo e verificação de execução/eficácia.
+6.4 — Procedimento e/ou Processo para Gestão de Riscos | Evidência a verificar: Processo para identificar, avaliar, tratar e rever riscos e oportunidades laboratoriais.
+6.5 — Gestão de Riscos | Evidência a verificar: Registo de riscos com probabilidade/impacto ou método local e decisões proporcionais.
+6.6 — Avaliação de Gestão de Riscos | Evidência a verificar: Revisão periódica de riscos e avaliação de eficácia das medidas implementadas.
+6.7 — Plano de Ação de Riscos e Oportunidades | Evidência a verificar: Plano de acção para risco/oportunidade com responsável, prazo e evidência de resultado.
+6.8 — Indicadores de Qualidade | Evidência a verificar: Definição de indicadores, fonte, cálculo, frequência, metas e responsável por análise.
+6.9 — Acompanhamento dos Indicadores de Qualidade | Evidência a verificar: Série de resultados dos indicadores, análise de desvios e acções documentadas.
+
+Interpretação de um achado ODK: a pontuação e o título não demonstram a causa nem a conformidade. Para P/N/NA, confrontar comentário e subitens com documento/registo identificado, período, amostra e observação local; pedir a evidência em falta e justificar NA. Se os dados forem de teste ou insuficientes, formular apenas uma pergunta de verificação e assinalar incerteza. A decisão e a prioridade pertencem ao auditor. Não atribuir estrelas, declarar acreditação nem alterar a pontuação com base neste texto.
