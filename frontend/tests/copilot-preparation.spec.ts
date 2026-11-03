@@ -1,5 +1,22 @@
 import { test, expect } from '@playwright/test';
 
+test('assessment history separates ODK and simulation records and keeps audit moments distinct', async ({ page }) => {
+  await page.goto('/');
+  await page.getByLabel('Email', {exact:true}).fill('admin@labquality.local');
+  await page.getByLabel('Palavra-passe', {exact:true}).fill('Local-e2e-test-only-2026!');
+  await page.getByRole('button', {name:'Entrar no espaço de trabalho'}).click();
+  await page.getByRole('link', {name:'Avaliações',exact:true}).click();
+  await expect(page.locator('tbody tr')).toHaveCount(9);
+  await page.getByRole('button', {name:'Submissões ODK',exact:true}).click();
+  await expect(page.getByText('Sem avaliações para apresentar')).toBeVisible();
+  await page.getByRole('button', {name:'Simulações',exact:true}).click();
+  await expect(page.locator('tbody tr')).toHaveCount(9);
+  await page.getByLabel('Pesquisar avaliações').fill('Laboratório Sul');
+  await expect(page.locator('tbody tr')).toHaveCount(3);
+  await expect(page.locator('.assessment-date')).toHaveCount(3);
+  await expect(page.locator('.assessment-result').first()).toContainText('pontos');
+});
+
 test('guide, readiness, missing Meta key and selected-assessment navigation', async ({ page }, testInfo) => {
   const errors: string[] = [];
   page.on('pageerror', e => errors.push(e.message));

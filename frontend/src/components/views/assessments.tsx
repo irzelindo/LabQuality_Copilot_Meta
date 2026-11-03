@@ -14,8 +14,53 @@ export default function AssessmentsView() {
   const params = query({ laboratory_id: app.lab, start: app.start, end: app.end, origin });
   const state = useData<{ items: Assessment[]; total: number }>("/assessments" + params);
   const rows = state.data?.items.filter(a => `${a.laboratory_name} ${a.external_id} ${a.instrument_name}`.toLowerCase().includes(search.toLowerCase())) || [];
+  const complete = rows.filter(a => a.score.complete && a.score.percentage != null).length;
+  const pending = rows.length - complete;
+  const sources = [
+    { value: "all", label: t("Todas", "All") },
+    { value: "odk", label: t("Submissões ODK", "ODK submissions") },
+    { value: "demo", label: t("Simulações", "Simulations") },
+  ] as const;
   function done() { setCreating(false); setEditing(null); setFinding(null); state.reload(); app.refresh(); }
-  return <><Panel><PanelTitle title={t("Histórico de avaliações", "Assessment history")} subtitle={t("A versão actual de cada avaliação, com resultados calculados pela aplicação", "Current revision of every assessment, with application-calculated results")} action={<div className="button-row"><a href={"/api/v1/reports/assessments.csv" + params} className="button secondary small"><Download size={15} />CSV</a>{can(app.user, editors) && <button className="button primary small" disabled={!app.instruments.length || !app.labs.length} onClick={() => setCreating(true)}><Plus size={16} />{t("Nova avaliação", "New assessment")}</button>}</div>} /><div className="lab-filter"><label htmlFor="assessment-origin">{t("ORIGEM DOS DADOS", "DATA SOURCE")}</label><select id="assessment-origin" value={origin} onChange={e => setOrigin(e.target.value as "all" | "odk" | "demo")}><option value="all">{t("Todas as avaliações", "All assessments")}</option><option value="odk">{t("Submissões reais ODK", "Real ODK submissions")}</option><option value="demo">{t("Simulações", "Simulations")}</option></select></div><div className="table-toolbar"><label className="search-box"><Search size={17} /><input aria-label={t("Pesquisar avaliações", "Search assessments")} placeholder={t("Pesquisar laboratório, referência ou instrumento…", "Search laboratory, reference or instrument…")} value={search} onChange={e => setSearch(e.target.value)} /></label><span className="muted">{state.data?.total || 0} {t("avaliações", "assessments")}</span></div><ErrorBox message={state.error} retry={state.reload} />{state.loading ? <Loading /> : rows.length ? <div className="table-scroll"><table><thead><tr><th>{t("LABORATÓRIO / REFERÊNCIA", "LABORATORY / REFERENCE")}</th><th>{t("DATA", "DATE")}</th><th>{t("INSTRUMENTO", "INSTRUMENT")}</th><th>{t("RESULTADO", "RESULT")}</th><th>{t("ESTADO", "STATUS")}</th><th>{t("ACÇÕES", "ACTIONS")}</th></tr></thead><tbody>{rows.map(a => <tr key={a.id}><td><b>{a.laboratory_name}</b><small>{a.external_id} · {assessmentOrigin(a.source, app.locale)} · {t("Revisão", "Revision")} {a.revision}</small></td><td>{fmtDate(a.assessment_date)}</td><td>{a.instrument_code}<small>v{a.instrument_version}</small></td><td><b className="score-text">{fmtPercent(a.score.percentage)}</b><small>{a.score.obtained}/{a.score.maximum} {t(a.score.complete ? "pontos" : "pontos provisórios", a.score.complete ? "points" : "provisional points")} · {a.score.coverage}% {t("preenchido", "coverage")}</small></td><td><Status value={a.status} /></td><td><button className="button secondary small" onClick={() => setSelected(a.id)}><Eye size={15} />{t("Abrir", "Open")}</button></td></tr>)}</tbody></table></div> : <Empty title={t("Sem avaliações para apresentar", "No assessments to display")} text={t("Ajuste os filtros ou importe os dados dos seus laboratórios.", "Adjust filters or import your laboratory data.")} />}</Panel>{selected && <AssessmentDetail id={selected} close={() => setSelected(null)} changed={state.reload} edit={a => { setSelected(null); setEditing(a); }} createAction={f => { setSelected(null); setFinding(f); }} selectRevision={setSelected} />}{(creating || editing) && <AssessmentForm previous={editing} close={() => { setCreating(false); setEditing(null); }} done={done} />}{finding && <ActionForm finding={finding} close={() => setFinding(null)} done={done} />}</>;
+  return <>
+    <Panel>
+      <PanelTitle
+        title={t("Histórico de avaliações", "Assessment history")}
+        subtitle={t("Cada data representa um momento distinto de auditoria. É apresentada a revisão actual de cada avaliação.", "Each date represents a separate audit. The current revision of each assessment is shown.")}
+        action={<div className="button-row"><a href={"/api/v1/reports/assessments.csv" + params} className="button secondary small"><Download size={15} />CSV</a>{can(app.user, editors) && <button className="button primary small" disabled={!app.instruments.length || !app.labs.length} onClick={() => setCreating(true)}><Plus size={16} />{t("Nova avaliação", "New assessment")}</button>}</div>}
+      />
+      <div className="assessment-filters">
+        <div className="assessment-source-filter">
+          <span className="assessment-filter-label">{t("Origem dos dados", "Data source")}</span>
+          <div className="assessment-source-options" aria-label={t("Origem dos dados", "Data source")}>
+            {sources.map(source => <button key={source.value} type="button" aria-pressed={origin === source.value} onClick={() => setOrigin(source.value)}>{source.label}</button>)}
+          </div>
+        </div>
+        <label className="search-box assessment-search"><Search size={17} /><input aria-label={t("Pesquisar avaliações", "Search assessments")} placeholder={t("Laboratório, referência ou instrumento…", "Laboratory, reference or instrument…")} value={search} onChange={e => setSearch(e.target.value)} /></label>
+      </div>
+      {!state.loading && !state.error && state.data && <div className="assessment-overview" aria-label={t("Resumo das avaliações apresentadas", "Summary of displayed assessments")}>
+        <div><span>{t("À vista", "On screen")}</span><strong>{rows.length}</strong><small>{search ? t(`de ${state.data.total} no filtro`, `of ${state.data.total} in this filter`) : t("avaliações", "assessments")}</small></div>
+        <div><span>{t("Concluídas", "Complete")}</span><strong>{complete}</strong><small>{t("com percentagem final", "with a final percentage")}</small></div>
+        <div><span>{t("Por concluir", "Incomplete")}</span><strong>{pending}</strong><small>{t("pontos ainda provisórios", "points still provisional")}</small></div>
+      </div>}
+      <p className="assessment-context">{origin === "odk" ? t("Submissões importadas do ODK; as datas são avaliações distintas, mesmo para o mesmo laboratório.", "Imported ODK submissions; different dates are separate assessments, even for the same laboratory.") : origin === "demo" ? t("Dados simulados para demonstração; não representam auditorias reais.", "Simulated demonstration data; these are not real audits.") : t("Resultados incompletos mostram pontos provisórios e cobertura, sem percentagem final.", "Incomplete results show provisional points and coverage, without a final percentage.")}</p>
+      <ErrorBox message={state.error} retry={state.reload} />
+      {state.loading ? <Loading /> : rows.length ? <div className="table-scroll assessment-table"><table>
+        <thead><tr><th>{t("AVALIAÇÃO", "ASSESSMENT")}</th><th>{t("DATA", "DATE")}</th><th>{t("INSTRUMENTO", "INSTRUMENT")}</th><th>{t("PONTUAÇÃO E COBERTURA", "SCORE AND COVERAGE")}</th><th>{t("ESTADO", "STATUS")}</th><th><span className="sr-only">{t("Acções", "Actions")}</span></th></tr></thead>
+        <tbody>{rows.map(a => <tr key={a.id}>
+          <td><div className="assessment-identity"><span className="assessment-identity-icon" aria-hidden="true"><ClipboardCheck size={18} /></span><div><b>{a.laboratory_name}</b><small><span className={a.source.startsWith("odk:") ? "assessment-origin-tag odk" : "assessment-origin-tag"}>{assessmentOrigin(a.source, app.locale)}</span><span>{t("Revisão", "Revision")} {a.revision}</span></small><span className="assessment-reference" title={a.external_id}>{a.external_id}</span></div></div></td>
+          <td className="assessment-date">{fmtDate(a.assessment_date)}</td>
+          <td><b>{a.instrument_code}</b><small>v{a.instrument_version}</small></td>
+          <td><div className="assessment-result"><strong className={a.score.complete ? "score-text" : "assessment-provisional"}>{a.score.complete && a.score.percentage != null ? fmtPercent(a.score.percentage) : t("Por concluir", "Incomplete")}</strong><span>{a.score.obtained}/{a.score.maximum} {t(a.score.complete ? "pontos" : "pontos provisórios", a.score.complete ? "points" : "provisional points")}</span><progress value={Math.max(0, Math.min(100, a.score.coverage))} max="100" aria-label={t("Cobertura", "Coverage")} /><small>{a.score.coverage}% {t("preenchido", "coverage")}</small></div></td>
+          <td><Status value={a.status} /></td>
+          <td><button className="button secondary small" onClick={() => setSelected(a.id)}><Eye size={15} />{t("Abrir", "Open")}</button></td>
+        </tr>)}</tbody>
+      </table></div> : <Empty title={t("Sem avaliações para apresentar", "No assessments to display")} text={t("Ajuste os filtros ou importe os dados dos seus laboratórios.", "Adjust filters or import your laboratory data.")} />}
+    </Panel>
+    {selected && <AssessmentDetail id={selected} close={() => setSelected(null)} changed={state.reload} edit={a => { setSelected(null); setEditing(a); }} createAction={f => { setSelected(null); setFinding(f); }} selectRevision={setSelected} />}
+    {(creating || editing) && <AssessmentForm previous={editing} close={() => { setCreating(false); setEditing(null); }} done={done} />}
+    {finding && <ActionForm finding={finding} close={() => setFinding(null)} done={done} />}
+  </>;
 }
 
 function AssessmentDetail({ id, close, changed, edit, createAction, selectRevision }: { id: string; close: () => void; changed: () => void; edit: (a: Assessment) => void; createAction: (f: Finding) => void; selectRevision: (id: string) => void }) {
